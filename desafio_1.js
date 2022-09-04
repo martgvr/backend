@@ -52,9 +52,9 @@ class Contenedor {
 
 const producto1 = new Contenedor('./productos.txt');
 
-// producto1.getAll()
-//     .then((response) => console.log(response))
-//     .catch((error) => console.log('No se encontró el archivo y se creó uno nuevo.'))
+producto1.getAll()
+    .then((response) => console.log(response))
+    .catch((error) => console.log('No se encontró el archivo y se creó uno nuevo.'))
 
 // producto1.save({ title: 'titulo 1', price: 0, thumbnail: 'http://' });
 // producto1.getById(1)
