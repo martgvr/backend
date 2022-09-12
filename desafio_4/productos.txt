@@ -1,1 +1,1 @@
-[{"title":"Producto 1","price":500,"thumbnail":"X:\\Coderhouse\\4_backend\\desafio_4\\public\\upload\\abee637c25c4b44b7feb049983552975","id":1}]
+[]
