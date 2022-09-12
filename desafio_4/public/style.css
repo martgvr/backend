@@ -1,0 +1,58 @@
+/* IMPORTS */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+/* RESET */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+    
+/* GLOBALS */
+html {
+    font-size: 62.5%;
+    font-family: "Poppins", sans-serif;
+    background-color: #d4d4d4;
+    color: #000000;
+    height: 100%;   
+}
+
+ul { list-style-type: none; }
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(42, 61, 51); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FORM */
+.form__container {
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+    padding: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    font-size: 2em;
+}
+
+.form__container form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form__container input:not(input[type="file"]) {
+    padding: 4px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 6px;
+}
