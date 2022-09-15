@@ -1,0 +1,10 @@
+extends layout
+
+block contenido
+
+        h1 #{mensaje} #{nombre} #{apellido}
+
+        if render
+            h2 El deporte favorito es #{deporte}
+        else
+            h2 El deporte mas aburrido es #{deporte}
