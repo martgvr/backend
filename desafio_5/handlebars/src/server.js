@@ -1,12 +1,11 @@
 const usersRoutes = require('./routes/productos.js');
 const hbs = require('express-handlebars');
 const express = require('express');
-const morgan = require('morgan');
 const app = express();
 
-app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+
 app.use(express.urlencoded({ extended: true }));
 app.use('/', usersRoutes);
 

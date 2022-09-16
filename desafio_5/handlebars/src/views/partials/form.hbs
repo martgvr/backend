@@ -1,9 +1,8 @@
-<p>Esto es un form</p>
-
 <div class="form__container">
-  <form action="/api/productos" method="post" enctype="multipart/form-data">
+  <h2>Agregar productos</h2>
+  <form action="/productos" method="post" enctype="multipart/form-data">
     <div>
-      <label for="title">Producto</label>
+      <label for="title">Nombre</label>
       <input type="text" name="title" id="title" />
     </div>
     <div>
@@ -11,8 +10,8 @@
       <input type="text" name="price" id="price" />
     </div>
     <div>
-      <label for="thumbnail">Imagen</label>
-      <input type="file" name="thumbnail" id="thumbnail" />
+      <label for="thumbnail">Foto URL</label>
+      <input type="text" name="thumbnail" id="thumbnail" />
     </div>
     <input type="submit" value="Añadir producto" />
   </form>
