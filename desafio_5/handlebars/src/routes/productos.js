@@ -10,13 +10,12 @@ async function getAll() {
 }
 
 // ENDPOINTS
-router.get('/', (req, res) => res.render('index', { show: false }));
+router.get('/', (req, res) => res.render('index', { table: false }));
+
+router.post('/productos', (req, res) => res.send('POST ok')); // Hacer el POST y redirigir a '/'
+
+router.get('/productos', (req, res) => res.render('index', { table: true }));
 // .get('/', (req, res) => getAll().then(data => res.json(data)))
-
-// Hacer el POST y redirigir a '/'
-router.post('/productos', (req, res) => res.send('Exito'));
-
-router.get('/productos', (req, res) => res.render('index', { show: true }));
 
 // EXPORT
 module.exports = router;
