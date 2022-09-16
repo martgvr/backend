@@ -14,9 +14,27 @@ async function getAll() {
 // ENDPOINTS
 router.get('/', (req, res) => res.render('index', { table: false }));
 
-router.post('/productos', (req, res) => res.send('POST ok')); // Hacer el POST y redirigir a '/'
-
 router.get('/productos', (req, res) => getAll().then(data => res.render('index', { table: true, data })));
+
+router.post('/productos', (req, res) => {
+    const product = {
+        title: req.body.title,
+        price: Number(req.body.price),
+        thumbnail: req.body.thumbnail
+    }
+    getAll()
+        .then((data) => {
+            data.push({ ...product, id: data.length + 1 });
+            fs.promises.writeFile('./src/productos.txt', JSON.stringify(data));
+            res.redirect('/');
+        })
+        .catch((e) => {
+            product.id = 1;
+            fs.writeFileSync('./src/productos.txt', `[${JSON.stringify(product)}]`);
+            res.redirect('/');
+        })
+}); // redirigir a '/'
+
 
 // EXPORT
 module.exports = router;
