@@ -4,9 +4,11 @@ const fs = require('fs');
 
 async function getAll() {
     try {
-        const response = await fs.promises.readFile('./productos.txt', 'utf-8');
+        const response = await fs.promises.readFile('./src/productos.txt', 'utf-8');
         return JSON.parse(response);
-    } catch (e) { return 'Error! No se encontró el archivo' }
+    } catch (e) { 
+        return 'Error! No se encontró el archivo' 
+    }
 }
 
 // ENDPOINTS
@@ -14,8 +16,9 @@ router.get('/', (req, res) => res.render('index', { table: false }));
 
 router.post('/productos', (req, res) => res.send('POST ok')); // Hacer el POST y redirigir a '/'
 
-router.get('/productos', (req, res) => res.render('index', { table: true }));
-// .get('/', (req, res) => getAll().then(data => res.json(data)))
+router.get('/productos', (req, res) => { 
+    getAll().then(data => res.render('index', { table: true, data }))
+});
 
 // EXPORT
 module.exports = router;
