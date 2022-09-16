@@ -1,0 +1,19 @@
+<p>Esto es un form</p>
+
+<div class="form__container">
+  <form action="/api/productos" method="post" enctype="multipart/form-data">
+    <div>
+      <label for="title">Producto</label>
+      <input type="text" name="title" id="title" />
+    </div>
+    <div>
+      <label for="price">Precio</label>
+      <input type="text" name="price" id="price" />
+    </div>
+    <div>
+      <label for="thumbnail">Imagen</label>
+      <input type="file" name="thumbnail" id="thumbnail" />
+    </div>
+    <input type="submit" value="Añadir producto" />
+  </form>
+</div>
