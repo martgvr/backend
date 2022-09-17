@@ -2,15 +2,40 @@ extends layout
 
 block contenido
 
-    h1 #{mensaje} #{nombre} #{apellido}
-
-    if render
-        h2 El deporte favorito es #{deporte}
+    if form
+        div
+            div(class="form__container")
+                h2 Add product 
+                form(action="/productos", method="post") 
+                    div 
+                        label(for="title") Name
+                        input(type="text", name="title" id="title")
+                    div 
+                        label(for="price") Price
+                        input(type="text", name="price" id="price")
+                    div 
+                        label(for="thumbnail") Thumbnail
+                        input(type="text", name="thumbnail" id="thumbnail")
+                    input(type="submit", value="Add product")
     else
-        h2 El deporte mas aburrido es #{deporte}
+        div 
+            div(class="form__container")
+                h2 Vista de productos
+                table(style="width:100%")
+                    tr
+                        th Name 
+                        th Price 
+                        th Picture
+
+                    each val in data
+                        tr 
+                            td #{val.title} 
+                            td #{val.price}  
+                            td 
+                                img(src=val.thumbnail, alt="")
 
 block header
-    div Header
+    header Header
 
 block footer 
-    div Footer
+    footer Footer

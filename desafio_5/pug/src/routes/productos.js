@@ -12,9 +12,9 @@ async function getAll() {
 }
 
 // ENDPOINTS
-router.get('/', (req, res) => res.render('index', { table: false }));
+router.get('/', (req, res) => res.render('index', { form: true }));
 
-router.get('/productos', (req, res) => getAll().then(data => res.render('index', { table: true, data })));
+router.get('/productos', (req, res) => getAll().then(data => res.render('index', { form: false, data })));
 
 router.post('/productos', (req, res) => {
     const product = {
@@ -34,7 +34,6 @@ router.post('/productos', (req, res) => {
             res.redirect('/');
         })
 });
-
 
 // EXPORT
 module.exports = router;

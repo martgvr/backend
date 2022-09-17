@@ -7,17 +7,15 @@
     <header>
         <%- include('../partials/header') %>
     </header>
-
-    <h3>Mitad de la página</h3>
     
-    <% if (render) { %>
-        <ul>
-            <% usuarios.forEach(usuario => { %>
-                <li>
-                    <%= usuario.nombre %> <%= usuario.apellido %>
-                </li>    
-            <% }) %>
-        </ul>
+    <% if (form) { %>
+        <p>FORM</p>
+    <% } else { %>
+        <% data.forEach(item => { %>
+            <p>
+                <%= item.title %>
+            </p>
+        <% }) %>
     <% } %>
 
     <footer>
