@@ -5,18 +5,18 @@ block contenido
     if form
         div
             div(class="form__container")
-                h2 Add product 
+                h2 Ingrese productos
                 form(action="/productos", method="post") 
                     div 
-                        label(for="title") Name
+                        label(for="title") Nombre
                         input(type="text", name="title" id="title")
                     div 
-                        label(for="price") Price
+                        label(for="price") Precio
                         input(type="text", name="price" id="price")
                     div 
-                        label(for="thumbnail") Thumbnail
+                        label(for="thumbnail") Foto URL
                         input(type="text", name="thumbnail" id="thumbnail")
-                    input(type="submit", value="Add product")
+                    input(type="submit", value="Añadir producto")
     else
         div 
             div(class="form__container")
@@ -35,7 +35,10 @@ block contenido
                                 img(src=val.thumbnail, alt="")
 
 block header
-    header Header
+    header 
+        a(href="/") Agregar productos
+        a(href="/productos") Ver productos
+
 
 block footer 
     footer Footer
