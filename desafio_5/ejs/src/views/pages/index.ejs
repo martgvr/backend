@@ -1,25 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('../partials/head') %>
 </head>
+
 <body>
     <header>
         <%- include('../partials/header') %>
     </header>
-    
+
     <% if (form) { %>
-        <p>FORM</p>
+        <div>
+            <div class="form__container">
+                <h2>Ingrese productos</h2>
+                <form action="/productos" method="post">
+                    <div>
+                        <label for="title">Nombre</label>
+                        <input type="text" name="title" id="title" />
+                    </div>
+                    <div>
+                        <label for="price">Precio</label>
+                        <input type="text" name="price" id="price" />
+                    </div>
+                    <div>
+                        <label for="thumbnail">Foto URL</label>
+                        <input type="text" name="thumbnail" id="thumbnail" />
+                    </div>
+                    <input type="submit" value="Añadir producto" />
+                </form>
+            </div>
+        </div>
     <% } else { %>
-        <% data.forEach(item => { %>
-            <p>
-                <%= item.title %>
-            </p>
-        <% }) %>
+        <div>
+            <div class="form__container">
+                <h2>Vista de productos</h2>
+
+                <table style="width:100%">
+                    <% if (data.error) { %>
+                        <p>Error: No se encontraron productos!</p>
+                        <% } else { %>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Foto</th>
+                            </tr>
+                        <% data.forEach(item=> { %>
+                            <tr>
+                                <td>
+                                    <%= item.title %>
+                                </td>
+                                <td>
+                                    <%= item.price %>
+                                </td>
+                                <td><img src="<%= item.thumbnail %>" /></td>
+                            </tr>
+                            <% }) %>
+                    <% } %>
+                </table>
+            </div>
+
+        </div>
     <% } %>
 
     <footer>
         <%- include('../partials/footer') %>
     </footer>
 </body>
+
 </html>
