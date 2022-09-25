@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const fs = require('fs');   
+const fs = require('fs');
 
 async function getAll() {
     try {

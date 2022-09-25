@@ -3,6 +3,8 @@ const hbs = require('express-handlebars');
 const express = require('express');
 const app = express();
 
+const fs = require('fs');
+
 const http = require("http");
 const { Server: SocketServer } = require("socket.io");
 const httpServer = http.createServer(app);
@@ -24,22 +26,36 @@ app.engine('hbs', hbs.engine({
 }));
 
 // ACA
-
 const mensajes = [];
 
 socketServer.on('connection', (client) => {
     console.log("Usuario conectado:", client.id);
 
+    // Carga inicial
     client.emit('loadMessages', mensajes);
+    getAll().then(data => client.emit('loadProducts', data))
 
+    // Carga posterior
     client.on("mensaje", (mensaje) => {
-        console.log('mensaje entrante');
         mensajes.push(mensaje);
-        // Esto emite un mensaje a todos los clientes
-
         socketServer.sockets.emit("loadMessages", mensajes);
     });
+
+    client.on('actualizarProductos', () => {
+        console.log('Actualizar productos!');
+        getAll().then(data => client.emit('loadProducts', data))
+    })
 });
+
+// FUNCIONES
+async function getAll() {
+    try {
+        const response = await fs.promises.readFile('./src/productos.txt', 'utf-8');
+        return JSON.parse(response);
+    } catch (e) {
+        return { error: true } 
+    }
+}
 
 const PORT = process.env.PORT || 8080;
 httpServer.listen(PORT, () => console.log(`Escuchando el puerto ${PORT}`));

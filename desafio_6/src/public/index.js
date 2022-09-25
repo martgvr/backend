@@ -1,6 +1,9 @@
+// LADO CLIENTE (BROWSER)
 const socketClient = io();
 
+const formProductos = document.getElementById('formProductos');
 const formulario = document.getElementById("formulario");
+const productos = document.getElementById('productos');
 const inputNombre = document.getElementById('name');
 const inputInfo = document.getElementById("info");
 const lista = document.getElementById("lista");
@@ -14,23 +17,29 @@ formulario.onsubmit = (e) => {
 
     socketClient.emit("mensaje", obj);
     inputInfo.value = "";
+    socketClient.emit("actualizarProductos");
 };
 
-async function getAll() {
-    try {
-        const response = await fs.promises.readFile('./src/productos.txt', 'utf-8');
-        return JSON.parse(response);
-    } catch (e) {
-        return { error: true }
-    }
+formProductos.onsubmit = (e) => {
+    console.log('Hacer algo');
+    socketClient.emit("actualizarProductos");
 }
 
+
+// EVENTOS PROVENIENTES DEL SERVIDOR
 socketClient
+    // Cargar mensajes de chat
     .on("loadMessages", (mensajes) => {
         generarTexto(mensajes);
         // scrollBottom();
+    })
+
+    // Cargar productos
+    .on("loadProducts", (data) => {
+        generarProductos(data);
     });
 
+// FUNCIONES
 function generarTexto(mensajes) {
     const inner = mensajes.map((mensaje) => {
         return `    <li>
@@ -41,4 +50,17 @@ function generarTexto(mensajes) {
 
     }).join(" ");
     lista.innerHTML = inner;
+}
+
+function generarProductos(data) {
+    const inner = data.map((item) => {
+        return  `
+                <tr>
+                    <td>${item.title}</td>
+                    <td>${item.price}</td>
+                    <td><img src="${item.thumbnail}" /></td>
+                </tr>
+                `;
+    }).join(" ");
+    productos.innerHTML = inner;
 }
