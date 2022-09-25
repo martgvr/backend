@@ -104,3 +104,33 @@ body > div {
     flex-direction: column;
     gap: 30px;
 }
+
+/* CHAT */
+
+.lista {
+    padding: 10px;
+    font-size: 0.6em;
+    height: 300px;
+    width: 100%;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 10px;
+    flex-grow: 1;
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mensajeContainer {
+    background-color: #f0f0f0;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.nick {
+    color: rgb(0, 0, 0);
+    padding: 2px;
+    width: 100%;
+    border-radius: 10px;
+}

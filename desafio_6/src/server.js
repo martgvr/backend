@@ -23,9 +23,22 @@ app.engine('hbs', hbs.engine({
     partialsDir: __dirname + '/views/partials'
 }));
 
+// ACA
+
+const mensajes = [];
+
 socketServer.on('connection', (client) => {
     console.log("Usuario conectado:", client.id);
-    client.emit('loadData');
+
+    client.emit('loadMessages', mensajes);
+
+    client.on("mensaje", (mensaje) => {
+        console.log('mensaje entrante');
+        mensajes.push(mensaje);
+        // Esto emite un mensaje a todos los clientes
+
+        socketServer.sockets.emit("loadMessages", mensajes);
+    });
 });
 
 const PORT = process.env.PORT || 8080;
