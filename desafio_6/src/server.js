@@ -1,8 +1,6 @@
-const usersRoutes = require('./routes/productos.js');
 const hbs = require('express-handlebars');
 const express = require('express');
 const app = express();
-
 const fs = require('fs');
 
 const http = require("http");
@@ -13,7 +11,6 @@ const socketServer = new SocketServer(httpServer);
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
-app.use('/', usersRoutes);
 
 app.set('views', './src/views');
 app.set('view engine', 'hbs');
@@ -27,7 +24,6 @@ app.engine('hbs', hbs.engine({
 
 // ACA
 const mensajes = [];
-
 socketServer.on('connection', (client) => {
     console.log("Usuario conectado:", client.id);
 
@@ -46,6 +42,29 @@ socketServer.on('connection', (client) => {
         getAll().then(data => client.emit('loadProducts', data))
     })
 });
+
+// ENDPOINTS
+app.get('/', (req, res) => getAll().then(data => res.render('index', { data })));
+
+app.post('/productos', (req, res) => {
+    const product = {
+        title: req.body.title,
+        price: Number(req.body.price),
+        thumbnail: req.body.thumbnail
+    }
+    getAll()
+        .then((data) => {
+            data.push({ ...product, id: data.length + 1 });
+            fs.promises.writeFile('./src/productos.txt', JSON.stringify(data));
+            res.redirect('/');
+        })
+        .catch((e) => {
+            product.id = 1;
+            fs.writeFileSync('./src/productos.txt', `[${JSON.stringify(product)}]`);
+            res.redirect('/');
+        })
+});
+
 
 // FUNCIONES
 async function getAll() {

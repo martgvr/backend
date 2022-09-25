@@ -17,21 +17,19 @@ formulario.onsubmit = (e) => {
 
     socketClient.emit("mensaje", obj);
     inputInfo.value = "";
-    socketClient.emit("actualizarProductos");
 };
 
 formProductos.onsubmit = (e) => {
-    console.log('Hacer algo');
     socketClient.emit("actualizarProductos");
+    console.log('Emitir al servidor actualizarProductos');
 }
-
 
 // EVENTOS PROVENIENTES DEL SERVIDOR
 socketClient
     // Cargar mensajes de chat
     .on("loadMessages", (mensajes) => {
         generarTexto(mensajes);
-        // scrollBottom();
+        scrollBottom();
     })
 
     // Cargar productos
@@ -63,4 +61,11 @@ function generarProductos(data) {
                 `;
     }).join(" ");
     productos.innerHTML = inner;
+}
+
+function scrollBottom() {
+    lista.scroll({
+        top: lista.scrollHeight,
+        behavior: 'smooth'
+    });
 }
