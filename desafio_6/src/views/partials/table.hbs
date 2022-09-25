@@ -1,0 +1,24 @@
+<div class="form__container">
+  <h3>Vista de productos</h3>
+
+  <table style="width:100%">
+
+    {{#if data.error}}
+      <p>Error: No se encontraron productos!</p>
+    {{else}}
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Foto</th>
+      </tr>
+      {{#each data}}
+        <tr>
+          <td>{{this.title}}</td>
+          <td>{{this.price}}</td>
+          <td><img src="{{this.thumbnail}}" /></td>
+        </tr>
+      {{/each}}
+    {{/if}}
+
+  </table>
+</div>
