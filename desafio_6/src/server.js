@@ -25,6 +25,7 @@ app.engine('hbs', hbs.engine({
 
 socketServer.on('connection', (client) => {
     console.log("Usuario conectado:", client.id);
+    client.emit('loadData');
 });
 
 const PORT = process.env.PORT || 8080;

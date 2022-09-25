@@ -92,3 +92,15 @@ body > div {
     height: 40px;
     border-radius: 100%;
 }
+
+.body__container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

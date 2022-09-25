@@ -12,9 +12,7 @@ async function getAll() {
 }
 
 // ENDPOINTS
-router.get('/', (req, res) => res.render('index', { table: false }));
-
-router.get('/productos', (req, res) => getAll().then(data => res.render('index', { table: true, data })));
+router.get('/', (req, res) => getAll().then(data => res.render('index', { data })));
 
 router.post('/productos', (req, res) => {
     const product = {
