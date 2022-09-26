@@ -22,19 +22,19 @@ app.engine('hbs', hbs.engine({
     partialsDir: __dirname + '/views/partials'
 }));
 
-const mensajes = [];
-
 socketServer.on('connection', (client) => {
     console.log("Usuario conectado:", client.id);
 
-    client.emit('loadMessages', mensajes);
-    getAll().then(data => client.emit('loadProducts', data))
-
+    getMessages().then((data) => socketServer.sockets.emit("loadMessages", data));
     client.on("mensaje", (mensaje) => {
-        mensajes.push(mensaje);
-        socketServer.sockets.emit("loadMessages", mensajes);
+        getMessages().then((data) => {
+            data.push(mensaje)
+            fs.promises.writeFile('./src/mensajes.txt', JSON.stringify(data));
+            socketServer.sockets.emit("loadMessages", data);
+        })
     });
-
+    
+    getAll().then(data => client.emit('loadProducts', data))
     client.on('actualizarProductos', () => {
         setTimeout(() => {
             getAll().then(data => socketServer.sockets.emit('loadProducts', data))
@@ -66,6 +66,15 @@ app.post('/productos', (req, res) => {
 async function getAll() {
     try {
         const response = await fs.promises.readFile('./src/productos.txt', 'utf-8');
+        return JSON.parse(response);
+    } catch (e) {
+        return { error: true }
+    }
+}
+
+async function getMessages() {
+    try {
+        const response = await fs.promises.readFile('./src/mensajes.txt', 'utf-8');
         return JSON.parse(response);
     } catch (e) {
         return { error: true }
