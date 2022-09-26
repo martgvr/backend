@@ -20,7 +20,6 @@ formulario.onsubmit = (e) => {
 
 formProductos.onsubmit = (e) => {
     socketClient.emit("actualizarProductos");
-    console.log('actualizarProductos');
 }
 
 socketClient
