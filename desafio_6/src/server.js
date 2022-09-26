@@ -22,28 +22,26 @@ app.engine('hbs', hbs.engine({
     partialsDir: __dirname + '/views/partials'
 }));
 
-// ACA
 const mensajes = [];
+
 socketServer.on('connection', (client) => {
     console.log("Usuario conectado:", client.id);
 
-    // Carga inicial
     client.emit('loadMessages', mensajes);
     getAll().then(data => client.emit('loadProducts', data))
 
-    // Carga posterior
     client.on("mensaje", (mensaje) => {
         mensajes.push(mensaje);
         socketServer.sockets.emit("loadMessages", mensajes);
     });
 
     client.on('actualizarProductos', () => {
-        console.log('Actualizar productos!');
-        getAll().then(data => client.emit('loadProducts', data))
+        setTimeout(() => {
+            getAll().then(data => socketServer.sockets.emit('loadProducts', data))
+        }, 100);
     })
 });
 
-// ENDPOINTS
 app.get('/', (req, res) => getAll().then(data => res.render('index', { data })));
 
 app.post('/productos', (req, res) => {
@@ -65,14 +63,12 @@ app.post('/productos', (req, res) => {
         })
 });
 
-
-// FUNCIONES
 async function getAll() {
     try {
         const response = await fs.promises.readFile('./src/productos.txt', 'utf-8');
         return JSON.parse(response);
     } catch (e) {
-        return { error: true } 
+        return { error: true }
     }
 }
 

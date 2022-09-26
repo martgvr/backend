@@ -1,4 +1,3 @@
-// LADO CLIENTE (BROWSER)
 const socketClient = io();
 
 const formProductos = document.getElementById('formProductos');
@@ -8,7 +7,6 @@ const inputNombre = document.getElementById('name');
 const inputInfo = document.getElementById("info");
 const lista = document.getElementById("lista");
 
-// MANEJO FORMULARIO
 formulario.onsubmit = (e) => {
     e.preventDefault();
     const info = inputInfo.value;
@@ -21,23 +19,20 @@ formulario.onsubmit = (e) => {
 
 formProductos.onsubmit = (e) => {
     socketClient.emit("actualizarProductos");
-    console.log('Emitir al servidor actualizarProductos');
+    console.log('actualizarProductos');
 }
 
-// EVENTOS PROVENIENTES DEL SERVIDOR
 socketClient
-    // Cargar mensajes de chat
     .on("loadMessages", (mensajes) => {
         generarTexto(mensajes);
         scrollBottom();
     })
 
-    // Cargar productos
     .on("loadProducts", (data) => {
         generarProductos(data);
     });
 
-// FUNCIONES
+
 function generarTexto(mensajes) {
     const inner = mensajes.map((mensaje) => {
         return `    <li>
@@ -52,7 +47,7 @@ function generarTexto(mensajes) {
 
 function generarProductos(data) {
     const inner = data.map((item) => {
-        return  `
+        return `
                 <tr>
                     <td>${item.title}</td>
                     <td>${item.price}</td>
