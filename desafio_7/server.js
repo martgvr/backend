@@ -3,10 +3,11 @@ const app = express();
 const productosRoutes = require('./routes/productos.js');
 const carritoRoutes = require('./routes/carrito.js');
 
-app.use('/api/productos', productosRoutes);
-app.use('/api/carrito', carritoRoutes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/api/productos', productosRoutes);
+app.use('/api/carrito', carritoRoutes);
 
 const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, (req, res) => console.log(`Escuchando el puerto ${PORT}`))

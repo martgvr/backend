@@ -1,3 +1,4 @@
+const adminAuth = require('../middlewares/admin')
 const { Router } = require('express');
 const router = Router();
 
@@ -7,15 +8,14 @@ router.get('/:id', (req, res) =>  {
     res.json({msg: 'GET Productos', id})
 });
 
-// PONER MIDDLEWARE ADMIN
-router.post('/', (req, res) =>  res.json({msg: 'POST Productos'}));
+router.post('/', adminAuth, (req, res) =>  res.json({msg: 'POST Productos'}));
 
-router.put('/:id', (req, res) =>  {
+router.put('/:id', adminAuth, (req, res) =>  {
     const { id } = req.params;
     res.json({msg: 'PUT Productos', id})
 });
 
-router.delete('/:id', (req, res) =>  {
+router.delete('/:id', adminAuth, (req, res) =>  {
     const { id } = req.params;
     res.json({msg: 'DELETE Productos', id})
 });
