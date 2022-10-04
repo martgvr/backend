@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
 const productosRoutes = require('./routes/productos.js');
 const carritoRoutes = require('./routes/carrito.js');
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
