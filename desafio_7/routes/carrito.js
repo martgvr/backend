@@ -22,12 +22,12 @@ router.post('/', adminAuth, (req, res) =>  {
         .then((data) => {
             data.push({ ...cartData, id: data.length + 1 });
             fs.promises.writeFile('./carrito.txt', JSON.stringify(data));
-            res.json({ msg: `Carrito generado con id: ${data.length}` });
+            res.json({ msg: `Carrito generado con id: ${data.length}`, id: data.length });
         })
         .catch((e) => {
             cartData.id = 1;
             fs.writeFileSync('./carrito.txt', `[${JSON.stringify(cartData)}]`);
-            res.json({ msg: 'Carrito generado con id: 1' });
+            res.json({ msg: 'Carrito generado con id: 1', id: data.length });
         })
 });
 

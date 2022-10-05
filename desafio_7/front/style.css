@@ -32,10 +32,34 @@ body {
 
 header {
     font-size: 1.8rem;
-    padding: 10px;
+    padding: 10px 40px;
     background-color: rgb(0, 0, 0);
     color: white;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+    height: 60px;
 }
+
+header ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #777777;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+}
+
+header ul li:hover {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+ul .active {
+    color: white;
+}
+
+/* CARDS */
 
 .cards__container {
     padding: 20px;
@@ -53,6 +77,12 @@ header {
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 20px;
+    overflow: hidden;
+}
+
+.card:hover > .card__image {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
 }
 
 .card__image {
@@ -62,6 +92,7 @@ header {
     background-size: cover;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+    transition: all 0.1s ease-in-out;
 }
 
 .card__description {
@@ -75,4 +106,42 @@ header {
 .card__description p:first-of-type {
     font-size: 1.8rem;
     font-weight: bold;
+}
+
+/* CART */
+
+.cart__container {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    width: 400px;
+    padding: 80px 20px 20px 20px;
+    right: 0;
+    z-index: 0;
+}
+
+.cart__header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    background-color: #242424;
+    color: white;
+    padding: 10px;
+}
+
+.cart__header--button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 0px 10px;
+}
+
+.cart__header--button:hover {
+    cursor: pointer;
+    background-color: rgb(185, 15, 15);
+    color: white;
 }

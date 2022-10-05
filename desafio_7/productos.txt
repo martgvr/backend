@@ -1,14 +1,11 @@
-[
-    {
+[{
     "title": "Producto 1",
     "price": 100,
     "thumbnail": "https://i.ytimg.com/vi/_LbbKKuimaM/maxresdefault.jpg",
     "id": 1
-},
-    {
+}, {
     "title": "Producto 2",
     "price": 200,
     "thumbnail": "https://i.ytimg.com/vi/_LbbKKuimaM/maxresdefault.jpg",
     "id": 2
-}
-]
+}]
