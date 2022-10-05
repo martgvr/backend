@@ -6,6 +6,6 @@
 }, {
     "title": "Producto 2",
     "price": 200,
-    "thumbnail": "https://i.ytimg.com/vi/_LbbKKuimaM/maxresdefault.jpg",
+    "thumbnail": "https://www.elevencomunicacion.com/wp-content/uploads/2019/02/eleven-fotografia-de-hamburguesas.jpg",
     "id": 2
 }]

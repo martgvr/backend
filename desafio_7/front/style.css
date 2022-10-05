@@ -145,3 +145,136 @@ ul .active {
     background-color: rgb(185, 15, 15);
     color: white;
 }
+
+/* AGREGAR PRODUCTO */
+
+.addProduct__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addProduct__modal {
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.addProduct__modal--header {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addProduct__modal--header button {
+    padding: 0 6px;
+    border: 0;
+    border-radius: 4px;
+}
+
+.addProduct__modal--header button:hover {
+    cursor: pointer;
+    background-color: #832626;
+    color: white;
+}
+
+.addProduct__modal--content {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.addProduct__modal--footer {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addProduct__modal--footer input {
+    padding: 4px;
+    background-color: #064419;
+    color: white;
+    border: 1px solid rgb(0, 255, 13);
+    border-radius: 6px;
+}
+
+.addProduct__modal--footer input:hover {
+    background-color: #009b2e;
+    cursor: pointer;
+}
+
+.addProduct__modal--footer button {
+    padding: 4px;
+    background-color: #3b0f0f;
+    color: white;
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 6px;
+}
+
+.addProduct__modal--footer button:hover {
+    background-color: #990808;
+    cursor: pointer;
+}
+
+
+/* FORMULARIO */
+
+.form__container {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 10px;
+    font-size: 1.4em;
+}
+
+.form__container > form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+}
+
+.form__container input {
+    padding: 4px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 6px;
+}
+
+.form__container input:focus {
+    outline: none;
+}
+
+.formulario input[type="text"] {
+    padding: 4px;
+    border-radius: 8px;
+    width: 250px;
+    margin-right: 6px;
+}
+
+.formulario input[type="text"]:first-of-type {
+    width: 100px;
+}
+
+.formulario input[type="text"]:focus {
+    outline: none;
+}
+
+.formulario input[type="submit"] {
+    padding: 4px;
+    border-radius: 8px;
+}

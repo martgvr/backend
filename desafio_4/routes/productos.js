@@ -13,6 +13,7 @@ async function getAll() {
 // ENDPOINT GET
 router
     .get('/', (req, res) => getAll().then(data => res.json(data)))
+    
     .get('/:id', (req, res) => {
         getAll().then((data) => {
             const response = data.find(item => item.id == req.params.id);

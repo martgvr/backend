@@ -39,7 +39,7 @@ let cartID = null;
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 'admin': true })
+        // body: JSON.stringify({ 'admin': true })
     }
     fetch(fetchURL, fetchOptions).then(data => data.json()).then(res => cartID = res.id)
 })();
@@ -80,6 +80,59 @@ document.getElementById('cartButton').addEventListener('click', () => {
         cartCloseButton.addEventListener('click', () => {
             document.getElementById('cartContainer').remove();
             cartButton.removeAttribute('class');
+        })
+    }
+})
+
+// ADD PRODUCT
+const addProductsButton = document.getElementById('addProductsButton');
+
+addProductsButton.addEventListener('click', () => {
+    const addProductModal = document.getElementById('addProductModal');
+    if (addProductModal == null) {
+        addProductsButton.setAttribute('class', 'active');
+        addProductsInner =  `
+                            <article class="addProduct__modal" id="addProductModal">
+    
+                                <div class="addProduct__modal--header">
+                                    <p>Agregar producto</p>
+                                    <button id="closeModalButton">X</button>
+                                </div>
+    
+                                <div class="addProduct__modal--content">
+                                    <div class="form__container">
+                                        <form action="/api/productos" method="post" id="formProductos">
+                                            <div>
+                                                <label for="title">Nombre</label>
+                                                <input type="text" name="title" id="title" />
+                                            </div>
+                                            <div>
+                                                <label for="price">Precio</label>
+                                                <input type="text" name="price" id="price" />
+                                            </div>
+                                                <div>
+                                                <label for="thumbnail">Foto URL</label>
+                                                <input type="text" name="thumbnail" id="thumbnail" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+    
+                                <div class="addProduct__modal--footer">
+                                    <button>Cancelar</button>
+                                    <input type="submit" value="Añadir producto" id="addProductBtn"/>
+                                </div>
+                            </article>
+                            `;
+
+        createComponent('section', 'addProduct__container', 'addProductContainer', addProductsInner, 'body');
+
+        const closeModalButton = document.getElementById('closeModalButton');
+        const addProductContainer = document.getElementById('addProductContainer');
+        
+        closeModalButton.addEventListener('click', () => {
+            addProductContainer.remove();
+            addProductsButton.removeAttribute('class', 'active');
         })
     }
 })

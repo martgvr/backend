@@ -1,1 +1,23 @@
-[{"timestamp":"Tue Oct 04 2022 15:06:00 GMT-0300 (hora estándar de Argentina)","productos":[{"timestamp":"Tue Oct 04 2022 15:10:25 GMT-0300 (hora estándar de Argentina)","nombre":"Producto 1","descripcion":"Descripcion producto","codigo":"123456","foto":"http","precio":"100","stock":"10","id":0},{"timestamp":"Tue Oct 04 2022 15:12:05 GMT-0300 (hora estándar de Argentina)","nombre":"Producto 2","descripcion":"Descripcion producto","codigo":"123456","foto":"http","precio":"100","stock":"10","id":1}],"id":1},{"timestamp":"Tue Oct 04 2022 15:06:00 GMT-0300 (hora estándar de Argentina)","productos":[],"id":2},{"timestamp":"Tue Oct 04 2022 22:30:18 GMT-0300 (hora estándar de Argentina)","productos":[],"id":3},{"timestamp":"Tue Oct 04 2022 22:30:36 GMT-0300 (hora estándar de Argentina)","productos":[],"id":4},{"timestamp":"Tue Oct 04 2022 22:30:43 GMT-0300 (hora estándar de Argentina)","productos":[],"id":5},{"timestamp":"Tue Oct 04 2022 22:31:02 GMT-0300 (hora estándar de Argentina)","productos":[],"id":6},{"timestamp":"Tue Oct 04 2022 22:31:13 GMT-0300 (hora estándar de Argentina)","productos":[],"id":7},{"timestamp":"Tue Oct 04 2022 22:31:20 GMT-0300 (hora estándar de Argentina)","productos":[],"id":8},{"timestamp":"Tue Oct 04 2022 22:31:26 GMT-0300 (hora estándar de Argentina)","productos":[],"id":9}]
+[{
+    "timestamp": "Tue Oct 04 2022 15:06:00 GMT-0300 (hora estándar de Argentina)",
+    "productos": [{
+        "timestamp": "Tue Oct 04 2022 15:10:25 GMT-0300 (hora estándar de Argentina)",
+        "nombre": "Producto 1",
+        "descripcion": "Descripcion producto",
+        "codigo": "123456",
+        "foto": "http",
+        "precio": "100",
+        "stock": "10",
+        "id": 0
+    }, {
+        "timestamp": "Tue Oct 04 2022 15:12:05 GMT-0300 (hora estándar de Argentina)",
+        "nombre": "Producto 2",
+        "descripcion": "Descripcion producto",
+        "codigo": "123456",
+        "foto": "http",
+        "precio": "100",
+        "stock": "10",
+        "id": 1
+    }],
+    "id": 1
+}]
