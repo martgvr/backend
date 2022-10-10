@@ -1,25 +1,19 @@
-import { mysql as db } from '../dbConfig.js'
+import { products_Config, products_Server as db } from '../dbConfig.js'
 
 (async function() {
     try {
-        // Verificar si ya existe la tabla
-        const isTable = await db.schema.hasTable('products');
-
+        const isTable = await db.schema.hasTable(products_Config.table);
         if (!isTable) {
-            // Creo tabla
-            await db.schema.createTable('products', (table) => {
-                // Creo columnas
+            await db.schema.createTable(products_Config.table, (table) => {
                 table.increments('id').primary().notNullable();
-                table.string('name').notNullable();
+                table.string('title').notNullable();
                 table.integer('price').notNullable();
-                table.integer('stock').notNullable();
+                table.string('thumbnail').notNullable();
             })
-
             console.log('Tabla de productos creada con éxito en MySQL.');
         } else {
             console.log('La tabla de productos en MySQL ya existe.');
         }
-
     } catch (error) {
         console.log(error);
     }
