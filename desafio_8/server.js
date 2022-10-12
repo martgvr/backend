@@ -23,11 +23,16 @@ socketServer.on('connection', (client) => {
     messagesDB.getAll().then(messages => socketServer.sockets.emit("loadMessages", messages));
     productsDB.getAll().then(products => socketServer.sockets.emit("loadProducts", products));
 
-    // CLIENTE EMITE
     client.on("newMessage", (data) => {
-        console.log(data);
         messagesDB.save(data);
         messagesDB.getAll().then(messages => socketServer.sockets.emit("loadMessages", messages));
+    });
+
+    client.on("newProduct", (data) => {
+        productsDB.save(data);
+        setTimeout(() => {
+            productsDB.getAll().then(products => socketServer.sockets.emit("loadProducts", products));
+        }, 500);
     });
 });
 

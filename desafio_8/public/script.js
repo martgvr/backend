@@ -1,24 +1,36 @@
 const socketClient = io('http://localhost:8080');
 
-const productsTable = document.getElementById('productsTable');
-
 const messagesContainer = document.getElementById('messagesContainer');
 const messagesForm = document.getElementById('messagesForm');
 const messageName = document.getElementById('messageName');
 const messageText = document.getElementById("messageText");
 
-// CONTROL DE FORMULARIOS
+const productsTable = document.getElementById('productsTable');
+const productTitle = document.getElementById('productTitle');
+const productPrice = document.getElementById('productPrice');
+const productThumbnail = document.getElementById('productThumbnail');
+
+
 messagesForm.onsubmit = (e) => {
     e.preventDefault();
     const name = messageName.value;
     const message = messageText.value;
     const timestamp = new Date().toLocaleString();
-
     socketClient.emit("newMessage", { name, message, timestamp });
     messageText.value = "";
 };
 
-// EVENTOS PROVENIENTES DEL SERVIDOR
+productsForm.onsubmit = (e) => {
+    e.preventDefault();
+    const title = productTitle.value;
+    const price = productPrice.value;
+    const thumbnail = productThumbnail.value;
+    socketClient.emit("newProduct", { title, price, thumbnail });
+    productTitle.value = "";
+    productPrice.value = "";
+    productThumbnail.value = "";
+}
+
 socketClient
     .on("loadMessages", (messages) => {
         loadMessages(messages);
@@ -26,11 +38,11 @@ socketClient
     })
 
     .on("loadProducts", (products) => {
+        console.log(products);
         loadProducts(products);
     });
 
     
-// FUNCIONES
 function sendMessage(event) {
     event.preventDefault();
 }
@@ -57,14 +69,18 @@ function scrollBottom() {
 }
 
 function loadProducts(products) {
-    const inner = products.map((item) => {
-        return `
-                <tr>
-                    <td>${item.title}</td>
-                    <td>${item.price}</td>
-                    <td><img src="${item.thumbnail}" /></td>
-                </tr>
-                `;
-    }).join(" ");
-    productsTable.innerHTML = inner;
+    if (products.length > 0) {
+        const inner = products.map((item) => {
+            return `
+                    <tr>
+                        <td>${item.title}</td>
+                        <td>${item.price}</td>
+                        <td><img src="${item.thumbnail}" /></td>
+                    </tr>
+                    `;
+        }).join(" ");
+        productsTable.innerHTML = inner;
+    } else {
+        productsTable.innerHTML = '<div class="noProducts">No hay productos en la base de datos</div>';
+    }
 }

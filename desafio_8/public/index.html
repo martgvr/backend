@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafio 8</title>
+    <title>Desafio 8 - Bases de datos</title>
     <link rel="stylesheet" href="style.css">
     <script src="http://localhost:8080/socket.io/socket.io.js"></script>
     <script src="script.js" async></script>
@@ -17,14 +17,11 @@
         <p>menu</p>
     </header>
     <main>
-
-        <!-- LISTA DE PRODUCTOS -->
         <section class="products__container">
             <article class="container__title">
                 <h1>Lista de productos</h1>
             </article>
             <article class="container__main">
-
                 <table style="width:100%" id="productsTable">
                     <tr>
                       <th>Nombre</th>
@@ -32,11 +29,9 @@
                       <th>Foto</th>
                     </tr>
                 </table>
-
             </article>
         </section>
 
-        <!-- CENTRO MENSAJES -->
         <section class="chat__container">
             <article class="container__title">
                 <h1>Centro de mensajes</h1>
@@ -47,7 +42,7 @@
                 </ul>
             </article>
             <article class="container__footer">
-                <form class="messages__form"  id="messagesForm">
+                <form class="messages__form" id="messagesForm">
                     <input type="text" name="name" id="messageName" placeholder="Tu email">
                     <input type="text" name="info" id="messageText" placeholder="Escribe un mensaje aquí">
                     <input type="submit" value="Enviar" id="sendMessageBtn">
@@ -55,33 +50,30 @@
             </article>
         </section>
 
-        <!-- AGREGAR PRODUCTOS -->
         <section class="form__container">
             <article class="container__title">
                 <h1>Ingresar producto</h1>
             </article>
 
             <article class="container__main">
-                <form action="/productos" method="post" class="products__form" id="productsForm">
+                <form class="products__form" id="productsForm">
                     <div>
                       <label for="title">Nombre</label>
-                      <input type="text" name="title" id="title" />
+                      <input type="text" name="title" id="productTitle" />
                     </div>
                     <div>
                       <label for="price">Precio</label>
-                      <input type="text" name="price" id="price" />
+                      <input type="text" name="price" id="productPrice" />
                     </div>
                     <div>
                       <label for="thumbnail">Foto URL</label>
-                      <input type="text" name="thumbnail" id="thumbnail" />
+                      <input type="text" name="thumbnail" id="productThumbnail" />
                     </div>
                     <input type="submit" value="Añadir producto" id="addProductBtn"/>
                   </form>
             </article>
         </section>
-
     </main>
     <footer>footer</footer>
 </body>
-
 </html>

@@ -199,3 +199,6 @@ table img {
     border-radius: 100%;
 }
 
+.noProducts {
+    padding: 10px;
+}
