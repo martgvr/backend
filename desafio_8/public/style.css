@@ -20,4 +20,182 @@ a {
 html {
     font-size: 62.5%;
     font-family: "Poppins", sans-serif;
+    background-color: #62685A; 
 }
+
+body {
+    font-size: 1.2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    font-size: 1.8rem;
+    padding: 10px 40px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+footer {
+    justify-content: center;
+}
+
+header ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #777777;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+}
+
+header ul li:hover {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+ul .active {
+    color: white;
+}
+
+main {
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: 1fr 290px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:    "products__container chat__container"
+                            "products__container form__container";
+    padding: 40px;
+    gap: 40px;
+}
+
+/* CONTAINERS */
+.products__container, .chat__container, .form__container {
+    font-size: 2rem;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    gap: 8px;
+}
+
+.products__container { grid-area: products__container; }
+
+.chat__container { grid-area: chat__container; }
+
+.form__container { grid-area: form__container; }
+
+/* AREAS */
+.container__title, .container__footer {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__main {
+    flex-grow: 1;
+}
+
+/* ESTILOS */
+input {
+    padding: 4px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 6px;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* CHAT */
+.nick {
+    color: rgb(0, 0, 0);
+    padding: 2px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    gap: 6px;
+}
+
+.messages__container {
+    padding: 10px;
+    height: 100%;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 10px;
+    overflow-y: scroll;
+    font-size: 1.6rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.messages__form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.messages__form input:nth-child(1) {
+    width: 120px;
+}
+.messages__form input:nth-child(2) {
+    flex-grow: 1;
+}
+
+.messages__form input:focus {
+    outline: none;
+}
+
+.messages__form input[type="submit"] {
+    padding: 4px;
+    border-radius: 8px;
+    width: 70px;
+}
+
+/* AGREGAR PRODUCTOS */
+.products__form {
+    height: 100%;
+}
+
+.products__form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.products__form > input {
+    margin-top: 20px;
+}
+
+
+/* LISTA DE PRODUCTOS */
+table {
+    background-color: #343a40;
+    color: white;
+    border-collapse: collapse;
+    border-radius: 10px;
+    font-size: 1.6rem;
+}
+
+table th, td {
+    border-bottom: 1px solid #3b4249;
+    padding: 10px;
+    text-align: start;
+}
+
+table img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
