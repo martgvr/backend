@@ -2,8 +2,11 @@
 import mongoose from "mongoose";
 import { mongoProducts, mongoCarts } from './contenedorMongo.js'
 
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 async function dbConnect() {
-    const URL = 'mongodb+srv://admin:mongodb123456@cluster0.vpzccsu.mongodb.net/atlasMongoose?retryWrites=true&w=majority'
+    const URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.vpzccsu.mongodb.net/atlasMongoose?retryWrites=true&w=majority`
 
     mongoose.connect(URL)
     mongoose.connection.on('open', () => console.log(`Base de datos conectada`))
@@ -14,7 +17,7 @@ async function dbConnect() {
     // -------------------------
 
     // LEER TODO
-    // mongoProducts.getAll().then(response => console.log(response))
+    mongoProducts.getAll().then(response => console.log(response))
 
     // GUARDAR PRODUCTO
     // mongoProducts.save(productToSave).then(response => console.log(response))
