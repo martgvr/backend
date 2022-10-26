@@ -1,3 +1,5 @@
 node_modules
+    
+# Secret file
 .env
-serviceAccountKey.js
+**/serviceAccountKey.js
