@@ -1,24 +1,18 @@
+import admin from 'firebase-admin'
+import { serviceAccount } from './serviceAccountKey.js'
+
+admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 
 class Contenedor {
-    constructor(client, connection, table) {
-        this.client = client;
-        this.connection = connection;
-        this.table = table;
-        this.db = knex({ client: this.client, connection: this.connection });
+    constructor(collection) {
+        this.collection = admin.firestore().collection(collection);
     }
 
     async getAll() {
         try {
-            const products = await productsCollection.get()
-            const productosArray = products.docs.map(producto => {
-                return {
-                    id: producto.id,
-                    stock: producto.data().stock,
-                    name: producto.data().name,
-                    price: producto.data().price
-                }
-            })
-            return productosArray;
+            const data = await this.collection.get()
+            const dataArray = data.docs.map(item => { return { id: item.id, ...item.data() } })
+            return dataArray;
         } catch (error) {
             return { error: 'Algo salió mal' }
         }
@@ -29,7 +23,12 @@ class Contenedor {
     }
 
     async save(obj) {
-
+        try {
+            await this.collection.doc().create(obj)
+            return { success: 'Objeto guardado con éxito' }
+        } catch (error) {
+            return { error: 'Algo salió mal' }
+        }
     }
 
     async deleteByID(id) {
@@ -40,3 +39,6 @@ class Contenedor {
 
     }
 }
+
+export const firebaseCarts = new Contenedor('Carts')
+export const firebaseProducts = new Contenedor('Products')
