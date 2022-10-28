@@ -40,5 +40,4 @@ class Contenedor {
     }
 }
 
-export const firebaseCarts = new Contenedor('Carts')
-export const firebaseProducts = new Contenedor('Products')
+export const firebaseMessages = new Contenedor('Messages')

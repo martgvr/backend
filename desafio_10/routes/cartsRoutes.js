@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { mongoProducts as db } from '../db/mongoDB/contenedorMongo.js'
+import { mongoCarts as db } from '../db/mongoDB/contenedorMongo.js'
 
 const router = Router();
 
