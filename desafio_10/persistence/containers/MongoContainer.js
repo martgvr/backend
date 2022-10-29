@@ -1,15 +1,4 @@
-import { cartsModel, productsModel } from './mongoModel.js'
-import mongoose from "mongoose";
-
-import * as dotenv from 'dotenv'
-dotenv.config()
-
-const URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.vpzccsu.mongodb.net/atlasMongoose?retryWrites=true&w=majority`
-mongoose.connect(URL)
-mongoose.connection.on('open', () => console.log(`Conectado a MongoDB`))
-mongoose.connection.on('error', (e) => console.log(e))
-
-class Contenedor {
+class MongoContainer {
     constructor(model) {
         this.model = model;
     }
@@ -70,5 +59,4 @@ class Contenedor {
     }
 }
 
-export const mongoCarts = new Contenedor(cartsModel)
-export const mongoProducts = new Contenedor(productsModel)
+export default MongoContainer;

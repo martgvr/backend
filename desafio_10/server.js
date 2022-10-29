@@ -1,9 +1,10 @@
-import express from 'express';
-
 import productsRoutes from './routes/productsRoutes.js'
-import cartsRoutes from './routes/cartsRoutes.js'
-import messagesRoutes from './routes/messagesRoutes.js'
+// import cartsRoutes from './routes/cartsRoutes.js'
+// import messagesRoutes from './routes/messagesRoutes.js'
 
+import { connect } from './persistence/dbConfig.js';
+
+import express from 'express';
 import http from 'http';
 import { Server } from "socket.io";
 
@@ -13,8 +14,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.use('/products', productsRoutes);
-app.use('/carts', cartsRoutes);
-app.use('/messages', messagesRoutes);
+// app.use('/carts', cartsRoutes);
+// app.use('/messages', messagesRoutes);
 
 const httpServer = http.createServer(app);
 const socketServer = new Server(httpServer, { cors: { origin: "*" }});
@@ -38,5 +39,13 @@ socketServer.on('connection', (client) => {
     });
 });
 
+
 const PORT = process.env.PORT || 8080;
-httpServer.listen(PORT, () => console.log(`Escuchando el puerto ${PORT}`));
+
+try {
+    await connect();
+    console.log('Conectado a MongoDB');
+    httpServer.listen(PORT, () => console.log(`Escuchando el puerto ${PORT}`));
+} catch (error) {
+    console.log(error);
+}

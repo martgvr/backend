@@ -3,7 +3,7 @@ import { serviceAccount } from './serviceAccountKey.js'
 
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 
-class Contenedor {
+class FirebaseContainer {
     constructor(collection) {
         this.collection = admin.firestore().collection(collection);
     }
@@ -40,4 +40,4 @@ class Contenedor {
     }
 }
 
-export const firebaseMessages = new Contenedor('Messages')
+export const firebaseMessages = new FirebaseContainer('Messages')
