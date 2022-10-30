@@ -2,7 +2,8 @@
 import { Router } from "express";
 const router = Router();
 
-import { firebaseMessages as db } from '../db/firebase/contenedorFirebase.js'
+import MessagesFirebaseDAO from '../persistence/daos/messagesFirebaseDAO.js';
+const db = new MessagesFirebaseDAO();
 
 // CREATE
 router.post('/', async (req, res) => db.save(req.body).then(response => res.json(response)));

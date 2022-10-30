@@ -1,6 +1,6 @@
 class FirebaseContainer {
     constructor(collection) {
-        this.collection = admin.firestore().collection(collection);
+        this.collection = collection;
     }
 
     async getAll() {
