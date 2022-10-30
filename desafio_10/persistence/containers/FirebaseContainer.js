@@ -14,7 +14,12 @@ class FirebaseContainer {
     }
 
     async getByID(id) {
-
+        try {
+            const data = await this.collection.doc(id).get().then((docRef) => { return docRef.data() })
+            return data;
+        } catch (error) {
+            return { error: 'Algo salió mal' }
+        }
     }
 
     async save(obj) {
@@ -27,11 +32,21 @@ class FirebaseContainer {
     }
 
     async deleteByID(id) {
-
+        try {
+            const data = await this.collection.doc(id).delete()
+            return data;
+        } catch (error) {
+            return { error: 'Algo salió mal' }
+        }
     }
 
     async deleteAll() {
-
+        try {
+            const data = await this.collection.get().then(res => { res.forEach(element => { element.ref.delete() }) });
+            return data;
+        } catch (error) {
+            return { error: 'Algo salió mal' }
+        }
     }
 }
 
