@@ -1,8 +1,7 @@
-// HACER EL WEBSOCKET CON FIREBASE
 import { Router } from "express";
-const router = Router();
-
 import MessagesFirebaseDAO from '../persistence/daos/messagesFirebaseDAO.js';
+
+const router = Router();
 const db = new MessagesFirebaseDAO();
 
 // CREATE
