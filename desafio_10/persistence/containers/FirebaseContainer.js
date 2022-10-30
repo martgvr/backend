@@ -1,8 +1,3 @@
-import admin from 'firebase-admin'
-import { serviceAccount } from './serviceAccountKey.js'
-
-admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
-
 class FirebaseContainer {
     constructor(collection) {
         this.collection = admin.firestore().collection(collection);
@@ -40,4 +35,4 @@ class FirebaseContainer {
     }
 }
 
-export const firebaseMessages = new FirebaseContainer('Messages')
+export default FirebaseContainer
