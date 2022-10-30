@@ -1,17 +1,19 @@
-import express from 'express';
+import cors from 'cors';
 import http from 'http';
+import express from 'express';
 import { Server } from "socket.io";
 
-import productsRoutes from './routes/productsRoutes.js'
-import cartsRoutes from './routes/cartsRoutes.js'
-import messagesRoutes from './routes/messagesRoutes.js'
+import messagesRoutes from './routes/messagesRoutes.js';
+import productsRoutes from './routes/productsRoutes.js';
+import cartsRoutes from './routes/cartsRoutes.js';
 
 import { connect } from './persistence/dbConfig.js';
 
 const app = express();
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.use('/products', productsRoutes);
 app.use('/carts', cartsRoutes);
@@ -38,7 +40,6 @@ const socketServer = new Server(httpServer, { cors: { origin: "*" }});
 //         }, 500);
 //     });
 // });
-
 
 const PORT = process.env.PORT || 8080;
 
