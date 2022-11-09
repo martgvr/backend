@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío: Mocks y normalización</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="script.js" async></script>
+</head>
+<body>
+    <section class="messages__container">
+        <h1>Centro de mensajes</h1>
+
+        <form class="messages__form" id="messagesForm">
+            <input type="text" name="mail" placeholder="Mail" id="messageMail">
+            <input type="text" name="name" placeholder="Nombre" id="messageNombre">
+            <input type="text" name="apellido" placeholder="Apellido" id="messageApellido">
+            <input type="text" name="edad" placeholder="Edad" id="messageEdad">
+            <input type="text" name="alias" placeholder="Alias" id="messageAlias">
+            <input type="text" name="avatar" placeholder="Avatar" id="messageAvatar">
+            <input type="text" name="mensaje" placeholder="Mensaje" id="messageTexto">
+            <input type="submit" value="Enviar" id="sendMessageBtn">
+        </form>
+
+        <hr>
+        <ul class="messagesContainer" id="messagesContainer">
+
+        </ul>
+    </section>
+</body>
+</html>
