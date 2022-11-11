@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="style.css"">
+    <script src="script.js" async></script>
+</head>
+<body>
+    <div class=" login__container">
+    <% if (logged) { %>
+        <h1>Bienvenido! <%= user %></h1>
+        <button id="signOutBtn">Cerrar sesión</button>
+    <% } else { %>
+        <h1>Ingresa tu información</h1>
+        <form action="/session" method="post">
+            <input type="email" name="email" id="email" placeholder="Ingresar email">
+            <input type="password" name="password" id="password" placeholder="Ingresar contraseña">
+            <button>Enviar</button>
+        </form>
+        <button id="signOutBtn" style="display: none;">Cerrar sesión</button>
+    <% } %>
+    </div>
+    </body>
+
+</html>
