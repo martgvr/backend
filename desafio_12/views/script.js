@@ -5,5 +5,5 @@ signOutBtn.addEventListener('click', () => {
     fetch(URL, { 
         method: 'POST',
         body: {}
-    })
+    }).then(res => window.location.reload())
 })

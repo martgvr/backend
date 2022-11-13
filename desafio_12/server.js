@@ -17,8 +17,6 @@ app.use(express.static(dirname(fileURLToPath(import.meta.url)) + '/views'));
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-// ------------------------- COOKIES -------------------------
-
 const URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.vpzccsu.mongodb.net/dbCookies?retryWrites=true&w=majority`;
 
 app.use(session({
@@ -26,7 +24,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: URL }),
-    cookie: { maxAge: 30000 }
+    cookie: { maxAge: 60000 }
 }))
 
 app.get('/', (req, res) => {
@@ -37,14 +35,14 @@ app.post('/session', (req, res) => {
     for (const key in req.body) {
         req.session[key] = req.body[key]
     }
-    res.render('session', { logged: true, user: req.session.email })
+    res.redirect('/')
 })
 
 app.post('/logout', (req, res) => {
-    res.clearCookie('connect.sid', {path: '/'}).render('session', { logged: false })
+    req.session.destroy(() => {
+        res.render('session', { logged: false })
+    })
 });
-
-// -----------------------------------------------------------
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Escuchando el puerto ${PORT}`));
