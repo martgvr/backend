@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
-const URL = `mongodb+srv://root:rootmongo123456@cluster0.vpzccsu.mongodb.net/dbPassport?retryWrites=true&w=majority`
+import * as dotenv from 'dotenv'
+dotenv.config()
+
+const URL = process.env.MONGO_URL
 
 console.log('Conectando a MongoDB...');
 

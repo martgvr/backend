@@ -1,11 +1,10 @@
 import express from 'express'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
-
 import userRoutes from './routes/userRoutes.js'
-import './persistence/dbConfig.js'
-
 import passport from 'passport'
+
+import './persistence/dbConfig.js'
 import './passport/localPassport.js'
 
 const app = express()
@@ -16,8 +15,16 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     secret: 'keySession',
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://root:rootmongo123456@cluster0.vpzccsu.mongodb.net/dbPassport?retryWrites=true&w=majority' })
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL })
 }))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use('/', userRoutes)
+
+app.set('views', './views')
+app.set('view engine', 'ejs')
 
 const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, (req, res) => console.log(`Escuchando el puerto ${PORT}`))
