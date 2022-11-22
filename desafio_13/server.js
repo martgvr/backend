@@ -2,13 +2,13 @@ import express from 'express'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import userRoutes from './routes/userRoutes.js'
+import './persistence/dbConfig.js'
+
 import passport from 'passport'
+import './passport/localPassport.js'
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
-import './persistence/dbConfig.js'
-import './passport/localPassport.js'
 
 const app = express()
 
