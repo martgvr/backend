@@ -19,8 +19,10 @@ app.use(express.static(dirname(fileURLToPath(import.meta.url)) + '/views'));
 app.use(session({
     saveUninitialized: false,
     resave: false,
-    secret: 'keySession',
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL })
+    rolling: true,
+    secret: process.env.SECRET_KEY,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+    cookie: { maxAge: 600000 }
 }))
 
 app.use(passport.initialize())
