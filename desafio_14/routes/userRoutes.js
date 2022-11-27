@@ -28,17 +28,14 @@ router.get('/logout', (req, res) => {
     })
 })
 
-const arrayPATH = process.argv[1].split('\\')
-const PATH = (arrayPATH.slice(0,arrayPATH.length - 1)).join('/')
-
 const processData = {
     args: process.argv.slice(2),
-    os: process.env.OS,
+    os: process.platform,
     nodeVersion: process.versions.node,
     rss: process.memoryUsage.rss(),
     execPath: process.execPath,
     pid: process.pid,
-    path: PATH
+    path: process.cwd()
 }
 
 router.get('/info', (req, res) => res.render('info', { processData }))

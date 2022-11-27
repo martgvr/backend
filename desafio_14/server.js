@@ -3,6 +3,7 @@ import express from 'express'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import userRoutes from './routes/userRoutes.js'
+import apiRoutes from './routes/apiRoutes.js'
 import './persistence/dbConfig.js'
 
 import passport from 'passport'
@@ -30,6 +31,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/', userRoutes)
+app.use('/api', apiRoutes)
+
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
