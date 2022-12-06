@@ -55,7 +55,7 @@ function createServer() {
 if (info.m === 'cluster') {
     if (cluster.isPrimary) {
         console.log(`[ Proceso maestro: ${process.pid} ]`)
-        for (let i = 0; i < procNum / 3; i++) { cluster.fork() }
+        for (let i = 0; i < 3; i++) { cluster.fork() }
         cluster.on('exit', () => cluster.fork())
     } else {
         createServer()
