@@ -6,6 +6,10 @@ import userRoutes from './routes/userRoutes.js'
 import apiRoutes from './routes/apiRoutes.js'
 import './persistence/dbConfig.js'
 
+import cluster from 'cluster'
+import os from 'os'
+const procNum = os.cpus().length
+
 import passport from 'passport'
 import './passport/localPassport.js'
 
@@ -36,14 +40,26 @@ app.use('/api', apiRoutes)
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-// node .\server.js --port 8081 --mode cluster
 const info = yargs(process.argv.slice(2))
     .alias({ p: 'port', m: 'mode' })
     .default({ p: 8080, m: 'fork' })
     .argv
-    
-const server = app.listen(info.p, (req, res) => { 
-    console.log(`[ Listening ${info.p == 8080 ? 'default':'custom'} port: ${info.p} | Mode: ${info.m} ]`)
-})
 
-server.on('error', error => console.log(`Error: ${error}`));
+function createServer() {
+    const server = app.listen(info.p, (req, res) => { 
+        console.log(`[ Listening ${info.p == 8080 ? 'default':'custom'} port: ${info.p} | Mode: ${info.m} | Process: ${process.pid} ]` )
+    })
+    server.on('error', error => console.log(`Error: ${error}`));
+}
+
+if (info.m === 'cluster') {
+    if (cluster.isPrimary) {
+        console.log(`[ Proceso maestro: ${process.pid} ]`)
+        for (let i = 0; i < procNum / 3; i++) { cluster.fork() }
+        cluster.on('exit', () => cluster.fork())
+    } else {
+        createServer()
+    }   
+} else {
+    createServer()
+}
