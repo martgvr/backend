@@ -1,0 +1,7 @@
+--------------------------------------------
+| Inicio de log
+| Sesión: Fri, 09 Dec 2022 21:48:29 GMT
+--------------------------------------------
+
+[2022-12-09T18:48:29.174] [INFO] prod - [ Listening default port: 8080 | Mode: fork | Process: 106764 ]
+[2022-12-09T18:48:31.383] [INFO] prod - [ Connected to MongoDB ]
