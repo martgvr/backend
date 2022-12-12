@@ -49,7 +49,10 @@ const processData = {
     cpus: os.cpus().length
 }
 
-router.get('/info', (req, res) => res.render('info', { processData }))
+router.get('/info', (req, res) => { 
+    console.log(processData);
+    res.render('info', { processData })
+})
 router.get('/info-compression', compression(), (req, res) => res.render('info', { processData }))
 
 router.get('*', (req, res) => {

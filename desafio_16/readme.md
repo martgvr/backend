@@ -1,0 +1,13 @@
+# Pruebas de profiling
+
+## Node Profiling
+
+```
+node --prof server.js
+node --prof-process .\isolate-000002BF179CF750-166880-v8.log > node-profiling.txt
+```
+
+## Artillery 
+```
+artillery quick --count 50 --num 20 http://localhost:8080/info > artillery-profiling.txt
+```
