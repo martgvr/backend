@@ -1,9 +1,18 @@
 import os from 'os'
 import passport from "passport";
 import { Router } from "express";
+import compression from 'compression'
+import { logger } from "../utils/log4js.js";
 import { isAuth } from '../middleware/isAuth.js'
 
 const router = Router();
+
+function logRequest(req, res, next) {
+    logger.info('Petición de recurso', req.url);
+    next()
+}
+
+router.use(logRequest)
 
 router.get('/', isAuth, (req, res) => res.redirect('/data'))
 router.get('/register', (req, res) => res.render('register'))
@@ -41,5 +50,11 @@ const processData = {
 }
 
 router.get('/info', (req, res) => res.render('info', { processData }))
+router.get('/info-compression', compression(), (req, res) => res.render('info', { processData }))
+
+router.get('*', (req, res) => {
+    logger.warn('Recurso invalido');
+    res.send('Recurso invalido')
+})
 
 export default router

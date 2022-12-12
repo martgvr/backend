@@ -12,10 +12,10 @@ log4js.configure({
 
     categories: {
         default: { appenders: ['console'], level: 'trace' },
-        prod: { appenders: ['logConsole', 'logFile'], level: 'all' },
+        development: { appenders: ['logConsole', 'logFile'], level: 'all' },
         // console: { appenders: ['console'], level: 'trace' },
         // file: { appenders: ['file'], level: 'trace' }
     }
 })
 
-export const logger = log4js.getLogger('prod')
+export const logger = log4js.getLogger('development')
