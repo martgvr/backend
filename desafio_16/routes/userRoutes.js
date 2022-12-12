@@ -53,7 +53,7 @@ router.get('/info', (req, res) => res.render('info', { processData }))
 router.get('/info-compression', compression(), (req, res) => res.render('info', { processData }))
 
 router.get('*', (req, res) => {
-    logger.warn('Recurso invalido');
+    logger.warn('Recurso invalido')
     res.send('Recurso invalido')
 })
 

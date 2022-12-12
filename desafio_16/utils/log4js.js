@@ -3,18 +3,17 @@ import log4js from 'log4js'
 log4js.configure({
     appenders: {
         console: { type: 'console' },
-        file: { type: 'file', filename: 'logs.log' },
+        warnFile: { type: 'file', filename: 'warn.log' },
+        errorFile: { type: 'file', filename: 'error.log' },
 
-        // Appenders compuestos
         logConsole: { type: 'logLevelFilter', appender: 'console', level: 'trace' },
-        logFile: { type: 'logLevelFilter', appender: 'file', level: 'trace' }
+        logWarnFile: { type: 'logLevelFilter', appender: 'warnFile', level: 'warn' },
+        logErrorFile: { type: 'logLevelFilter', appender: 'errorFile', level: 'error' }
     },
 
     categories: {
         default: { appenders: ['console'], level: 'trace' },
-        development: { appenders: ['logConsole', 'logFile'], level: 'all' },
-        // console: { appenders: ['console'], level: 'trace' },
-        // file: { appenders: ['file'], level: 'trace' }
+        development: { appenders: ['logConsole', 'logWarnFile', 'logErrorFile'], level: 'all' }
     }
 })
 
