@@ -8,6 +8,21 @@ node --prof-process .\isolate-000002BF179CF750-166880-v8.log > node-profiling.tx
 ```
 
 ## Artillery 
+
 ```
 artillery quick --count 50 --num 20 http://localhost:8080/info > artillery-profiling.txt
+```
+
+## Node Inspect
+
+```
+node --inspect server.js
+artillery quick --count 50 --num 20 http://localhost:8080/info
+```
+
+## 0x
+
+```
+0x server.js
+node 
 ```
