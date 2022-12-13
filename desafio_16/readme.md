@@ -23,6 +23,8 @@ artillery quick --count 50 --num 20 http://localhost:8080/info
 ## 0x
 
 ```
-0x server.js
-node 
+"scripts": {
+    "test": "node ./utils/benchmark.js",
+    "start": "0x server.js"
+}
 ```
