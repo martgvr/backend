@@ -15,7 +15,7 @@
         <article class="container navbar">
             <div class="navbar__logo">LOGO</div>
             <div class="navbar__menu">MENU</div>
-            <div class="navbar__profile">
+            <div class="navbar__profile" onclick="location.href='/profile'">
                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""><%= username %>
             </div>
         </article>
@@ -35,26 +35,20 @@
                 </thead>
 
                 <tbody>
-                    
-                    <tr>
-                        <td><%= data %></td>
-                        <td>{price}</td>
-                        <td>{picture}</td>
-                        <td>-</td>
-                    </tr>
-
-                    <tr>
-                        <td>{name}</td>
-                        <td>{price}</td>
-                        <td>{picture}</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>{name}</td>
-                        <td>{price}</td>
-                        <td>{picture}</td>
-                        <td>-</td>
-                    </tr>
+                    <% if (data.length == 0) { %>
+                        <tr>
+                            <td colspan="4">No hay productos en la DB</td>
+                        </tr>
+                    <% } else { %>
+                        <% data.forEach(item=> { %>
+                            <tr>
+                                <td><%= item.name %></td>
+                                <td><%= item.price %></td>
+                                <td><%= item.photo %></td>
+                                <td>-</td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
                 </tbody>
 
             </table>
