@@ -125,10 +125,65 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 0 40px;
+}
+
+.navbar__profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border-radius: 12px;
+    transition: 0.4s all ease-in-out;
+}
+
+.navbar__profile:hover {
+    cursor: pointer;
+    background-color: rgb(49, 61, 77);
+    color: white;
+}
+
+.navbar__profile img {
+    width: 35px;
+    border-radius: 100%;
+    border: 1px solid rgb(168, 168, 168);
 }
 
 .products {
     grid-area: products;
-    padding: 20px;
+    padding: 40px;
+}
+
+.products__header {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: rgb(49, 61, 77);
+    color: white;
+    padding: 10px;
+}
+
+.products table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.products th {
+    background-color: #798da0;
+    color: white;
+    padding: 5px 10px;
+}
+
+.products td {
+    background-color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    text-align: center;
+}
+
+
+.products__footer {
+    background-color: rgb(49, 61, 77);
+    height: 16px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

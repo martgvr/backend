@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido</title>
+    <title>Listado de productos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,13 +13,52 @@
     <section class="main__container">
 
         <article class="container navbar">
-            <p>LOGO</p>
-            <p>Menú</p>
-            <p><%= username %></p>
+            <div class="navbar__logo">LOGO</div>
+            <div class="navbar__menu">MENU</div>
+            <div class="navbar__profile">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt=""><%= username %>
+            </div>
         </article>
 
         <article class="container products">
-            <p>produts</p>
+            <div class="products__header">
+                Lista de productos
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Imagen</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>{name}</td>
+                        <td>{price}</td>
+                        <td>{picture}</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>{name}</td>
+                        <td>{price}</td>
+                        <td>{picture}</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>{name}</td>
+                        <td>{price}</td>
+                        <td>{picture}</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <div class="products__footer"></div>
         </article>
 
     </section>
