@@ -3,11 +3,19 @@ import passport from "passport";
 import { Router } from "express";
 import { isAuth } from '../middleware/isAuth.js'
 
+import ProductsMongoDAO from '../persistence/daos/productsMongoDAO.js'
+
 const router = Router();
+const db = new ProductsMongoDAO();
+
+router.get('/saveproduct', async (req, res) => {
+    // db.save({ name: 'Producto 3', price: '300', photo: 'foto' }).then(response => res.json(response))
+});
 
 router.get('/', isAuth, (req, res) => {
     res.redirect('/products')
 })
+
 router.get('/register', (req, res) => res.render('register'))
 
 router.post('/register', passport.authenticate('register', {
@@ -25,7 +33,10 @@ router.get('/regerror', (req, res) => res.render('error', { text: 'Este usuario 
 
 router.get('/data', isAuth, (req, res) => res.render('data', { username: req.user.username }))
 
-router.get('/products', isAuth, (req, res) => res.render('products', { username: req.user.username }))
+router.get('/products', isAuth, (req, res) => {
+    console.log('Cargando productos...');
+    db.getAll().then(data => res.render('products', { username: req.user.username, data: data }))
+})
 
 router.get('/logout', (req, res) => {
     req.logout(() => {

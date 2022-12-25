@@ -2,8 +2,7 @@ import express from 'express'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 
-import userRoutes from './routes/userRoutes.js'
-import apiRoutes from './routes/apiRoutes.js'
+import routes from './routes/routes.js'
 
 import './persistence/dbConfig.js'
 
@@ -38,8 +37,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/', userRoutes)
-app.use('/api', apiRoutes)
+app.use('/', routes)
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
