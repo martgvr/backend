@@ -107,3 +107,28 @@ body {
     border-radius: 6px;
     border: 1px solid rgb(190, 190, 190);
 }
+
+/* PRODUCTS */
+.main__container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    grid-template-areas: "navbar" "products";
+    padding: 30px;
+    gap: 20px;
+}
+
+.navbar {
+    grid-area: navbar;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.products {
+    grid-area: products;
+    padding: 20px;
+}
