@@ -22,7 +22,8 @@
 
         <article class="container products">
             <div class="products__header">
-                Lista de productos
+                <p>Lista de productos</p>
+                <button class="btn__navigation--add" onclick="">Agregar</button>
             </div>
             <table>
                 <thead>
@@ -44,8 +45,8 @@
                             <tr>
                                 <td><%= item.name %></td>
                                 <td><%= item.price %></td>
-                                <td><%= item.photo %></td>
-                                <td>-</td>
+                                <td class="item__photo"><img src="<%= item.photo %>" /></td>
+                                <td><button class="btn__navigation--remove" onclick="">-</button></td>
                             </tr>
                         <% }) %>
                     <% } %>

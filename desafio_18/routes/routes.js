@@ -8,7 +8,7 @@ const router = Router();
 const db = new ProductsMongoDAO();
 
 router.get('/saveproduct', async (req, res) => {
-    // db.save({ name: 'Producto 3', price: '300', photo: 'foto' }).then(response => res.json(response))
+    // db.save({ name: 'Cartuchera Argentina', price: '1500', photo: 'https://http2.mlstatic.com/D_NQ_NP_943811-MLA20642384219_032016-O.jpg' }).then(response => res.json(response))
 });
 
 router.get('/', isAuth, (req, res) => {
