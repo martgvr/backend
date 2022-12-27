@@ -84,6 +84,23 @@ body {
     gap: 6px;
 }
 
+.container__content form label:not(:first-of-type) {
+    margin-top: 20px;
+}
+
+.phoneForm {
+    display: flex;
+    gap: 6px;
+}
+
+.phoneForm input {
+    flex-grow: 1;
+}
+.phoneForm input:first-of-type {
+    width: 40px;
+}
+
+
 /* BUTTONS */
 .btn__blue,
 .btn__green {
@@ -105,25 +122,23 @@ body {
 
 
 .btn__navigation--add {
-    border: 1px solid rgb(70, 193, 223);
-    background-color: rgb(34, 56, 66);
+    border: 1px solid rgb(11, 206, 255);
+    background-color: rgba(0, 0, 0, 0.5);
     color: rgb(255, 255, 255);
     border-radius: 8px;
-    padding: 4px 8px;
+    padding: 6px 8px;
     min-width: 90px;
 }
 
 .btn__navigation--add:hover {
-    border: 1px solid rgb(70, 193, 223);
-    background-color: rgb(227, 238, 243);
-    color: rgb(0, 0, 0);
+    background-color: rgb(51, 131, 151);
     cursor: pointer;
 }
 
 
 .btn__navigation--remove {
     border: 1px solid rgb(223, 70, 70);
-    background-color: rgb(255, 245, 245);
+    background-color: transparent;
     color: rgb(0, 0, 0);
     border-radius: 8px;
     font-weight: bold;
@@ -224,6 +239,10 @@ body {
     background-color: rgb(255, 255, 255);
     padding: 5px 10px;
     text-align: center;
+}
+
+.products tr:hover > td {
+    background-color: rgb(230, 230, 230);
 }
 
 .products tbody tr:not(.products tbody tr:last-of-type) {

@@ -14,9 +14,19 @@
         <article class="container__header">Registrarse</article>
         <article class="container__content">
             <form action="/register" method="POST" id="loginForm">
+                <label for="username">Información de sesión</label>
                 <input type="text" name="username" id="username" placeholder="Ingrese su usuario" class="form__input">
                 <input type="email" name="email" id="email" placeholder="Ingrese su email" class="form__input">
                 <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" class="form__input">
+                <label for="username">Información de perfil</label>
+                <input type="text" name="name" id="name" placeholder="Ingrese su nombre" class="form__input">
+                <input type="text" name="address" id="address" placeholder="Ingrese su dirección" class="form__input">
+                <input type="text" name="age" id="age" placeholder="Ingrese su edad" class="form__input">
+                <div class="phoneForm">
+                    <input type="text" name="areacode" id="areacode" placeholder="Area" class="form__input">
+                    <input type="text" name="telephone" id="telephone" placeholder="Ingrese su número de teléfono" class="form__input">
+                </div>
+                <input type="text" name="avatar" id="avatar" placeholder="Cargar imagen de perfil" class="form__input">
             </form>
         </article>
         <article class="container__footer">

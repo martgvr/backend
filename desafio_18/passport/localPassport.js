@@ -6,7 +6,9 @@ passport.use('register', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
+
 }, async(req, username, password, done) => {
+    console.log(req.body);
     const userDB = await Users.find({ username })
     if (userDB.length > 0) {
         return done(null, false)
@@ -14,6 +16,16 @@ passport.use('register', new LocalStrategy({
         const user = new Users()
         user.username = username
         user.password = password
+        
+        const { email, name, address, age, areacode, telephone, avatar } = req.body
+        user.email = email
+        user.name = name
+        user.address = address
+        user.age = age
+        user.areacode = areacode
+        user.telephone = telephone
+        user.avatar = avatar
+
         user.save()
         done(null, user)
     }
