@@ -317,6 +317,10 @@ body {
     padding: 10px;
 }
 
+.register {
+    width: 350px;
+}
+
 @media screen and (max-width: 800px) {
     .main__container {
         padding: 0;
