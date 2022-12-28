@@ -26,8 +26,10 @@ passport.use('register', new LocalStrategy({
         user.age = age
         user.areacode = areacode
         user.telephone = telephone
-        user.avatar = req.file.path
+        user.avatar = req.file.filename
         user.cartID = Math.floor(Math.random() * 1000)
+
+        console.log(req.file);
 
         cartDB.save({ cartID: user.cartID, products: [], total: 0 })
 

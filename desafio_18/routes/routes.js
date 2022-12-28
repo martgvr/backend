@@ -30,7 +30,7 @@ router.get('/regerror', (req, res) => res.render('error', { text: 'Este usuario 
 
 router.get('/profile', isAuth, (req, res) => res.render('profile', { data: req.user }))
 
-router.get('/products', isAuth, (req, res) => db.getAll().then(data => res.render('products', { username: req.user.username, cart: req.user.cartID, data: data })))
+router.get('/products', isAuth, (req, res) => db.getAll().then(data => res.render('products', { user: req.user, data: data })))
 
 router.get('/logout', (req, res) => req.logout(() => res.redirect('/')))
 

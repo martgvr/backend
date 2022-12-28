@@ -19,7 +19,7 @@
                 <p class="navbar__profile" onclick="location.href='/cart'">Carrito</p>
             </div>
             <div class="navbar__profile active" onclick="location.href='/profile'">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                <img src="images/<%= data.avatar %>"
                     alt=""><%= data.username %>
             </div>
         </article>
@@ -29,7 +29,8 @@
             <div class="profile">
                     <div class="container__header">Información de perfil</div>
                     <div class="container__content center">
-                        <img src="<%= data.avatar %>" alt="">
+                        <img src="images/<%= data.avatar %>" alt="">
+                        <% console.log(data) %>
                         <p>Usuario: <%= data.username %></p>
                         <p>Email: <%= data.email %></p>
                         <p>Nombre: <%= data.name %></p>

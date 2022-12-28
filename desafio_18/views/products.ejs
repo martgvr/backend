@@ -19,7 +19,7 @@
                 <p class="navbar__profile" onclick="location.href='/cart'">Carrito</p>
             </div>
             <div class="navbar__profile" onclick="location.href='/profile'">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""><%= username %>
+                <img src="/images/<%= user.avatar %>" alt=""><%= user.username %>
             </div>
         </article>
 
@@ -48,7 +48,7 @@
                                 <td><%= item.name %></td>
                                 <td><%= item.price %></td>
                                 <td class="item__photo"><img src="<%= item.photo %>" /></td>
-                                <td><button class="btn__navigation--add" onclick="postCart('<%= item.id %>', '<%= cart %>')" id="<%= item.id %>">+</button></td>
+                                <td><button class="btn__navigation--add" onclick="postCart('<%= item.id %>', '<%= user.cartID %>')">+</button></td>
                             </tr>
                         <% }) %>
                     <% } %>
