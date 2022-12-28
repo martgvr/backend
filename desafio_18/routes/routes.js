@@ -30,13 +30,20 @@ router.get('/regerror', (req, res) => res.render('error', { text: 'Este usuario 
 
 router.get('/profile', isAuth, (req, res) => res.render('profile', { data: req.user }))
 
-router.get('/products', isAuth, (req, res) => db.getAll().then(data => res.render('products', { username: req.user.username, data: data })))
+router.get('/products', isAuth, (req, res) => db.getAll().then(data => res.render('products', { username: req.user.username, cart: req.user.cartID, data: data })))
 
 router.get('/logout', (req, res) => req.logout(() => res.redirect('/')))
 
 router.get('/cart', isAuth, (req, res) => { 
     cartDB.findCartByID(req.user.cartID).then(response => {
         res.render('cart', { data: response, user: req.user })
+    })
+})
+
+router.post('/cart', isAuth, (req, res) => { 
+    cartDB.addItemToCart(req.user.cartID, req.body.productID).then(response => {
+        // res.render('cart', { data: response, user: req.user })
+        res.send(response)
     })
 })
 

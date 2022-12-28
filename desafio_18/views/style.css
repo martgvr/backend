@@ -91,6 +91,9 @@ body {
 .container__content img {
     width: 200px;
     height: 200px;
+    margin-bottom: 10px;
+    border-radius: 100%;
+    border: 1px solid grey;
 }
 
 .phoneForm {
@@ -179,8 +182,6 @@ body {
     display: grid;
     grid-template-rows: 70px 1fr;
     grid-template-areas: "navbar""products";
-    padding: 20px;
-    gap: 20px;
 }
 
 .navbar {
@@ -190,6 +191,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    background-color: rgb(0, 0, 0);
+    color: white;
 }
 
 .navbar__profile {
@@ -211,6 +214,10 @@ body {
     width: 35px;
     border-radius: 100%;
     border: 1px solid rgb(168, 168, 168);
+}
+
+.active {
+    background-color: rgb(72, 84, 99);
 }
 
 .navbar__menu {
@@ -292,6 +299,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.profile__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile {
+    width: 300px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: rgb(220, 220, 220);
+    padding: 10px;
 }
 
 @media screen and (max-width: 800px) {

@@ -14,6 +14,12 @@ class CartMongoDAO extends MongoContainer {
             return { error: 'Algo salió mal' }
         }
     }
+
+    async addItemToCart(cartID, productID) {
+        console.log('productID:', productID);
+        console.log('cartID:', cartID);
+        const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $push: { products: productID } })
+    }
 }
 
 export default CartMongoDAO

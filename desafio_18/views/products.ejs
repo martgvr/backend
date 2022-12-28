@@ -13,9 +13,9 @@
     <section class="main__container">
 
         <article class="container navbar">
-            <div class="navbar__logo">LOGO</div>
+            <div class="navbar__logo">Tienda online</div>
             <div class="navbar__menu">
-                <p class="navbar__profile" onclick="location.href='/products'">Productos</p>
+                <p class="navbar__profile active" onclick="location.href='/products'">Productos</p>
                 <p class="navbar__profile" onclick="location.href='/cart'">Carrito</p>
             </div>
             <div class="navbar__profile" onclick="location.href='/profile'">
@@ -48,7 +48,7 @@
                                 <td><%= item.name %></td>
                                 <td><%= item.price %></td>
                                 <td class="item__photo"><img src="<%= item.photo %>" /></td>
-                                <td><button class="btn__navigation--add" onclick="">+</button></td>
+                                <td><button class="btn__navigation--add" onclick="postCart('<%= item.id %>', '<%= cart %>')" id="<%= item.id %>">+</button></td>
                             </tr>
                         <% }) %>
                     <% } %>
@@ -61,5 +61,11 @@
 
     </section>
 </body>
+
+<script>
+    function postCart(productID) {
+        fetch('/cart', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productID }) })
+    }
+</script>
 
 </html>

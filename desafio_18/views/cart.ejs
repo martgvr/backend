@@ -13,10 +13,10 @@
     <section class="main__container">
 
         <article class="container navbar">
-            <div class="navbar__logo">LOGO</div>
+            <div class="navbar__logo">Tienda online</div>
             <div class="navbar__menu">
                 <p class="navbar__profile" onclick="location.href='/products'">Productos</p>
-                <p class="navbar__profile" onclick="location.href='/cart'">Carrito</p>
+                <p class="navbar__profile active" onclick="location.href='/cart'">Carrito</p>
             </div>
             <div class="navbar__profile" onclick="location.href='/profile'">
                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""><%= user.username %>
@@ -38,7 +38,6 @@
                 </thead>
 
                 <tbody>
-                    <% console.log(data) %>
                     <% if (data.products.length == 0) { %>
                         <tr>
                             <td colspan="4">No hay productos en el carrito</td>
