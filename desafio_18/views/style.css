@@ -88,6 +88,11 @@ body {
     margin-top: 20px;
 }
 
+.container__content img {
+    width: 200px;
+    height: 200px;
+}
+
 .phoneForm {
     display: flex;
     gap: 6px;

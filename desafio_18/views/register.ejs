@@ -13,7 +13,7 @@
     <section class="container">
         <article class="container__header">Registrarse</article>
         <article class="container__content">
-            <form action="/register" method="POST" id="loginForm">
+            <form action="/register" method="POST" id="loginForm" enctype="multipart/form-data">
                 <label for="username">Información de sesión</label>
                 <input type="text" name="username" id="username" placeholder="Ingrese su usuario" class="form__input">
                 <input type="email" name="email" id="email" placeholder="Ingrese su email" class="form__input">
@@ -26,7 +26,8 @@
                     <input type="text" name="areacode" id="areacode" placeholder="Area" class="form__input">
                     <input type="text" name="telephone" id="telephone" placeholder="Ingrese su número de teléfono" class="form__input">
                 </div>
-                <input type="text" name="avatar" id="avatar" placeholder="Cargar imagen de perfil" class="form__input">
+                <label for="avatar">Foto de perfil</label>
+                <input type="file" name="avatar" id="avatar">
             </form>
         </article>
         <article class="container__footer">

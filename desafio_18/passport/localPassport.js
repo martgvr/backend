@@ -24,7 +24,7 @@ passport.use('register', new LocalStrategy({
         user.age = age
         user.areacode = areacode
         user.telephone = telephone
-        user.avatar = avatar
+        user.avatar = req.file.path
 
         user.save()
         done(null, user)

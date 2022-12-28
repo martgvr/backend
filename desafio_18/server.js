@@ -1,28 +1,24 @@
 import express from 'express'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
-
 import routes from './routes/routes.js'
-
 import './persistence/dbConfig.js'
-
 import cluster from 'cluster'
 import os from 'os'
-const procNum = os.cpus().length
-
 import passport from 'passport'
 import './passport/localPassport.js'
-
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
 import { logger } from "./utils/log4js.js";
 import './utils/logHeader.js'
+import multer from 'multer'
 
+const procNum = os.cpus().length
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(multer({ dest: dirname(fileURLToPath(import.meta.url)) + '/public/upload' }).single('avatar'));
 app.use(express.static(dirname(fileURLToPath(import.meta.url)) + '/views'));
 
 app.use(session({
