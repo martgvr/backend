@@ -8,7 +8,6 @@ passport.use('register', new LocalStrategy({
     passReqToCallback: true
 
 }, async(req, username, password, done) => {
-    console.log(req.body);
     const userDB = await Users.find({ username })
     if (userDB.length > 0) {
         return done(null, false)
@@ -17,7 +16,7 @@ passport.use('register', new LocalStrategy({
         user.username = username
         user.password = password
         
-        const { email, name, address, age, areacode, telephone, avatar } = req.body
+        const { email, name, address, age, areacode, telephone } = req.body
         user.email = email
         user.name = name
         user.address = address
@@ -25,7 +24,9 @@ passport.use('register', new LocalStrategy({
         user.areacode = areacode
         user.telephone = telephone
         user.avatar = req.file.path
+        user.cartID = Math.floor(Math.random() * 10)
 
+        console.log(user);
         user.save()
         done(null, user)
     }

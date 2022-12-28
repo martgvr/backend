@@ -14,7 +14,10 @@
 
         <article class="container navbar">
             <div class="navbar__logo">LOGO</div>
-            <div class="navbar__menu">MENU</div>
+            <div class="navbar__menu">
+                <p class="navbar__profile">Productos</p>
+                <p class="navbar__profile">Carrito</p>
+            </div>
             <div class="navbar__profile" onclick="location.href='/profile'">
                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""><%= username %>
             </div>
@@ -23,7 +26,6 @@
         <article class="container products">
             <div class="products__header">
                 <p>Lista de productos</p>
-                <button class="btn__navigation--add" onclick="">Agregar</button>
             </div>
             <table>
                 <thead>
@@ -31,7 +33,7 @@
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Imagen</th>
-                        <th>Eliminar</th>
+                        <th>Agregar</th>
                     </tr>
                 </thead>
 
@@ -46,7 +48,7 @@
                                 <td><%= item.name %></td>
                                 <td><%= item.price %></td>
                                 <td class="item__photo"><img src="<%= item.photo %>" /></td>
-                                <td><button class="btn__navigation--remove" onclick="">-</button></td>
+                                <td><button class="btn__navigation--add" onclick="">+</button></td>
                             </tr>
                         <% }) %>
                     <% } %>

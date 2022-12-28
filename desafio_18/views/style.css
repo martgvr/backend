@@ -128,15 +128,17 @@ body {
 
 .btn__navigation--add {
     border: 1px solid rgb(11, 206, 255);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: rgb(255, 255, 255);
+    background-color: transparent;
+    color: rgb(0, 122, 153);
+    font-weight: bolder;
     border-radius: 8px;
     padding: 6px 8px;
-    min-width: 90px;
+    min-width: 60px;
 }
 
 .btn__navigation--add:hover {
     background-color: rgb(51, 131, 151);
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
 
@@ -207,6 +209,17 @@ body {
     border: 1px solid rgb(168, 168, 168);
 }
 
+.navbar__menu {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar__menu > p {
+    padding: 15px 14px;
+    text-transform: uppercase;
+}
+
+
 .products {
     grid-area: products;
     padding: 20px;
@@ -244,6 +257,11 @@ body {
     background-color: rgb(255, 255, 255);
     padding: 5px 10px;
     text-align: center;
+}
+
+
+.products td:last-of-type {
+    width: 130px;
 }
 
 .products tr:hover > td {

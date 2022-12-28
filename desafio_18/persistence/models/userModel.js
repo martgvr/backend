@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     age: String,
     areacode: String,
     telephone: String,
-    avatar: String
+    avatar: String,
+    cartID: String
 })
 
 export default mongoose.model('Users', userSchema)
