@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de productos</title>
+    <title>Carrito</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,13 +19,13 @@
                 <p class="navbar__profile" onclick="location.href='/cart'">Carrito</p>
             </div>
             <div class="navbar__profile" onclick="location.href='/profile'">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""><%= username %>
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""><%= user.username %>
             </div>
         </article>
 
         <article class="container products">
             <div class="products__header">
-                <p>Lista de productos</p>
+                <p>Carrito</p>
             </div>
             <table>
                 <thead>
@@ -38,18 +38,14 @@
                 </thead>
 
                 <tbody>
-                    <% if (data.length == 0) { %>
+                    <% console.log(data) %>
+                    <% if (data.products.length == 0) { %>
                         <tr>
-                            <td colspan="4">No hay productos en la DB</td>
+                            <td colspan="4">No hay productos en el carrito</td>
                         </tr>
-                    <% } else { %>
-                        <% data.forEach(item=> { %>
-                            <tr>
-                                <td><%= item.name %></td>
-                                <td><%= item.price %></td>
-                                <td class="item__photo"><img src="<%= item.photo %>" /></td>
-                                <td><button class="btn__navigation--add" onclick="">+</button></td>
-                            </tr>
+                        <% } else { %>
+                            <% data.forEach(item => { %>
+                                <% console.log(item) %>
                         <% }) %>
                     <% } %>
                 </tbody>

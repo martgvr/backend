@@ -1,15 +1,15 @@
-import passport from "passport";
-import { Router } from "express";
+import passport from "passport"
+import { Router } from "express"
 import { isAuth } from '../middleware/isAuth.js'
 
+import CartMongoDAO from "../persistence/daos/cartMongoDAO.js"
 import ProductsMongoDAO from '../persistence/daos/productsMongoDAO.js'
 
-const router = Router();
-const db = new ProductsMongoDAO();
+const router = Router()
+const cartDB = new CartMongoDAO()
+const db = new ProductsMongoDAO()
 
-router.get('/saveproduct', async (req, res) => {
-    // db.save({ name: 'Cartuchera Argentina', price: '1500', photo: 'https://http2.mlstatic.com/D_NQ_NP_943811-MLA20642384219_032016-O.jpg' }).then(response => res.json(response))
-});
+router.get('/saveproduct', async (req, res) => db.save({ name: 'Cartuchera Argentina', price: '1500', photo: 'https://http2.mlstatic.com/D_NQ_NP_943811-MLA20642384219_032016-O.jpg' }).then(response => res.json(response)))
 
 router.get('/', isAuth, (req, res) => res.redirect('/products'))
 
@@ -33,5 +33,11 @@ router.get('/profile', isAuth, (req, res) => res.render('profile', { data: req.u
 router.get('/products', isAuth, (req, res) => db.getAll().then(data => res.render('products', { username: req.user.username, data: data })))
 
 router.get('/logout', (req, res) => req.logout(() => res.redirect('/')))
+
+router.get('/cart', isAuth, (req, res) => { 
+    cartDB.findCartByID(req.user.cartID).then(response => {
+        res.render('cart', { data: response, user: req.user })
+    })
+})
 
 export default router

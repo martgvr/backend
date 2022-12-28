@@ -1,6 +1,9 @@
-import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
+import passport from "passport"
 import Users from '../persistence/models/userModel.js'
+import { Strategy as LocalStrategy } from "passport-local"
+
+import CartMongoDAO from '../persistence/daos/cartMongoDAO.js'
+const cartDB = new CartMongoDAO()
 
 passport.use('register', new LocalStrategy({
     usernameField: 'username',
@@ -24,9 +27,10 @@ passport.use('register', new LocalStrategy({
         user.areacode = areacode
         user.telephone = telephone
         user.avatar = req.file.path
-        user.cartID = Math.floor(Math.random() * 10)
+        user.cartID = Math.floor(Math.random() * 1000)
 
-        console.log(user);
+        cartDB.save({ cartID: user.cartID, products: [], total: 0 })
+
         user.save()
         done(null, user)
     }

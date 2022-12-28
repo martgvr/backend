@@ -13,6 +13,7 @@
     <section class="container">
         <article class="container__header">Información de perfil</article>
         <article class="container__content center">
+            <img src="<%= data.avatar %>" alt="">
             <p>Usuario: <%= data.username %></p>
             <p>Email: <%= data.email %></p>
             <p>Nombre: <%= data.name %></p>
@@ -20,11 +21,10 @@
             <p>Edad: <%= data.age %></p>
             <p>Código de area: <%= data.areacode %></p>
             <p>Teléfono: <%= data.telephone %></p>
-            <p>Foto: <%= data.avatar %></p>
-            <img src="<%= data.avatar %>" alt="">
         </article>
-        <article class="container__footer center">
-            <button class="btn__green" onclick="location.href='/logout'">Cerrar sesión</button>
+        <article class="container__footer">
+            <button class="btn__blue" onclick="location.href='/products'">Volver</button>
+            <button class="btn__red" onclick="location.href='/logout'">Cerrar sesión</button>
         </article>
     </section>
 </body>

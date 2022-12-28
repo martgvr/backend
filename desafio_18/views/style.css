@@ -108,7 +108,7 @@ body {
 
 /* BUTTONS */
 .btn__blue,
-.btn__green {
+.btn__green, .btn__red {
     padding: 4px;
     border: 1px solid rgb(153, 153, 153);
     min-width: 90px;
@@ -125,6 +125,10 @@ body {
     border: 1px solid rgb(12, 187, 12);
 }
 
+.btn__red {
+    background-color: rgb(87, 41, 41);
+    border: 1px solid rgb(187, 12, 12);
+}
 
 .btn__navigation--add {
     border: 1px solid rgb(11, 206, 255);
