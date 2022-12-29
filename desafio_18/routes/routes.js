@@ -36,13 +36,16 @@ router.get('/logout', (req, res) => req.logout(() => res.redirect('/')))
 
 router.get('/cart', isAuth, (req, res) => { 
     cartDB.findCartByID(req.user.cartID).then(response => {
-        res.render('cart', { data: response, user: req.user })
+        let total = 0;
+        response.products.forEach(element => {
+            total += Number(element.itemPrice);
+        });
+        res.render('cart', { data: response, user: req.user, total: total })
     })
 })
 
 router.post('/cart', isAuth, (req, res) => { 
-    cartDB.addItemToCart(req.user.cartID, req.body.productID).then(response => {
-        // res.render('cart', { data: response, user: req.user })
+    cartDB.addItemToCart(req.user.cartID, req.body.product).then(response => {
         res.send(response)
     })
 })

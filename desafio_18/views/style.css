@@ -291,6 +291,20 @@ body {
     height: 3px;
 }
 
+.cart__footer {
+    border: 3px solid rgb(72, 84, 99);
+    border-top: 1px solid rgb(231, 231, 231);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
 .item__photo img {
     width: 45px;
     height: 45px;

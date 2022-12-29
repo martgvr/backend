@@ -48,12 +48,11 @@
                                 <td><%= item.name %></td>
                                 <td><%= item.price %></td>
                                 <td class="item__photo"><img src="<%= item.photo %>" /></td>
-                                <td><button class="btn__navigation--add" onclick="postCart('<%= item.id %>', '<%= user.cartID %>')">+</button></td>
+                                <td><button class="btn__navigation--add" onclick="postCart({ itemID: '<%= item.id %>', itemName: '<%= item.name %>', itemPrice: '<%= item.price %>', itemPhoto: '<%= item.photo %>' })">+</button></td>
                             </tr>
                         <% }) %>
                     <% } %>
                 </tbody>
-
             </table>
 
             <div class="products__footer"></div>
@@ -63,8 +62,8 @@
 </body>
 
 <script>
-    function postCart(productID) {
-        fetch('/cart', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productID }) })
+    function postCart(product) {
+        fetch('/cart', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ product }) })
     }
 </script>
 

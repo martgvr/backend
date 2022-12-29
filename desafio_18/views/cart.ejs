@@ -43,15 +43,22 @@
                             <td colspan="4">No hay productos en el carrito</td>
                         </tr>
                         <% } else { %>
-                            <% data.forEach(item => { %>
-                                <% console.log(item) %>
-                        <% }) %>
+                            <% data.products.forEach(item => { %>
+                                <tr>
+                                    <td><%= item.itemName %></td>
+                                    <td><%= item.itemPrice %></td>
+                                    <td class="item__photo"><img src="<%= item.itemPhoto %>" /></td>
+                                    <td><button class="btn__navigation--remove" onclick="">-</button></td>
+                                </tr>
+                            <% }) %>
                     <% } %>
                 </tbody>
-
             </table>
 
-            <div class="products__footer"></div>
+            <div class="cart__footer">
+                <p>Total: $ <%= total %></p>
+                <button class="btn__navigation--add" onclick="">Finalizar compra</button>
+            </div>
         </article>
 
     </section>
