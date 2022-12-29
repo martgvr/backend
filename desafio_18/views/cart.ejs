@@ -56,12 +56,22 @@
             </table>
 
             <div class="cart__footer">
-                <p>Total: $ <%= total %></p>
-                <button class="btn__navigation--add" onclick="">Finalizar compra</button>
+                <% if (data.products.length !== 0) { %>
+                    <p>Total: $ <%= total %></p>
+                    <button class="btn__navigation--add" onclick="finishBuy()">Finalizar compra</button>
+                <% } else { %>
+                    <button class="btn__navigation--add" onclick="location.href='/products'">Ver productos</button>
+                <% } %>
             </div>
         </article>
 
     </section>
 </body>
+
+<script>
+    function finishBuy() {
+        fetch('/buy', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+    }
+</script>
 
 </html>

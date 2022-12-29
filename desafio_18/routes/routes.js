@@ -1,6 +1,7 @@
 import passport from "passport"
 import { Router } from "express"
 import { isAuth } from '../middleware/isAuth.js'
+import { transporter } from '../utils/nodemailer.js'
 
 import CartMongoDAO from "../persistence/daos/cartMongoDAO.js"
 import ProductsMongoDAO from '../persistence/daos/productsMongoDAO.js'
@@ -8,8 +9,6 @@ import ProductsMongoDAO from '../persistence/daos/productsMongoDAO.js'
 const router = Router()
 const cartDB = new CartMongoDAO()
 const db = new ProductsMongoDAO()
-
-router.get('/saveproduct', async (req, res) => db.save({ name: 'Cartuchera Argentina', price: '1500', photo: 'https://http2.mlstatic.com/D_NQ_NP_943811-MLA20642384219_032016-O.jpg' }).then(response => res.json(response)))
 
 router.get('/', isAuth, (req, res) => res.redirect('/products'))
 
@@ -47,6 +46,24 @@ router.get('/cart', isAuth, (req, res) => {
 router.post('/cart', isAuth, (req, res) => { 
     cartDB.addItemToCart(req.user.cartID, req.body.product).then(response => {
         res.send(response)
+    })
+})
+
+router.post('/buy', isAuth, async (req, res) => { 
+    cartDB.findCartByID(req.user.cartID).then(response => {
+        let total = 0
+        response.products.forEach(element => total += Number(element.itemPrice))
+        
+        let emailContent = `<h1>Gracias por tu compra!</h1><h4>Tu compra está en camino</h4>`
+        response.products.forEach(element => emailContent += `<p>Item: ${element.itemName} | Precio: ${element.itemPrice}</p>`)
+        emailContent += `<br><p>Total: ${total}</p>`
+
+        transporter.sendMail({
+            from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
+            to: `${req.user.name} <${req.user.email}>`,
+            subject: 'Compra realizada con éxito!',
+            html: emailContent
+        })
     })
 })
 
