@@ -18,6 +18,10 @@ class CartMongoDAO extends MongoContainer {
     async addItemToCart(cartID, productID) {
         const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $push: { products: productID } })
     }
+
+    async clearCart(cartID) {
+        const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $set: { products: [] } })
+    }
 }
 
 export default CartMongoDAO

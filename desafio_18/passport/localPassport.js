@@ -31,17 +31,32 @@ passport.use('register', new LocalStrategy({
         user.avatar = req.file.filename
         user.cartID = Math.floor(Math.random() * 1000)
 
-        const emailContent =    `
+        let emailContent =    `
                                 <h1>Información de usuario:</h1>
                                 <p>Hola ${name}</p>
                                 <p>Tu correo es: ${email}</p>
                                 <h4>Gracias por registrarte en nuestra tienda</h4>
                                 `
 
-        const infoEmail = await transporter.sendMail({
+        await transporter.sendMail({
             from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
             to: `${name} <${email}>`,
             subject: 'Registro exitoso',
+            html: emailContent
+        })
+
+        emailContent =      `<h1>Nuevo usuario registrado</h1>
+                            <p>Nombre de usuario: ${username}</p>
+                            <p>Nombre y Apellido: ${name}</p>
+                            <p>Dirección: ${address}</p>
+                            <p>Edad: ${age}</p>
+                            <p>Teléfono: ${areacode} ${telephone}</p>
+                            <p>ID de carrito: ${user.cartID}</p>`
+
+        await transporter.sendMail({
+            from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
+            to: `Administrador <${process.env.ADMIN_EMAIL}>`,
+            subject: '[ADMIN] - Nuevo usuario registrado',
             html: emailContent
         })
 
