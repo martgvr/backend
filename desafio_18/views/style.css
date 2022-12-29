@@ -321,6 +321,13 @@ body {
     width: 350px;
 }
 
+.register p {
+    color: rgb(219, 61, 61);
+    text-transform: uppercase;
+    font-size: smaller;
+    margin-bottom: 4px;
+}
+
 @media screen and (max-width: 800px) {
     .main__container {
         padding: 0;
