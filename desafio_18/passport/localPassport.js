@@ -2,6 +2,7 @@ import passport from "passport"
 import Users from '../persistence/models/userModel.js'
 import { Strategy as LocalStrategy } from "passport-local"
 import { transporter } from '../utils/nodemailer.js'
+import bcrypt from 'bcrypt'
 
 import CartMongoDAO from '../persistence/daos/cartMongoDAO.js'
 const cartDB = new CartMongoDAO()
@@ -18,7 +19,7 @@ passport.use('register', new LocalStrategy({
     } else {
         const user = new Users()
         user.username = username
-        user.password = password
+        bcrypt.hash(password, 10, function(err, hash) { user.password = hash })
 
         const { email, name, address, age, areacode, telephone } = req.body
         user.email = email
@@ -56,12 +57,15 @@ passport.use('login', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, async (req, username, password, done) => {
-    const userDB = await Users.find({ username, password })
-    if (userDB.length === 0) {
-        done(null, false)
-    } else {
-        done(null, ...userDB)
-    }
+    const userDB = await Users.find({ username })
+    
+    bcrypt.compare(password, userDB[0].password, function(err, result) {
+        if (result === false) {
+            done(null, false)
+        } else {
+            done(null, ...userDB)
+        }
+    });
 }))
 
 passport.serializeUser((user, done) => {
