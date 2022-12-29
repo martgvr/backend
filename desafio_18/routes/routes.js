@@ -53,8 +53,8 @@ router.post('/buy', isAuth, async (req, res) => {
     cartDB.findCartByID(req.user.cartID).then(response => {
         let total = 0
         response.products.forEach(element => total += Number(element.itemPrice))
-        
-        let emailContent = `<h1>Gracias por tu compra!</h1><h4>Tu compra está en camino</h4>`
+
+        let emailContent = `<h1>Gracias por tu compra! ${req.user.name}</h1><h4>Tu compra está en camino</h4>`
         response.products.forEach(element => emailContent += `<p>Item: ${element.itemName} | Precio: ${element.itemPrice}</p>`)
         emailContent += `<br><p>Total: ${total}</p>`
 
