@@ -73,14 +73,17 @@ passport.use('login', new LocalStrategy({
     passReqToCallback: true
 }, async (req, username, password, done) => {
     const userDB = await Users.find({ username })
-    
-    bcrypt.compare(password, userDB[0].password, function(err, result) {
-        if (result === false) {
-            done(null, false)
-        } else {
-            done(null, ...userDB)
-        }
-    });
+    if (userDB.length == 0) {
+        done(null, false);
+    } else {
+        bcrypt.compare(password, userDB[0].password, function(err, result) {
+            if (result === false) {
+                done(null, false)
+            } else {
+                done(null, ...userDB)
+            }
+        });
+    }
 }))
 
 passport.serializeUser((user, done) => {

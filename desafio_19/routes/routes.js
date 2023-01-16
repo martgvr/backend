@@ -1,10 +1,86 @@
-import express from 'express'
+import passport from "passport"
+import { Router } from "express"
+import { isAuth } from '../middlewares/isAuth.js'
+import { transporter } from '../utils/nodemailer.js'
 
-const router = express.Router()
+import CartMongoDAO from "../persistence/daos/cartMongoDAO.js"
+import ProductsMongoDAO from '../persistence/daos/productsMongoDAO.js'
 
-// ROUTES
-router.get('/', (req, res) => {
-    res.send('hola')
+import usersController from '../controllers/users.controller.js'
+
+const router = Router()
+const cartDB = new CartMongoDAO()
+const db = new ProductsMongoDAO()
+
+// router.get('/', isAuth, (req, res) => res.redirect('/products'))
+router.get('/', isAuth, usersController.productsRedirect)
+
+router.get('/register', (req, res) => res.render('register'))
+
+router.post('/register', passport.authenticate('register', {
+    failureRedirect: '/regerror',
+    successRedirect: '/products'
+}))
+
+router.post('/login', passport.authenticate('login', {
+    failureRedirect: '/logerror',
+    successRedirect: '/products'
+}))
+
+router.get('/logerror', (req, res) => res.render('error', { text: 'Usuario o contraseña incorrectos.', type: 'logerror' }))
+router.get('/regerror', (req, res) => res.render('error', { text: 'Este usuario ya se encuentra registrado.', type: 'regerror' }))
+
+router.get('/profile', isAuth, (req, res) => res.render('profile', { data: req.user }))
+
+router.get('/products', isAuth, (req, res) => db.getAll().then(data => res.render('products', { user: req.user, data: data })))
+
+router.get('/logout', (req, res) => req.logout(() => res.redirect('/')))
+
+router.get('/cart', isAuth, (req, res) => { 
+    cartDB.findCartByID(req.user.cartID).then(response => {
+        let total = 0;
+        response.products.forEach(element => {
+            total += Number(element.itemPrice);
+        });
+        res.render('cart', { data: response, user: req.user, total: total })
+    })
+})
+
+router.post('/cart', isAuth, (req, res) => { 
+    cartDB.addItemToCart(req.user.cartID, req.body.product).then(response => {
+        res.send(response)
+    })
+})
+
+router.post('/buy', isAuth, async (req, res) => { 
+    cartDB.findCartByID(req.user.cartID).then(response => {
+        let total = 0
+        response.products.forEach(element => total += Number(element.itemPrice))
+
+        let emailContent = `<h1>Gracias por tu compra ${req.user.name}!</h1><h4>Tu compra está en camino</h4>`
+        response.products.forEach(element => emailContent += `<p>Item: ${element.itemName} | Precio: ${element.itemPrice}</p>`)
+        emailContent += `<br><p>Total: ${total}</p><p>Dirección: ${req.user.address}</p><p>Teléfono: ${req.user.telephone}</p>`
+
+        transporter.sendMail({
+            from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
+            to: `${req.user.name} <${req.user.email}>`,
+            subject: 'Compra realizada con éxito!',
+            html: emailContent
+        })
+
+        emailContent = `<h1>Se realizó una compra</h1><h3>El usuario ${req.user.name} (${req.user.email}) realizó la siguiente compra:</h3>`
+        response.products.forEach(element => emailContent += `<p>Item: ${element.itemName} | Precio: ${element.itemPrice}</p>`)
+        emailContent += `<br><p>Total: ${total}</p><p>Dirección: ${req.user.address}</p><p>Teléfono: ${req.user.areacode} ${req.user.telephone}</p>`
+
+        transporter.sendMail({
+            from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
+            to: `Administrador <${process.env.ADMIN_EMAIL}>`,
+            subject: '[ADMIN] - Se realizó una compra',
+            html: emailContent
+        })
+
+        cartDB.clearCart(req.user.cartID)
+    })
 })
 
 export default router
