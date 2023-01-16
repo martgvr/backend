@@ -18,8 +18,8 @@
                 <p class="navbar__profile" onclick="location.href='/products'">Productos</p>
                 <p class="navbar__profile" onclick="location.href='/cart'">Carrito</p>
             </div>
-            <div class="navbar__profile active" onclick="location.href='/profile'">
-                <img src="images/<%= data.avatar %>"
+            <div class="navbar__profile active" onclick="location.href='/user/profile'">
+                <img src="/images/<%= data.avatar %>"
                     alt=""><%= data.name %>
             </div>
         </article>
@@ -29,7 +29,7 @@
             <div class="profile">
                     <div class="container__header">Información de perfil</div>
                     <div class="container__content center">
-                        <img src="images/<%= data.avatar %>" alt="">
+                        <img src="/images/<%= data.avatar %>" alt="">
                         <p>Usuario: <%= data.username %></p>
                         <p>Email: <%= data.email %></p>
                         <p>Nombre: <%= data.name %></p>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="container__footer">
                         <button class="btn__blue" onclick="location.href='/products'">Volver</button>
-                        <button class="btn__red" onclick="location.href='/logout'">Cerrar sesión</button>
+                        <button class="btn__red" onclick="location.href='/user/logout'">Cerrar sesión</button>
                     </div>
                 </div>
         </article>

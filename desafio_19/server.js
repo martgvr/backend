@@ -1,14 +1,18 @@
 import express from 'express'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
-import routes from './routes/routes.js'
-import './persistence/dbConfig.js'
+
+import productsRouter from './routes/products.routes.js'
+import cartsRouter from './routes/carts.routes.js'
+import passportRouter from './routes/passport.routes.js'
+import usersRouter from './routes/users.routes.js'
 
 import cluster from 'cluster'
 import os from 'os'
 
 import passport from 'passport'
 import './persistence/passport/localPassport.js'
+import './persistence/dbConfig.js'
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -36,7 +40,10 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/', routes)
+app.use('/', productsRouter)
+app.use('/cart', cartsRouter)
+app.use('/passport', passportRouter)
+app.use('/user', usersRouter)
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
