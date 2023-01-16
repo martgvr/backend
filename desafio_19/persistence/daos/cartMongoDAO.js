@@ -16,11 +16,19 @@ class CartMongoDAO extends MongoContainer {
     }
 
     async addItemToCart(cartID, productID) {
-        const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $push: { products: productID } })
+        try {
+            const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $push: { products: productID } })
+        } catch (error) {
+            return { error: 'Algo salió mal' }
+        }
     }
 
     async clearCart(cartID) {
-        const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $set: { products: [] } })
+        try {
+            const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $set: { products: [] } })
+        } catch (error) {
+            return { error: 'Algo salió mal' }
+        }
     }
 }
 
