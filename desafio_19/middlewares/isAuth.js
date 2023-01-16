@@ -1,7 +1,1 @@
-export function isAuth(req, res, next) {
-    if (req.isAuthenticated()) {
-        next()
-    } else {
-        res.render('login')
-    }
-}
+export const isAuth = (req, res, next) => req.isAuthenticated() ? next() : res.render('login');
