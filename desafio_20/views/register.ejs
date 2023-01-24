@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="container register">
+        <article class="container__header">Registrarse</article>
+        <article class="container__content">
+            <form action="/passport/register" method="POST" id="loginForm" enctype="multipart/form-data">
+                <label for="username">Información de sesión</label><p>(Obligatorio)</p>
+                <input type="text" name="username" id="username" placeholder="Ingrese su usuario" class="form__input" required>
+                <input type="email" name="email" id="email" placeholder="Ingrese su email" class="form__input" required>
+                <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" class="form__input" required>
+                <label for="username">Información de perfil</label>
+                <input type="text" name="name" id="name" placeholder="Ingrese su nombre y apellido" class="form__input" required>
+                <input type="text" name="address" id="address" placeholder="Ingrese su dirección" class="form__input" required>
+                <input type="text" name="age" id="age" placeholder="Ingrese su edad" class="form__input" required>
+                <div class="phoneForm">
+                    <input type="text" name="areacode" id="areacode" placeholder="Area" class="form__input" required>
+                    <input type="text" name="telephone" id="telephone" placeholder="Ingrese su número de teléfono" class="form__input" required>
+                </div>
+                <label for="avatar">Foto de perfil</label>
+                <p>(Obligatorio)</p>
+                <input type="file" name="avatar" id="avatar" required>
+            </form>
+        </article>
+        <article class="container__footer">
+            <button class="btn__blue" onclick="location.href='/'">Volver</button>
+            <button class="btn__green" type="submit" form="loginForm">Registrarse</button>
+        </article>
+    </section>
+</body>
+
+</html>

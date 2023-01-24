@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="container">
+        <article class="container__header">Iniciar sesión</article>
+        <article class="container__content">
+            <form action="/passport/login" method="POST" id="loginForm">
+                <input type="text" name="username" id="username" placeholder="Ingrese su usuario" class="form__input" required>
+                <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" class="form__input" required>
+            </form>
+        </article>
+        <article class="container__footer">
+            <button class="btn__blue" onclick="location.href='/user/register'">Registrarse</button>
+            <button class="btn__green" type="submit" form="loginForm">Siguiente</button>
+        </article>
+    </section>
+</body>
+
+</html>
