@@ -1,7 +1,7 @@
 import MongoContainer from '../../containers/MongoContainer.js'
 import { cartModel } from '../../models/carts.model.js'
 
-class CartMongoDAO extends MongoContainer {
+export default class CartMongoDAO extends MongoContainer {
     constructor() {
         super(cartModel)
     }
@@ -31,5 +31,3 @@ class CartMongoDAO extends MongoContainer {
         }
     }
 }
-
-export default CartMongoDAO

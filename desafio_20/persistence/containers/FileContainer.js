@@ -1,6 +1,7 @@
 import fs from 'fs'
 
-class FilesystemContainer {
+// Agregar try y catch
+export default class FileContainer {
     constructor(path) {
         this.path = path
     }
@@ -72,5 +73,3 @@ class FilesystemContainer {
         return id
     }
 }
-
-export default FilesystemContainer

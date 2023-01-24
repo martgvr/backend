@@ -1,4 +1,4 @@
-class MongoContainer {
+export default class MongoContainer {
     constructor(model) {
         this.model = model;
     }
@@ -58,5 +58,3 @@ class MongoContainer {
         }
     }
 }
-
-export default MongoContainer;
