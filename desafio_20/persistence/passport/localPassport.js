@@ -63,7 +63,7 @@ passport.use('register', new LocalStrategy({
         // })
 
         cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
-        usersDAO.save(user._doc)
+        usersDAO.save(user)
 
         done(null, user)
     }
@@ -76,7 +76,6 @@ passport.use('login', new LocalStrategy({
 }, async (req, username, password, done) => {
     const findUser = await usersDAO.find({ username })
     let userDB = Array.isArray(findUser) ? findUser : [findUser]
-    console.log(userDB);
 
     if (userDB.length == 0) {
         done(null, false);
@@ -96,7 +95,6 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser(async (id, done) => {
-    const userDB = await Users.findById(id)
-    // const userDB = await usersDAO.getById(id)
+    const userDB = await usersDAO.getByID(id)
     done(null, userDB)
 })

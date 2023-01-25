@@ -21,13 +21,13 @@ export default class FileContainer {
         return newUser
     }
 
-    async getById(userId) {
+    async getByID(userId) {
         const users = await this.#readFile()
         const user = users.find(u => u.id === userId)
         return user
     }
 
-    async deleteById(userId) {
+    async deleteByID(userId) {
         const users = await this.#readFile()
         const index = await this.#getIndex(userId)
         users.splice(index, 1)
@@ -39,7 +39,7 @@ export default class FileContainer {
         await fs.promises.unlink(this.path)
     }
 
-    async updateById(userId, obj) {
+    async updateByID(userId, obj) {
         const users = await this.#readFile()
         const index = await this.#getIndex(userId)
         const newUser = { ...users[index], ...obj }
