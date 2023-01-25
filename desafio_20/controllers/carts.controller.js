@@ -1,11 +1,9 @@
-import CartMongoDAO from "../persistence/daos/cartMongoDAO.js"
+import cartsDAO from '../persistence/daos/factory.js'
 import { transporter } from '../utils/nodemailer.js'
-
-const cartsDB = new CartMongoDAO()
 
 const getCart = async (req, res) => {
     try {
-        cartsDB.findCartByID(req.user.cartID).then(response => {
+        cartsDAO.findCartByID(req.user.cartID).then(response => {
             let total = 0;
             response.products.forEach(element => {
                 total += Number(element.itemPrice);
@@ -19,7 +17,7 @@ const getCart = async (req, res) => {
 
 const postCart = async (req, res) => {
     try {
-        cartsDB.addItemToCart(req.user.cartID, req.body.product).then(response => res.send(response))
+        cartsDAO.addItemToCart(req.user.cartID, req.body.product).then(response => res.send(response))
     } catch (error) {
         res.send('Something went wrong :/')
     }
@@ -27,7 +25,7 @@ const postCart = async (req, res) => {
 
 const cartCheckout = async (req, res) => {
     try {
-        cartsDB.findCartByID(req.user.cartID).then(response => {
+        cartsDAO.findCartByID(req.user.cartID).then(response => {
             let total = 0
             response.products.forEach(element => total += Number(element.itemPrice))
     
@@ -53,7 +51,7 @@ const cartCheckout = async (req, res) => {
                 html: emailContent
             })
     
-            cartsDB.clearCart(req.user.cartID)
+            cartsDAO.clearCart(req.user.cartID)
         })
     } catch (error) {
         res.send('Something went wrong :/')

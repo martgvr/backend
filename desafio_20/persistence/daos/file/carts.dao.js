@@ -1,7 +1,7 @@
 import FileContainer from "../../containers/FileContainer.js";
 
 export default class CartsFileDAO extends FileContainer {
-    constructor() {
-        super('path')
+    constructor(path) {
+        super(path)
     }
 }
