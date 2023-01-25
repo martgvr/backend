@@ -9,7 +9,7 @@ import ProductsMongoDAO from '../daos/mongo/products.dao.js'
 import UsersMongoDAO from '../daos/mongo/users.dao.js'
 
 let cartsDAO, messagesDAO, productsDAO, usersDAO
-const varEnv = ''
+const varEnv = 'file'
 
 // switch (process.argv[2]) {
 switch (varEnv) {

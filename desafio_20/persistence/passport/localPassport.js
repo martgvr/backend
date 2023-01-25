@@ -3,7 +3,6 @@ import { Strategy as LocalStrategy } from "passport-local"
 import { transporter } from '../../utils/nodemailer.js'
 import bcrypt from 'bcrypt'
 
-// aca está el problema
 import { usersModel as Users } from '../models/users.model.js'
 
 import { cartsDAO } from '../daos/factory.js'
@@ -64,9 +63,8 @@ passport.use('register', new LocalStrategy({
         // })
 
         cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
-        usersDAO.save(user)
+        usersDAO.save(user._doc)
 
-        // user.save()
         done(null, user)
     }
 }))
@@ -76,7 +74,9 @@ passport.use('login', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, async (req, username, password, done) => {
-    const userDB = await usersDAO.find({ username })
+    const findUser = await usersDAO.find({ username })
+    let userDB = Array.isArray(findUser) ? findUser : [findUser]
+    console.log(userDB);
 
     if (userDB.length == 0) {
         done(null, false);

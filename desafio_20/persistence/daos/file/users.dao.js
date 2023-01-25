@@ -1,5 +1,5 @@
-import FileContainer from "../../containers/FileContainer.js";
 import fs from 'fs'
+import FileContainer from "../../containers/FileContainer.js";
 
 export default class UsersFileDAO extends FileContainer {
     constructor(path) {
@@ -8,7 +8,6 @@ export default class UsersFileDAO extends FileContainer {
 
     // agregar try y catch
     async find(username) {
-        console.log('Buscando a: ', username.username);
         const users = await this.#readFile()
         const user = users.find(u => u.username === username.username)
         return user === undefined ? [] : user
