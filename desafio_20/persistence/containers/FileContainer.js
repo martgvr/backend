@@ -16,6 +16,7 @@ export default class FileContainer {
         const id = await this.#getId()
         const newUser = { id, ...user }
         users.push(newUser)
+        console.log('Intentando guardar: ', newUser);
         await fs.promises.writeFile(this.path, JSON.stringify(users))
         return newUser
     }

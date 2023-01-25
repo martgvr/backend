@@ -3,8 +3,11 @@ import { Strategy as LocalStrategy } from "passport-local"
 import { transporter } from '../../utils/nodemailer.js'
 import bcrypt from 'bcrypt'
 
+// aca está el problema
 import { usersModel as Users } from '../models/users.model.js'
+
 import { cartsDAO } from '../daos/factory.js'
+import { usersDAO } from '../daos/factory.js'
 
 passport.use('register', new LocalStrategy({
     usernameField: 'username',
@@ -12,14 +15,15 @@ passport.use('register', new LocalStrategy({
     passReqToCallback: true
 
 }, async (req, username, password, done) => {
-    const userDB = await Users.find({ username })
+    const userDB = await usersDAO.find({ username })
+
     if (userDB.length > 0) {
         return done(null, false)
     } else {
         const user = new Users()
         user.username = username
-        bcrypt.hash(password, 10, function(err, hash) { user.password = hash })
-
+        user.password = await bcrypt.hash(password, 10)
+        
         const { email, name, address, age, areacode, telephone } = req.body
         user.email = email
         user.name = name
@@ -30,38 +34,39 @@ passport.use('register', new LocalStrategy({
         user.avatar = req.file.filename
         user.cartID = Math.floor(Math.random() * 1000)
 
-        let emailContent =    `
-                                <h1>Información de usuario:</h1>
-                                <p>Hola ${name}</p>
-                                <p>Tu correo es: ${email}</p>
-                                <h4>Gracias por registrarte en nuestra tienda</h4>
-                                `
+        // let emailContent =    `
+        //                         <h1>Información de usuario:</h1>
+        //                         <p>Hola ${name}</p>
+        //                         <p>Tu correo es: ${email}</p>
+        //                         <h4>Gracias por registrarte en nuestra tienda</h4>
+        //                         `
 
-        await transporter.sendMail({
-            from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
-            to: `${name} <${email}>`,
-            subject: 'Registro exitoso',
-            html: emailContent
-        })
+        // await transporter.sendMail({
+        //     from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
+        //     to: `${name} <${email}>`,
+        //     subject: 'Registro exitoso',
+        //     html: emailContent
+        // })
 
-        emailContent =      `<h1>Nuevo usuario registrado</h1>
-                            <p>Nombre de usuario: ${username}</p>
-                            <p>Nombre y Apellido: ${name}</p>
-                            <p>Dirección: ${address}</p>
-                            <p>Edad: ${age}</p>
-                            <p>Teléfono: ${areacode} ${telephone}</p>
-                            <p>ID de carrito: ${user.cartID}</p>`
+        // emailContent =      `<h1>Nuevo usuario registrado</h1>
+        //                     <p>Nombre de usuario: ${username}</p>
+        //                     <p>Nombre y Apellido: ${name}</p>
+        //                     <p>Dirección: ${address}</p>
+        //                     <p>Edad: ${age}</p>
+        //                     <p>Teléfono: ${areacode} ${telephone}</p>
+        //                     <p>ID de carrito: ${user.cartID}</p>`
 
-        await transporter.sendMail({
-            from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
-            to: `Administrador <${process.env.ADMIN_EMAIL}>`,
-            subject: '[ADMIN] - Nuevo usuario registrado',
-            html: emailContent
-        })
+        // await transporter.sendMail({
+        //     from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
+        //     to: `Administrador <${process.env.ADMIN_EMAIL}>`,
+        //     subject: '[ADMIN] - Nuevo usuario registrado',
+        //     html: emailContent
+        // })
 
         cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
+        usersDAO.save(user)
 
-        user.save()
+        // user.save()
         done(null, user)
     }
 }))
@@ -71,7 +76,8 @@ passport.use('login', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, async (req, username, password, done) => {
-    const userDB = await Users.find({ username })
+    const userDB = await usersDAO.find({ username })
+
     if (userDB.length == 0) {
         done(null, false);
     } else {
@@ -91,5 +97,6 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     const userDB = await Users.findById(id)
+    // const userDB = await usersDAO.getById(id)
     done(null, userDB)
 })
