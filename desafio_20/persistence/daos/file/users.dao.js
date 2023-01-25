@@ -6,11 +6,14 @@ export default class UsersFileDAO extends FileContainer {
         super(path)
     }
 
-    // agregar try y catch
     async find(username) {
-        const users = await this.#readFile()
-        const user = users.find(u => u.username === username.username)
-        return user === undefined ? [] : user
+        try {            
+            const users = await this.#readFile()
+            const user = users.find(u => u.username === username.username)
+            return user === undefined ? [] : user
+        } catch (error) {
+            return { error: 'Algo salió mal' }
+        }
     }
 
     #readFile = async () => {
