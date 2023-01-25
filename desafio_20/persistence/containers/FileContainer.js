@@ -63,6 +63,7 @@ export default class FileContainer {
     }
 
     #getId = async () => {
+        let id
         const users = await this.#readFile()
         if (users.length === 0) {
             id = 1

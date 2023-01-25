@@ -1,4 +1,4 @@
-import cartsDAO from '../persistence/daos/factory.js'
+import { cartsDAO } from '../persistence/daos/factory.js'
 import { transporter } from '../utils/nodemailer.js'
 
 const getCart = async (req, res) => {

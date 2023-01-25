@@ -13,5 +13,4 @@ const userSchema = new mongoose.Schema({
     cartID: String
 })
 
-// export default mongoose.model('Users', userSchema)
 export const usersModel = mongoose.model('Users', userSchema)

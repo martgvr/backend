@@ -1,11 +1,10 @@
 import passport from "passport"
-import Users from '../models/userModel.js'
 import { Strategy as LocalStrategy } from "passport-local"
 import { transporter } from '../../utils/nodemailer.js'
 import bcrypt from 'bcrypt'
 
-import CartMongoDAO from '../daos/cartMongoDAO.js'
-const cartDB = new CartMongoDAO()
+import { usersModel as Users } from '../models/users.model.js'
+import { cartsDAO } from '../daos/factory.js'
 
 passport.use('register', new LocalStrategy({
     usernameField: 'username',
@@ -60,7 +59,7 @@ passport.use('register', new LocalStrategy({
             html: emailContent
         })
 
-        cartDB.save({ cartID: user.cartID, products: [], total: 0 })
+        cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
 
         user.save()
         done(null, user)

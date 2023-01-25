@@ -8,16 +8,16 @@ import MessagesMongoDAO from '../daos/mongo/messages.dao.js'
 import ProductsMongoDAO from '../daos/mongo/products.dao.js'
 import UsersMongoDAO from '../daos/mongo/users.dao.js'
 
-let DAO
+let cartsDAO, messagesDAO, productsDAO, usersDAO
 const varEnv = 'file'
 
 // switch (process.argv[2]) {
 switch (varEnv) {
     case 'file':
-        cartsDAO = new CartsFileDAO('carts.json')     
-        messagesDAO = new MessagesFileDAO('messages.json')     
-        productsDAO = new ProductsFileDAO('users.json')     
-        usersDAO = new UsersFileDAO('users.json')     
+        cartsDAO = new CartsFileDAO('./fileDB/carts.json')     
+        messagesDAO = new MessagesFileDAO('./fileDB/messages.json')     
+        productsDAO = new ProductsFileDAO('./fileDB/users.json')     
+        usersDAO = new UsersFileDAO('./fileDB/users.json')     
         break;
 
     default:
@@ -28,4 +28,4 @@ switch (varEnv) {
         break;
 }
 
-export default { cartsDAO, messagesDAO, productsDAO, usersDAO }
+export { cartsDAO, messagesDAO, productsDAO, usersDAO }
