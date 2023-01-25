@@ -131,4 +131,7 @@ dist
 .pnp.*
 
 /views/images/
-/fileDB/
+
+carts.json
+users.json
+messages.json
