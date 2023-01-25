@@ -1,5 +1,3 @@
-fileDB
-
 # Logs
 logs
 *.log
@@ -133,3 +131,4 @@ dist
 .pnp.*
 
 /views/images/
+/fileDB/
