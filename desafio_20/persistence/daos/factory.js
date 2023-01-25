@@ -8,23 +8,24 @@ import MessagesMongoDAO from '../daos/mongo/messages.dao.js'
 import ProductsMongoDAO from '../daos/mongo/products.dao.js'
 import UsersMongoDAO from '../daos/mongo/users.dao.js'
 
-let cartsDAO, messagesDAO, productsDAO, usersDAO
-const varEnv = 'file'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
-// switch (process.argv[2]) {
-switch (varEnv) {
+let cartsDAO, messagesDAO, productsDAO, usersDAO
+
+switch (process.env.DAO) {
     case 'file':
-        cartsDAO = new CartsFileDAO('./fileDB/carts.json')     
-        messagesDAO = new MessagesFileDAO('./fileDB/messages.json')     
-        productsDAO = new ProductsFileDAO('./fileDB/users.json')     
-        usersDAO = new UsersFileDAO('./fileDB/users.json')     
+        cartsDAO = new CartsFileDAO('./fileDB/carts.json')
+        messagesDAO = new MessagesFileDAO('./fileDB/messages.json')
+        productsDAO = new ProductsFileDAO('./fileDB/products.json')
+        usersDAO = new UsersFileDAO('./fileDB/users.json')
         break;
 
     default:
-        cartsDAO = new CartMongoDAO()     
-        messagesDAO = new MessagesMongoDAO()     
-        productsDAO = new ProductsMongoDAO()     
-        usersDAO = new UsersMongoDAO()     
+        cartsDAO = new CartMongoDAO()
+        messagesDAO = new MessagesMongoDAO()
+        productsDAO = new ProductsMongoDAO()
+        usersDAO = new UsersMongoDAO()
         break;
 }
 

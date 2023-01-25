@@ -1,10 +1,9 @@
-import passport from "passport"
 import { Strategy as LocalStrategy } from "passport-local"
 import { transporter } from '../../utils/nodemailer.js'
+import passport from "passport"
 import bcrypt from 'bcrypt'
 
 import { usersModel as Users } from '../models/users.model.js'
-
 import { cartsDAO } from '../daos/factory.js'
 import { usersDAO } from '../daos/factory.js'
 
@@ -63,8 +62,7 @@ passport.use('register', new LocalStrategy({
         // })
 
         cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
-        usersDAO.save(user)
-
+        usersDAO.save(process.env.DAO === 'file' ? user._doc : user)
         done(null, user)
     }
 }))

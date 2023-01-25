@@ -12,7 +12,7 @@ import os from 'os'
 
 import passport from 'passport'
 import './persistence/passport/localPassport.js'
-import './persistence/dbConfig.js'
+import { mongoConnect } from './persistence/dbConfig.js'
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -52,8 +52,9 @@ const PORT = process.env.PORT || 8080
 
 function createServer() {
     const server = app.listen(PORT, (req, res) => { 
-        logger.info(`[ Listening ${PORT == 8080 ? 'default':'custom'} port: ${PORT} | Mode: ${process.env.CLUSTER == 'true' ? 'cluster' : 'fork'} | Process: ${process.pid} ]`)
+        logger.info(`[ Listening ${PORT == 8080 ? 'default':'custom'} port: ${PORT} | Mode: ${process.env.CLUSTER == 'true' ? 'cluster' : 'fork'} | Process: ${process.pid} | DAO: ${process.env.DAO || 'mongoDB'} ]`)
     })
+    process.env.DAO !== 'file' && mongoConnect()
     server.on('error', error => logger.error(`Error: ${error}`));
 }
 
