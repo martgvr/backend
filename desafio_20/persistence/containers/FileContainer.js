@@ -1,6 +1,5 @@
 import fs from 'fs'
 
-// Agregar try y catch
 export default class FileContainer {
     constructor(path) {
         this.path = path
