@@ -42,7 +42,6 @@ class factorySwitcher {
     }
 }
 
-
 export const setDAO = new factorySwitcher(process.env.DAO === 'file' ? 'file' : '')
 
 export { cartsDAO, messagesDAO, productsDAO, usersDAO }

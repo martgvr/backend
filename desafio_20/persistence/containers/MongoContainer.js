@@ -9,7 +9,7 @@ export default class MongoContainer {
             const productCreated = await productSchema.save()
             return (productCreated);
         } catch (error) {
-            return { error: 'Algo salió mal' }
+            return { error: 'Something went wrong =/' }
         }
     }
 
@@ -18,7 +18,7 @@ export default class MongoContainer {
             const data = await this.model.find({})
             return data;
         } catch (error) {
-            return { error: 'Algo salió mal' }
+            return { error: 'Something went wrong =/' }
         }
     }
 
@@ -27,7 +27,7 @@ export default class MongoContainer {
             const data = await this.model.findById(id);
             return data;
         } catch (error) {
-            return { error: 'Algo salió mal' }
+            return { error: 'Something went wrong =/' }
         }
     }
 
@@ -36,7 +36,7 @@ export default class MongoContainer {
             const updatedItem = await this.model.updateOne(itemToUpdate, { $set: newValue })
             return updatedItem;
         } catch (error) {
-            return { error: 'Algo salió mal' }
+            return { error: 'Something went wrong =/' }
         }
     }
 
@@ -45,7 +45,7 @@ export default class MongoContainer {
             const data = await this.model.deleteOne({ _id: id });
             return data;
         } catch (error) {
-            return { error: 'Algo salió mal' }
+            return { error: 'Something went wrong =/' }
         }
     }
 
@@ -54,7 +54,7 @@ export default class MongoContainer {
             const data = await this.model.deleteMany({});
             return data;
         } catch (error) {
-            return { error: 'Algo salió mal' }
+            return { error: 'Something went wrong =/' }
         }
     }
 }
