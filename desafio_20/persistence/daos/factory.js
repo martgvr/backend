@@ -10,37 +10,30 @@ import UsersMongoDAO from '../daos/mongo/users.dao.js'
 
 import * as dotenv from 'dotenv'
 dotenv.config()
-
+    
 let cartsDAO, messagesDAO, productsDAO, usersDAO
 
-switch (process.env.DAO) {
-    case 'file':
-        cartsDAO = new CartsFileDAO('./fileDB/carts.json')
-        messagesDAO = new MessagesFileDAO('./fileDB/messages.json')
-        productsDAO = new ProductsFileDAO('./fileDB/products.json')
-        usersDAO = new UsersFileDAO('./fileDB/users.json')
-        break;
-
-    default:
-        cartsDAO = new CartMongoDAO()
-        messagesDAO = new MessagesMongoDAO()
-        productsDAO = new ProductsMongoDAO()
-        usersDAO = new UsersMongoDAO()
-        break;
-}
-
-export { cartsDAO, messagesDAO, productsDAO, usersDAO }
-
-export default class factorySwitcher {
+class factorySwitcher {
     static instance
-    
-    constructor(cartsDAO, messagesDAO, productsDAO, usersDAO) {
-        this.cartsDAO = new cartsDAO
-        this.messagesDAO = new messagesDAO
-        this.productsDAO = new productsDAO
-        this.usersDAO = new usersDAO
+        
+    constructor(DAO) {
+        switch (DAO) {
+            case 'file':
+                cartsDAO = new CartsFileDAO('./fileDB/carts.json')
+                messagesDAO = new MessagesFileDAO('./fileDB/messages.json')
+                productsDAO = new ProductsFileDAO('./fileDB/products.json')
+                usersDAO = new UsersFileDAO('./fileDB/users.json')
+                break;
+        
+            default:
+                cartsDAO = new CartMongoDAO()
+                messagesDAO = new MessagesMongoDAO()
+                productsDAO = new ProductsMongoDAO()
+                usersDAO = new UsersMongoDAO()
+                break;
+            }
     }
-
+        
     getInstance() {
         if (!this.instance) {
             this.instance = new factorySwitcher()
@@ -49,4 +42,7 @@ export default class factorySwitcher {
     }
 }
 
-export const selectedFactory = new factorySwitcher(CartsFileDAO('./fileDB/carts.json'), MessagesFileDAO('./fileDB/messages.json'), ProductsFileDAO('./fileDB/products.json'), UsersFileDAO('./fileDB/users.json'))
+
+export const setDAO = new factorySwitcher(process.env.DAO === 'file' ? 'file' : '')
+
+export { cartsDAO, messagesDAO, productsDAO, usersDAO }
