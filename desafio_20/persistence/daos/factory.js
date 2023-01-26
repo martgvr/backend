@@ -30,3 +30,23 @@ switch (process.env.DAO) {
 }
 
 export { cartsDAO, messagesDAO, productsDAO, usersDAO }
+
+export default class factorySwitcher {
+    static instance
+    
+    constructor(cartsDAO, messagesDAO, productsDAO, usersDAO) {
+        this.cartsDAO = new cartsDAO
+        this.messagesDAO = new messagesDAO
+        this.productsDAO = new productsDAO
+        this.usersDAO = new usersDAO
+    }
+
+    getInstance() {
+        if (!this.instance) {
+            this.instance = new factorySwitcher()
+        }
+        return this.instance
+    }
+}
+
+export const selectedFactory = new factorySwitcher(CartsFileDAO('./fileDB/carts.json'), MessagesFileDAO('./fileDB/messages.json'), ProductsFileDAO('./fileDB/products.json'), UsersFileDAO('./fileDB/users.json'))
