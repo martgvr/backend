@@ -1,5 +1,11 @@
 export default class CartsDTO {
-    constructor (obj) {
-        this.id = obj.id
+    constructor (data, total) {
+        this.data = data
+        this.total = total
+        this.cartData = { data: data, total: total }
+    }
+
+    getCartData () {
+        return this.cartData
     }
 }

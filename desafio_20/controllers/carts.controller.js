@@ -1,5 +1,6 @@
+import cartsRepository from '../persistence/repositories/carts.repository.js'
 import { cartsDAO } from '../persistence/daos/factory.js'
-import { transporter } from '../utils/nodemailer.js'
+import CartsDTO from '../persistence/dtos/carts.dto.js'
 
 const getCart = async (req, res) => {
     try {
@@ -8,7 +9,9 @@ const getCart = async (req, res) => {
             response.products.forEach(element => {
                 total += Number(element.itemPrice);
             });
-            res.render('cart', { data: response, user: req.user, total: total })
+
+            const dataDTO = new CartsDTO(response, total).getCartData()
+            res.render('cart', { dataDTO, user: req.user })
         })
     } catch (error) {
         res.send('Something went wrong :/')
@@ -26,31 +29,9 @@ const postCart = async (req, res) => {
 const cartCheckout = async (req, res) => {
     try {
         cartsDAO.findCartByID(req.user.cartID).then(response => {
-            let total = 0
-            response.products.forEach(element => total += Number(element.itemPrice))
-    
-            let emailContent = `<h1>Gracias por tu compra ${req.user.name}!</h1><h4>Tu compra está en camino</h4>`
-            response.products.forEach(element => emailContent += `<p>Item: ${element.itemName} | Precio: ${element.itemPrice}</p>`)
-            emailContent += `<br><p>Total: ${total}</p><p>Dirección: ${req.user.address}</p><p>Teléfono: ${req.user.telephone}</p>`
-    
-            transporter.sendMail({
-                from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
-                to: `${req.user.name} <${req.user.email}>`,
-                subject: 'Compra realizada con éxito!',
-                html: emailContent
-            })
-    
-            emailContent = `<h1>Se realizó una compra</h1><h3>El usuario ${req.user.name} (${req.user.email}) realizó la siguiente compra:</h3>`
-            response.products.forEach(element => emailContent += `<p>Item: ${element.itemName} | Precio: ${element.itemPrice}</p>`)
-            emailContent += `<br><p>Total: ${total}</p><p>Dirección: ${req.user.address}</p><p>Teléfono: ${req.user.areacode} ${req.user.telephone}</p>`
-    
-            transporter.sendMail({
-                from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
-                to: `Administrador <${process.env.ADMIN_EMAIL}>`,
-                subject: '[ADMIN] - Se realizó una compra',
-                html: emailContent
-            })
-    
+            const cartRepoInstance = new cartsRepository(response, req.user)
+            cartRepoInstance.sendEmail()
+
             cartsDAO.clearCart(req.user.cartID)
         })
     } catch (error) {

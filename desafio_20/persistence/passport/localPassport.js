@@ -1,7 +1,8 @@
 import { Strategy as LocalStrategy } from "passport-local"
-import { transporter } from '../../utils/nodemailer.js'
 import passport from "passport"
 import bcrypt from 'bcrypt'
+
+import usersRepository from '../repositories/users.repository.js'
 
 import { usersModel as Users } from '../models/users.model.js'
 import { cartsDAO } from '../daos/factory.js'
@@ -32,34 +33,8 @@ passport.use('register', new LocalStrategy({
         user.avatar = req.file.filename
         user.cartID = Math.floor(Math.random() * 1000)
 
-        let emailContent =    `
-                                <h1>Información de usuario:</h1>
-                                <p>Hola ${name}</p>
-                                <p>Tu correo es: ${email}</p>
-                                <h4>Gracias por registrarte en nuestra tienda</h4>
-                                `
-
-        await transporter.sendMail({
-            from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
-            to: `${name} <${email}>`,
-            subject: 'Registro exitoso',
-            html: emailContent
-        })
-
-        emailContent =      `<h1>Nuevo usuario registrado</h1>
-                            <p>Nombre de usuario: ${username}</p>
-                            <p>Nombre y Apellido: ${name}</p>
-                            <p>Dirección: ${address}</p>
-                            <p>Edad: ${age}</p>
-                            <p>Teléfono: ${areacode} ${telephone}</p>
-                            <p>ID de carrito: ${user.cartID}</p>`
-
-        await transporter.sendMail({
-            from: 'Gorilla IT Solutions <gorilla.notifications@gmail.com>',
-            to: `Administrador <${process.env.ADMIN_EMAIL}>`,
-            subject: '[ADMIN] - Nuevo usuario registrado',
-            html: emailContent
-        })
+        const usersRepoInstance = new usersRepository(user)
+        usersRepoInstance.sendEmail()
 
         cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
         usersDAO.save(process.env.DAO === 'file' ? user._doc : user)

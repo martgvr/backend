@@ -38,12 +38,12 @@
                 </thead>
 
                 <tbody>
-                    <% if (data.products.length == 0) { %>
+                    <% if (dataDTO.data.products.length == 0) { %>
                         <tr>
                             <td colspan="4">No hay productos en el carrito</td>
                         </tr>
                         <% } else { %>
-                            <% data.products.forEach(item => { %>
+                            <% dataDTO.data.products.forEach(item => { %>
                                 <tr>
                                     <td><%= item.itemName %></td>
                                     <td><%= item.itemPrice %></td>
@@ -56,8 +56,8 @@
             </table>
 
             <div class="cart__footer">
-                <% if (data.products.length !== 0) { %>
-                    <p>Total: $ <%= total %></p>
+                <% if (dataDTO.data.products.length !== 0) { %>
+                    <p>Total: $ <%= dataDTO.total %></p>
                     <button class="btn__navigation--add" onclick="finishBuy()">Finalizar compra</button>
                 <% } else { %>
                     <button class="btn__navigation--add" onclick="location.href='/products'">Ver productos</button>
