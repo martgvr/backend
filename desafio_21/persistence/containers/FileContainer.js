@@ -7,43 +7,53 @@ export default class FileContainer {
 
     async getAll() {
         try {            
-            const users = await this.#readFile()
-            return users
+            const data = await this.#readFile()
+            return data
         } catch (error) {
             return { error: 'Something went wrong =/' }
         }
     }
 
-    async save(user) {
+    async save(object) {
         try {            
-            const users = await this.#readFile()
+            const data = await this.#readFile()
             const id = await this.#getId()
-            const newUser = { id, ...user }
-            users.push(newUser)
-            await fs.promises.writeFile(this.path, JSON.stringify(users))
-            return newUser
+            const newData = { id, ...object }
+            data.push(newData)
+            await fs.promises.writeFile(this.path, JSON.stringify(data))
+            return newData
         } catch (error) {
             return { error: 'Something went wrong =/' }
         }
     }
 
-    async getByID(userID) {
+    async getByID(ID) {
         try {
-            const users = await this.#readFile()
-            const user = users.find(u => u.id === userID)
-            return user
+            const data = await this.#readFile()
+
+            if (data.length === 0) {
+                return { error: 'Database seems to be empty' }
+            }
+            
+            const dataFind = data.find(u => u.id === ID)
+            return dataFind
         } catch (error) {
             return { error: 'Something went wrong =/' }
         }
     }
 
-    async deleteByID(userID) {
+    async deleteByID(ID) {
         try {
-            const users = await this.#readFile()
-            const index = await this.#getIndex(userID)
-            users.splice(index, 1)
-            await fs.promises.writeFile(this.path, JSON.stringify(users))
-            return userID
+            const data = await this.#readFile()
+            const index = await this.#getIndex(ID)
+
+            if (index !== -1) {
+                data.splice(index, 1)
+                await fs.promises.writeFile(this.path, JSON.stringify(data))
+                return { message: 'The object has been successfully deleted', id: ID }
+            }
+
+            return { error: 'Object not found', id: ID }
         } catch (error) {
             return { error: 'Something went wrong =/' }
         }
@@ -52,19 +62,29 @@ export default class FileContainer {
     async deleteAll() {
         try {
             await fs.promises.unlink(this.path)
+            return { message: 'Database has been deleted successfully' }
         } catch (error) {
             return { error: 'Something went wrong =/' }
         }
     }
 
-    async updateByID(userID, obj) {
+    async updateByID(ID, obj) {
         try {
-            const users = await this.#readFile()
-            const index = await this.#getIndex(userID)
-            const newUser = { ...users[index], ...obj }
-            users.splice(index, 1, newUser)
-            await fs.promises.writeFile(this.path, JSON.stringify(users))
-            return newUser
+            const data = await this.#readFile()
+            const index = await this.#getIndex(ID)
+
+            if (data.length !== 0) {
+                if (index !== -1) {
+                    const newData = { ...data[index], ...obj }
+                    data.splice(index, 1, newData)
+                    await fs.promises.writeFile(this.path, JSON.stringify(data))
+                    return newData   
+                } 
+            } else {
+                return { error: 'Database seems to be empty' }
+            }
+
+            return { error: 'Object not found', id: ID }
         } catch (error) {
             return { error: 'Something went wrong =/' }
         }
