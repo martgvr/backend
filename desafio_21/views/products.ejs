@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de productos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="main__container">
+
+        <article class="container navbar">
+            <div class="navbar__logo">Tienda online</div>
+            <div class="navbar__menu">
+                <p class="navbar__profile active" onclick="location.href='/products'">Productos</p>
+                <p class="navbar__profile" onclick="location.href='/cart'">Carrito</p>
+            </div>
+            <div class="navbar__profile" onclick="location.href='/user/profile'">
+                <img src="/images/<%= user.avatar %>" alt=""><%= user.name %>
+            </div>
+        </article>
+
+        <article class="container products">
+            <div class="products__header">
+                <p>Lista de productos</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Imagen</th>
+                        <th>Agregar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% if (data.length == 0) { %>
+                        <tr>
+                            <td colspan="4">No hay productos en la DB</td>
+                        </tr>
+                    <% } else { %>
+                        <% data.forEach(item=> { %>
+                            <tr>
+                                <td><%= item.name %></td>
+                                <td><%= item.price %></td>
+                                <td class="item__photo"><img src="<%= item.photo %>" /></td>
+                                <td><button class="btn__navigation--add" onclick="postCart({ itemID: '<%= item.id %>', itemName: '<%= item.name %>', itemPrice: '<%= item.price %>', itemPhoto: '<%= item.photo %>' })">+</button></td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <div class="products__footer"></div>
+        </article>
+
+    </section>
+</body>
+
+<script>
+    function postCart(product) {
+        fetch('/cart', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ product }) })
+    }
+</script>
+
+</html>

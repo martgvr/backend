@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="main__container">
+
+        <article class="container navbar">
+            <div class="navbar__logo">Tienda online</div>
+            <div class="navbar__menu">
+                <p class="navbar__profile" onclick="location.href='/products'">Productos</p>
+                <p class="navbar__profile active" onclick="location.href='/cart'">Carrito</p>
+            </div>
+            <div class="navbar__profile" onclick="location.href='/user/profile'">
+                <img src="/images/<%= user.avatar %>" alt=""><%= user.name %>
+            </div>
+        </article>
+
+        <article class="container products">
+            <div class="products__header">
+                <p>Carrito</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Imagen</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% if (dataDTO.data.products.length == 0) { %>
+                        <tr>
+                            <td colspan="4">No hay productos en el carrito</td>
+                        </tr>
+                        <% } else { %>
+                            <% dataDTO.data.products.forEach(item => { %>
+                                <tr>
+                                    <td><%= item.itemName %></td>
+                                    <td><%= item.itemPrice %></td>
+                                    <td class="item__photo"><img src="<%= item.itemPhoto %>" /></td>
+                                    <td><button class="btn__navigation--remove" onclick="">-</button></td>
+                                </tr>
+                            <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <div class="cart__footer">
+                <% if (dataDTO.data.products.length !== 0) { %>
+                    <p>Total: $ <%= dataDTO.total %></p>
+                    <button class="btn__navigation--add" onclick="finishBuy()">Finalizar compra</button>
+                <% } else { %>
+                    <button class="btn__navigation--add" onclick="location.href='/products'">Ver productos</button>
+                <% } %>
+            </div>
+        </article>
+
+    </section>
+</body>
+
+<script>
+    function finishBuy() {
+        fetch('/cart/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+    }
+</script>
+
+</html>
