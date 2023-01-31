@@ -1,10 +1,6 @@
 import { productsDAO } from '../persistence/daos/factory.js'
 
 export default class ProductsController {
-    // constructor() {
-    //     this.ProductsService = new ProductsService()
-    // }
-
     productsRedirect = async (req,res) => res.redirect('/products')
 
     getProducts = async (req,res) => {

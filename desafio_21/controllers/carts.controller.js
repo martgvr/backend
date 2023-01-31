@@ -3,10 +3,6 @@ import { cartsDAO } from '../persistence/daos/factory.js'
 import CartsDTO from '../persistence/dtos/carts.dto.js'
 
 export default class CartsController {
-    // constructor() {
-    //     this.CartsService = new CartsService()
-    // }
-
     getCart = async (req, res) => {
         try {
             cartsDAO.findCartByID(req.user.cartID).then(response => {
