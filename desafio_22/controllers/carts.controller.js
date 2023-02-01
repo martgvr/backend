@@ -3,19 +3,30 @@ import { cartsDAO } from '../persistence/daos/factory.js'
 import CartsDTO from '../persistence/dtos/carts.dto.js'
 
 class CartsController {
-    getCart = async (req, res) => {
+    getCartByID = async (id) => {
         try {
-            cartsDAO.findCartByID(req.user.cartID).then(response => {
+            const response = await cartsDAO.findCartByID(id)
+
+            if (!response.error) {
                 let total = 0;
-                response.products.forEach(element => {
-                    total += Number(element.itemPrice);
-                });
-    
-                const dataDTO = new CartsDTO(response, total).getCartData()
-                res.render('cart', { dataDTO, user: req.user })
-            })
+                response.products.forEach(element => total += Number(element.itemPrice));
+                const object = {...response._doc, total}
+                return object
+            } else {
+                return { cartID: 'El carrito no existe' }
+            }
+            
         } catch (error) {
             res.send('Something went wrong :/')
+        }
+    }
+
+    getCarts = async () => {
+        try {
+            const data = await cartsDAO.getCarts()
+            return data
+        } catch (error) {
+            return 'Something went wrong :/'
         }
     }
 

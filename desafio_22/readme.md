@@ -28,8 +28,18 @@ NODEMAILER_PASS = ''
 
 ```
 query {
-  getProducts {
-    id name price photo
+  getProducts { id name price photo }
+}
+
+query {
+  getCarts { cartID }
+}
+
+query {
+  getCartByID(id: "240"){
+		cartID
+    total
+    products { itemName itemPrice }
   }
 }
 

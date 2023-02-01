@@ -6,10 +6,23 @@ export default class CartMongoDAO extends MongoContainer {
         super(cartModel)
     }
 
+    async getCarts() {
+        try {
+            const data = await this.model.find({})
+            return data
+        } catch (error) {
+            return { error: 'Algo salió mal' }
+        }
+    }
+
     async findCartByID(id) {
         try {
             const data = await this.model.findOne({ cartID: id })
-            return data;
+            if (data !== null) {
+                return data;
+            } else {
+                return { error: 'El carrito no existe' }
+            }
         } catch (error) {
             return { error: 'Algo salió mal' }
         }
