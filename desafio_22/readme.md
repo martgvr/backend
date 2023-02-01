@@ -23,3 +23,19 @@ ADMIN_EMAIL = ''
 NODEMAILER_USER = ''
 NODEMAILER_PASS = ''
 ```
+
+## GraphQL usage
+
+```
+query {
+  getProducts {
+    id name price photo
+  }
+}
+
+mutation {
+  createProduct(input:{ name: "Producto prueba", price: 500, photo: "http://" }) {
+    id name price photo
+  }
+}
+```

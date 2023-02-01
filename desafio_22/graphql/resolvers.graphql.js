@@ -1,6 +1,6 @@
-import { cartsController } from '../controllers/carts.controller.js'
+// import { cartsController } from '../controllers/carts.controller.js'
+// import { usersController } from '../controllers/users.controller.js'
 import { productsController } from '../controllers/products.controller.js'
-import { usersController } from '../controllers/users.controller.js'
 
 export const resolvers = {
     Query: {
@@ -10,8 +10,8 @@ export const resolvers = {
     },
 
     Mutation: {
-        createProduct: async (object) => {
-            return productsController.createProduct(object)
+        createProduct: async (_, { input }) => {
+            return productsController.createProduct(input)
         }
     }
 }
