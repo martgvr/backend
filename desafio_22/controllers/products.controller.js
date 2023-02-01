@@ -5,8 +5,7 @@ class ProductsController {
 
     async getProducts() {
         try {
-            let response = productsDAO.getAll().then(data => response = data)
-            return response
+            return productsDAO.getAll()
         } catch (error) {
             return 'Something went wrong'
         }
@@ -14,8 +13,7 @@ class ProductsController {
 
     async createProduct(object) {
         try {
-            let response = productsDAO.save(object).then(data => response = data)
-            return response
+            return productsDAO.save(object)
         } catch (error) {
             return 'Something went wrong'
         }
