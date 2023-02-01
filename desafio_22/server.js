@@ -39,7 +39,7 @@ function createServer() {
     const server = app.listen(PORT, (req, res) => { 
         logger.info(`[ Listening ${PORT == 8080 ? 'default':'custom'} port: ${PORT} | Mode: ${process.env.CLUSTER == 'true' ? 'cluster' : 'fork'} | Process: ${process.pid} | DAO: ${process.env.DAO || 'mongoDB'} ]`)
     })
-    server.on('listening', success => process.env.DAO !== 'file' && mongoConnect())
+    server.on('listening', () => process.env.DAO !== 'file' && mongoConnect())
     server.on('error', error => logger.error(`Error: ${error}`));
 }
 
