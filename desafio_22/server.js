@@ -11,6 +11,8 @@ import './utils/logHeader.js'
 import { logger } from "./utils/log4js.js";
 import { mongoConnect } from './persistence/db.config.js'
 
+import graphqlHTTP from './graphql/schemas.graphql.js'
+
 const procNum = os.cpus().length
 const app = express()
 
@@ -29,8 +31,7 @@ app.use(express.urlencoded({ extended: true }))
 // app.use(passport.initialize())
 // app.use(passport.session())
 
-// app.set('views', './views')
-// app.set('view engine', 'ejs')
+app.use('/', graphqlHTTP)
 
 const PORT = process.env.PORT || 8080
 

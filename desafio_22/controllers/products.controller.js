@@ -3,11 +3,19 @@ import { productsDAO } from '../persistence/daos/factory.js'
 class ProductsController {
     productsRedirect = async (req,res) => res.redirect('/products')
 
-    getProducts = async (req,res) => {
+    async getProducts() {
         try {
-            productsDAO.getAll().then(data => res.render('products', { user: req.user, data: data }))
+            productsDAO.getAll().then(response => response)
         } catch (error) {
-            res.send('Something went wrong getting products :/')
+            return 'Something went wrong'
+        }
+    }
+
+    async createProduct(object) {
+        try {
+            productsDAO.save(object).then(response => response)
+        } catch (error) {
+            return 'Something went wrong'
         }
     }
 }
