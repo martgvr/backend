@@ -1,11 +1,6 @@
 import os from 'os'
 import cluster from 'cluster'
 import express from 'express'
-import MongoStore from 'connect-mongo'
-
-// import passport from 'passport'
-// import session from 'express-session'
-// import './persistence/passport/localPassport.js'
 
 import './utils/logHeader.js'
 import { logger } from "./utils/log4js.js";
@@ -18,18 +13,6 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
-// app.use(session({
-//     saveUninitialized: false,
-//     resave: false,
-//     rolling: true,
-//     secret: process.env.SECRET_KEY,
-//     store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-//     cookie: { maxAge: 600000 }
-// }))
-
-// app.use(passport.initialize())
-// app.use(passport.session())
 
 app.use('/', graphqlHTTP)
 

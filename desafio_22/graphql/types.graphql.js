@@ -4,7 +4,6 @@ export const types = `
         getCarts: [Carts]
         getCartByID(id: ID): CartByID
         clearCart(id: ID): Message
-        
     }
 
     type Mutation {
