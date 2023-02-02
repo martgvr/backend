@@ -1,5 +1,5 @@
-import fs from 'fs'
 import FileContainer from "../../containers/FileContainer.js";
+import fs from 'fs'
 
 export default class UsersFileDAO extends FileContainer {
     constructor(path) {
