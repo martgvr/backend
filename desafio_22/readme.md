@@ -52,6 +52,12 @@ mutation {
     message
   }
 }
+
+mutation {
+  cartCheckout(input:{ id: 604 name: "Nombre Apellido" email: "nombre@email.com" address: "Calle 1234" areacode: "011" telephone: "11 1234 5678" }) {
+    message
+  }
+}
 ```
 
 ### PRODUCTS

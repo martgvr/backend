@@ -37,16 +37,17 @@ class CartsController {
         }
     }
 
-    cartCheckout = async (req, res) => {
+    cartCheckout = async (input) => {
+        const { id, name, email, address, areacode, telephone } = input
+        const user = { name, email, address, areacode, telephone }
+        
         try {
-            cartsDAO.findCartByID(req.user.cartID).then(response => {
-                const cartRepoInstance = new cartsRepository(response, req.user)
-                cartRepoInstance.sendEmail()
-
-                cartsDAO.clearCart(req.user.cartID)
-            })
+            const data = await cartsDAO.findCartByID(id)
+            const cartRepoInstance = new cartsRepository(data, user)
+            cartRepoInstance.sendEmail()
+            cartsDAO.clearCart(id)
         } catch (error) {
-            res.send('Something went wrong :/')
+            return 'Something went wrong :/'
         }
     }
 

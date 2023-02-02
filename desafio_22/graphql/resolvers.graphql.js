@@ -1,4 +1,3 @@
-// import { usersController } from '../controllers/users.controller.js'
 import { cartsController } from '../controllers/carts.controller.js'
 import { productsController } from '../controllers/products.controller.js'
 
@@ -11,11 +10,8 @@ export const resolvers = {
     },
 
     Mutation: {
-        createProduct: async (_, { input }) => {
-            productsController.createProduct(input)
-        },
-        postCart: async (_, { input }) => {
-            cartsController.postCart(input)
-        }
+        createProduct: async (_, { input }) => productsController.createProduct(input),
+        postCart: async (_, { input }) => cartsController.postCart(input),
+        cartCheckout: async (_, { input }) => cartsController.cartCheckout(input)
     }
 }

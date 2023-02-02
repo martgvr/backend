@@ -4,11 +4,22 @@ export const types = `
         getCarts: [Carts]
         getCartByID(id: ID): CartByID
         clearCart(id: ID): Message
+        
     }
 
     type Mutation {
         createProduct(input: CreateProductInput): Product
         postCart(input: postCartInput): Message
+        cartCheckout(input: cartCheckoutInput): Message
+    }
+
+    input cartCheckoutInput {
+        id: ID
+        name: String
+        email: String
+        address: String
+        areacode: String
+        telephone: String
     }
 
     type Product {
