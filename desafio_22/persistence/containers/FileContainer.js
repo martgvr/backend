@@ -30,11 +30,7 @@ export default class FileContainer {
     async getByID(ID) {
         try {
             const data = await this.#readFile()
-
-            if (data.length === 0) {
-                return { error: 'Database seems to be empty' }
-            }
-            
+            if (data.length === 0) { return { error: 'Database seems to be empty' }}
             const dataFind = data.find(u => u.id === ID)
             return dataFind
         } catch (error) {

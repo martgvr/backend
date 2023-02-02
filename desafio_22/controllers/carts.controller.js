@@ -25,7 +25,8 @@ class CartsController {
             const { cartID, itemID, itemName, itemPrice, itemPhoto } = input
             await cartsDAO.addItemToCart(cartID, itemID, itemName, itemPrice, itemPhoto)
         } catch (error) {
-            res.send('Something went wrong :/')
+            console.log(error)
+            return 'Something went wrong :/'
         }
     }
 
