@@ -18,19 +18,16 @@ export default class CartMongoDAO extends MongoContainer {
     async findCartByID(id) {
         try {
             const data = await this.model.findOne({ cartID: id })
-            if (data !== null) {
-                return data;
-            } else {
-                return { error: 'El carrito no existe' }
-            }
+            return data !== null ? data : { cartID: 'El carrito no existe' };
         } catch (error) {
             return { error: 'Algo salió mal' }
         }
     }
 
-    async addItemToCart(cartID, productID) {
+    async addItemToCart(cartID, itemID, itemName, itemPrice, itemPhoto) {
         try {
-            const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $push: { products: productID } })
+            const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $push: { products: { itemID: itemID, itemName: itemName, itemPrice: itemPrice, itemPhoto: itemPhoto } } })
+            return data
         } catch (error) {
             return { error: 'Algo salió mal' }
         }
@@ -39,6 +36,7 @@ export default class CartMongoDAO extends MongoContainer {
     async clearCart(cartID) {
         try {
             const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $set: { products: [] } })
+            return data
         } catch (error) {
             return { error: 'Algo salió mal' }
         }

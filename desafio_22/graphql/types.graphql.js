@@ -3,10 +3,12 @@ export const types = `
         getProducts: [Product]
         getCarts: [Carts]
         getCartByID(id: ID): CartByID
+        clearCart(id: ID): Message
     }
 
     type Mutation {
         createProduct(input: CreateProductInput): Product
+        postCart(input: postCartInput): Message
     }
 
     type Product {
@@ -23,8 +25,8 @@ export const types = `
 
     type CartByID {
         cartID: String
-        products: [CartProducts]
         total: Int
+        products: [CartProducts]
     }
 
     type CartProducts {
@@ -34,9 +36,21 @@ export const types = `
         itemPhoto: String
     }
 
+    type Message {
+        message: String
+    }
+
     input CreateProductInput {
         name: String
         price: Int
         photo: String
+    }
+
+    input postCartInput {
+        cartID: String
+        itemID: ID
+        itemName: String
+        itemPrice: String
+        itemPhoto: String
     }
 `

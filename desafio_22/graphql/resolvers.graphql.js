@@ -6,10 +6,16 @@ export const resolvers = {
     Query: {
         getProducts: async () => productsController.getProducts(),
         getCarts: async () =>  cartsController.getCarts(),
-        getCartByID: async (_, {id}) => cartsController.getCartByID(id)
+        getCartByID: async (_, {id}) => cartsController.getCartByID(id),
+        clearCart: async (_, {id}) => cartsController.clearCartByID(id)
     },
 
     Mutation: {
-        createProduct: async (_, { input }) => productsController.createProduct(input)
+        createProduct: async (_, { input }) => {
+            productsController.createProduct(input)
+        },
+        postCart: async (_, { input }) => {
+            cartsController.postCart(input)
+        }
     }
 }

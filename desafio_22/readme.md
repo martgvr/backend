@@ -26,21 +26,38 @@ NODEMAILER_PASS = ''
 
 ## GraphQL usage
 
-```
-query {
-  getProducts { id name price photo }
-}
+### CARTS
 
+```
 query {
   getCarts { cartID }
 }
 
 query {
-  getCartByID(id: "240"){
+  getCartByID(id: "604"){
 		cartID
     total
-    products { itemName itemPrice }
+    products { itemID itemName itemPrice itemPhoto }
   }
+}
+
+mutation {
+  postCart(input: { 
+    cartID: "604" 
+    itemID: "1" 
+    itemName: "Producto de prueba"
+    itemPrice: "1000"
+    itemPhoto: "http://"
+  }) {
+    message
+  }
+}
+```
+
+### PRODUCTS
+```
+query {
+  getProducts { id name price photo }
 }
 
 mutation {

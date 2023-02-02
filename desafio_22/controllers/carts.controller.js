@@ -1,23 +1,13 @@
 import cartsRepository from '../persistence/repositories/carts.repository.js'
 import { cartsDAO } from '../persistence/daos/factory.js'
-import CartsDTO from '../persistence/dtos/carts.dto.js'
 
 class CartsController {
     getCartByID = async (id) => {
         try {
-            const response = await cartsDAO.findCartByID(id)
-
-            if (!response.error) {
-                let total = 0;
-                response.products.forEach(element => total += Number(element.itemPrice));
-                const object = {...response._doc, total}
-                return object
-            } else {
-                return { cartID: 'El carrito no existe' }
-            }
-            
+            const data = await cartsDAO.findCartByID(id)
+            return data
         } catch (error) {
-            res.send('Something went wrong :/')
+            return { cartID: 'Algo salió mal' }
         }
     }
 
@@ -30,11 +20,20 @@ class CartsController {
         }
     }
 
-    postCart = async (req, res) => {
+    postCart = async (input) => {
         try {
-            cartsDAO.addItemToCart(req.user.cartID, req.body.product).then(response => res.send(response))
+            const { cartID, itemID, itemName, itemPrice, itemPhoto } = input
+            await cartsDAO.addItemToCart(cartID, itemID, itemName, itemPrice, itemPhoto)
         } catch (error) {
             res.send('Something went wrong :/')
+        }
+    }
+
+    clearCartByID = async (id) => {
+        try {
+            cartsDAO.clearCart(id)
+        } catch (error) {
+            return 'Something went wrong :/'
         }
     }
 
@@ -43,13 +42,14 @@ class CartsController {
             cartsDAO.findCartByID(req.user.cartID).then(response => {
                 const cartRepoInstance = new cartsRepository(response, req.user)
                 cartRepoInstance.sendEmail()
-    
+
                 cartsDAO.clearCart(req.user.cartID)
             })
         } catch (error) {
             res.send('Something went wrong :/')
         }
     }
+
 }
 
 export const cartsController = new CartsController()
