@@ -1,1 +1,5 @@
-export class Cart {}
+export class Cart {    
+    cartID: string
+    products: string
+    total: number
+}
