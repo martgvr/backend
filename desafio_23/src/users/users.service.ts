@@ -32,8 +32,14 @@ export class UsersService {
     }
   }
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto) {
+    try {
+      const userSchema = new this.model(createUserDto);
+      const data = await userSchema.save();
+      return { message: 'User created successfully', data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
