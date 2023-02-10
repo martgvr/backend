@@ -3,20 +3,20 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 
 import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose'
+import { InjectModel } from '@nestjs/mongoose';
 import { Products, ProductsDocument } from './schema/products.schema';
 
 @Injectable()
 export class ProductsService {
-  productsModel: any
+  model: any;
 
   constructor(@InjectModel(Products.name) productsModel: Model<ProductsDocument>) {
-    this.productsModel = productsModel
+    this.model = productsModel;
   }
 
   async findAll() {
     try {
-      const data = await this.productsModel.find({})
+      const data = await this.model.find({});
       return { message: 'Products found', data };
     } catch (error) {
       return { message: 'Something went wrong =/', error };
@@ -25,22 +25,38 @@ export class ProductsService {
 
   async findOne(id: string) {
     try {
-      const data = await this.productsModel.findById(id);
-      return data;
+      const data = await this.model.findById(id);
+      return { message: 'Product found', data };
     } catch (error) {
       return { message: 'Something went wrong =/', error };
     }
   }
 
-  create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+  async create(createProductDto: CreateProductDto) {
+    try {
+      const productSchema = new this.model(createProductDto);
+      const data = await productSchema.save();
+      return { message: 'Product created successfully', data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async update(id: string, updateProductDto: UpdateProductDto) {
+    try {
+      const data = await this.model.findOneAndUpdate({ _id: id }, updateProductDto, { new: true });
+      return { message: 'Product modified successfully', data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: string) {
+    try {
+      const data = await this.model.deleteOne({ _id: id });
+      return { message: 'Product removed successfully', data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
   }
 }
