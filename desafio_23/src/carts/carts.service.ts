@@ -32,15 +32,36 @@ export class CartsService {
     }
   }
 
-  create(createCartDto: CreateCartDto) {
-    return 'This action adds a new cart';
+  async create(createCartDto: CreateCartDto) {
+    try {
+      const cartSchema = new this.model({
+        ...createCartDto,
+        products: [],
+        total: 0,
+      });
+      const data = await cartSchema.save();
+      return { message: 'Cart created successfully', data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
   }
 
-  update(id: string, updateCartDto: UpdateCartDto) {
-    return `This action updates a #${id} cart`;
+  async update(id: string, updateCartDto: UpdateCartDto) {
+    try {
+      const data = await this.model.findOneAndUpdate({ cartID: id }, updateCartDto.cleanCart === 1 ? ({ $set: { products: [] } }) : ({ $push: { products: updateCartDto } }), { new: true });
+      return { message: `Cart ${updateCartDto.cleanCart === 1 ? 'cleaned' : 'updated'} successfully`, data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
+
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} cart`;
+  async remove(id: string) {
+    try {
+      const data = await this.model.deleteOne({ cartID: id });
+      return { message: 'Cart removed successfully', data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
   }
 }

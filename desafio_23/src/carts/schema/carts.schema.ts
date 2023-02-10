@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { HydratedDocument } from 'mongoose'
+import { HydratedDocument, Types } from 'mongoose'
 
 export type CartsDocument = HydratedDocument<Carts>
 
@@ -9,7 +9,7 @@ export class Carts {
     cartID: string
 
     @Prop({ required: true })
-    products: string
+    products: Types.Array<string>;
 
     @Prop({ required: true })
     total: number
