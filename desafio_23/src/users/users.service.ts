@@ -23,10 +23,10 @@ export class UsersService {
     }
   }
 
-  async findOne(id: string) {
+  async findOne(username: string) {
     try {
-      const data = await this.model.findOne({ username: id });
-      return { message: 'User found', data };
+      const data = await this.model.findOne({ username: username });
+      return { message: data === null ? 'User not found' : 'User found', data };
     } catch (error) {
       return { message: 'Something went wrong =/', error };
     }
@@ -42,11 +42,21 @@ export class UsersService {
     }
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(username: string, updateUserDto: UpdateUserDto) {
+    try {
+      const data = await this.model.findOneAndUpdate({ username: username }, updateUserDto, { new: true });
+      return { message: data === null ? 'User not found' : 'User modified successfully', data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} user`;
+  async remove(username: string) {
+    try {
+      const data = await this.model.deleteOne({ username: username });
+      return { message: data.deletedCount === 0 ? 'User not found' : 'User deleted successfully', data };
+    } catch (error) {
+      return { message: 'Something went wrong =/', error };
+    }
   }
 }

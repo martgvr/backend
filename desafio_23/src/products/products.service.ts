@@ -26,7 +26,7 @@ export class ProductsService {
   async findOne(id: string) {
     try {
       const data = await this.model.findById(id);
-      return { message: 'Product found', data };
+      return { message: data === null ? 'Product not found' : 'Product found', data };
     } catch (error) {
       return { message: 'Something went wrong =/', error };
     }
@@ -54,7 +54,7 @@ export class ProductsService {
   async remove(id: string) {
     try {
       const data = await this.model.deleteOne({ _id: id });
-      return { message: 'Product removed successfully', data };
+      return { message: data.deletedCount === 0 ? 'Product not found' : 'Product deleted successfully', data };
     } catch (error) {
       return { message: 'Something went wrong =/', error };
     }
