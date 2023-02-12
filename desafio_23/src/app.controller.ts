@@ -5,9 +5,15 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  @Render('index')
-  root() {
-    return { message: 'Hello world!!!!' };
+  @Get() 
+  @Render('products')
+  products() {
+    return { message: 'Products if logged' };
+  }
+
+  @Get('/login') 
+  @Render('login')
+  login() {
+    return { message: 'Login' };
   }
 }
