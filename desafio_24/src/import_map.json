@@ -1,0 +1,11 @@
+{
+    "imports": {
+      "oak": "https://deno.land/x/oak@v10.6.0/mod.ts",
+      "dotenv": "https://deno.land/x/dotenv@v3.2.0/mod.ts",
+      "@interfaces/": "./models/interfaces/",
+      "@controllers/": "./controllers/",
+      "@routes/": "./routes/",
+      "@daos/": "./models/daos/",
+      "@utils/": "./utils/"
+    }
+  }
