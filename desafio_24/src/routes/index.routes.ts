@@ -1,8 +1,10 @@
 import { Router } from 'oak'
-import userRoutes from '@routes/user.routes.ts'
+import colorsRoutes from '@routes/colors.routes.ts'
 
-const router = new Router({ prefix: '/api' })
+const router = new Router()
 
-router.use(userRoutes.routes())
+router.use(colorsRoutes.routes())
+
+router.get('/', (ctx) => ctx.render("index.hbs", { colors: "Rojo" } ))
 
 export default router
