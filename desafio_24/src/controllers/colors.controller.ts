@@ -1,15 +1,15 @@
 import { Context } from 'oak'
-import { UserPayload } from '@interfaces/Color.ts'
-import { getColors, saveColor} from '@daos/user/colors.memory.dao.ts'
+import { ColorPayload } from '@interfaces/Color.ts'
+import { getColors, saveColor} from '@daos/colors/colors.memory.dao.ts'
 
-export const getUsersController = async (ctx: Context) => {
-    const users = await getColors()
-    ctx.response.body = users
+export const getColorsController = async (ctx: Context) => {
+    const colors = await getColors()
+    ctx.response.body = colors
 }
 
-export const createUserController = async(ctx: Context) => {
-    const body: UserPayload = await ctx.request.body().value
-    const newUser = await saveColor(body)
+export const saveColorController = async(ctx: Context) => {
+    const body: ColorPayload = await ctx.request.body().value
+    const newColor = await saveColor(body)
     ctx.response.status = 201
-    ctx.response.body = newUser
+    ctx.response.body = newColor
 }

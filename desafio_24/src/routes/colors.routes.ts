@@ -1,9 +1,9 @@
 import { Router } from 'oak'
-import { getUsersController, createUserController } from '@controllers/colors.controller.ts'
+import { getColorsController, saveColorController } from '@controllers/colors.controller.ts'
 
 const router = new Router({ prefix: '/colors' })
 
-router.get('/', getUsersController)
-router.post('/', createUserController)
+router.get('/', getColorsController)
+router.post('/', saveColorController)
 
 export default router

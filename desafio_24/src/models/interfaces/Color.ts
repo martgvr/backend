@@ -1,15 +1,15 @@
-export interface UserPayload {
+export interface ColorPayload {
     name: string,
     age: number
 }
 
-export interface User {
+export interface Color {
     id: string,
     name: string,
     age: number,
     isActive: boolean
 }
 
-export interface UserMap {
-    [key: string]: User
+export interface ColorMap {
+    [key: string]: Color
 }
