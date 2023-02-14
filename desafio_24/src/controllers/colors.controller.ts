@@ -1,6 +1,6 @@
 import { Context } from 'oak'
 import { ColorPayload } from '@interfaces/Color.ts'
-import { getColors, saveColor} from '@daos/colors/colors.memory.dao.ts'
+import { getColors, saveColor } from '@daos/colors/colors.memory.dao.ts'
 
 export const getColorsController = async (ctx: Context) => {
     const colors = await getColors()

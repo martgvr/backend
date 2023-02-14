@@ -9,23 +9,40 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
 </head>
 
-<body class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh; background-color: rgb(47, 54, 58)">
-    <form action="/">
+<body class="d-flex flex-column justify-content-center align-items-center gap-3" style="height: 100vh; background-color: rgb(47, 54, 58)">
         <div class="card" style="width: 18rem;">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                <h5 class="card-title">Elegir un color</h5>
-                <input type="color" id="colorpicker" value="#0000ff" style="margin: 30px 0;">
-                <a href="#" class="btn btn-primary">Guardar</a>
-            </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <h5 class="card-title">Elegir un color</h5>           
+                    <input type="color" id="color" value="#0000ff" style="margin: 30px 0;">
+                    <button type="submit" class="btn btn-primary" onclick="action()">Guardar</button>
+                </div>
         </div>
-    </form>
-
     <div class="card" style="width: 18rem;">
         <div class="card-body d-flex flex-column justify-content-center align-items-center">
-            <h5 class="card-title">Colores agregados</h5>
-            {{colors}}
+            <h5 class="card-title" style="margin-bottom: 20px;">Colores agregados</h5>
+            {{#if colors}}
+                {{#each colors}}
+                <span class="badge" style="background-color: {{this.color}}; margin-bottom: 20px;">{{this.color}}</span>
+                {{/each}}
+            {{else}}
+                <p>No hay colores guardados</p>
+            {{/if}}
         </div>
     </div>
 </body>
-
+<script>
+    function action() {
+        const colorValue = document.getElementById('color')
+        fetch('/colors', { 
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"color": colorValue.value}),
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            window.location.href = window.location.href
+        })
+    }
+</script>
 </html>

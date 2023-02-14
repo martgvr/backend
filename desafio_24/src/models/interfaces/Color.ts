@@ -1,13 +1,10 @@
 export interface ColorPayload {
-    name: string,
-    age: number
+    color: string
 }
 
 export interface Color {
     id: string,
-    name: string,
-    age: number,
-    isActive: boolean
+    color: string
 }
 
 export interface ColorMap {

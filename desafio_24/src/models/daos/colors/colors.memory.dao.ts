@@ -1,4 +1,4 @@
-import { Color, ColorMap, ColorPayload } from '@interfaces/Color.ts'
+import { Color, ColorMap } from '@interfaces/Color.ts'
 
 const colors: ColorMap = { }
 
@@ -11,13 +11,10 @@ export const getColors = (): Promise<Color[]> => {
     })
 }
 
-export const saveColor = (colorPayload: ColorPayload): Promise<Color> => {
+export const saveColor = (color: Color): Promise<Color> => {
     const id = crypto.randomUUID()
-    const newColor: Color = {
-        id: id,
-        isActive: true,
-        ...colorPayload
-    }
+    const newColor: Color = {...color, id}
+    
     colors[id] = newColor
     return new Promise((resolve) => {
         setTimeout(() => {
