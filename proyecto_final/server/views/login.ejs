@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class='LoginContainer'>
+        <article class='login__container'>
+          <div class='login__container--top'>
+            <h2>Hey, que bueno volver a verte!</h2>
+            <p>Ingresa tu usuario y tu contraseña para acceder al sistema.</p>
+          </div>
+          <div class='login__container--bottom'>
+            <form action="/auth/login" method="POST" id="loginForm">
+                <input type="text" name="username" id="username" placeholder="Ingrese su usuario" class="form__input" required autocomplete="off"/>
+                <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" class="form__input" required autocomplete="off"/>
+                <div class="signupNow"><p>No tienes cuenta?</p><p class='login__container--signuptext' onclick="location.href='/users/signup'"">Registrate ahora!</p></div>
+                <button class="custom__button">Iniciar sesión</button>
+            </form>
+          </div>
+        </article>
+      </section>
+</body>
+
+</html>

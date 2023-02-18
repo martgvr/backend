@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de productos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="main__container">
+        
+        <%- include('./partials/header', { user: user.data, active: 'products' }) %>
+
+        <article class="products__container">
+
+            <% if (data.length == 0) { %>
+                <tr>
+                    <td colspan="4">No hay productos en la DB</td>
+                </tr>
+            <% } else { %>
+                <% data.forEach(item=> { %>
+                    <div class='product__card'>
+                        <div class='product__card--photo' style="background-image: url('<%= item.photo %>')"></div>
+                        <div class='product__card--description'>
+                            <h4><%= item.name %></h4>
+                            <p>$ <%= item.price %></p>
+                            <button class="product__button--addcart" onclick="postCart({ itemID: '<%= item.id %>', itemName: '<%= item.name %>', itemPrice: '<%= item.price %>', itemPhoto: '<%= item.photo %>' })">Agregar al carrito</button>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+
+        </article>
+
+        <%- include('./partials/footer') %>
+    </section>
+</body>
+
+<script>
+    function postCart(product) {
+        fetch('/cartS', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ product }) })
+    }
+</script>
+
+</html>

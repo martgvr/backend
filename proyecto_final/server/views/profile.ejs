@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de perfil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="main__container">
+
+        <%- include('./partials/header', { user: params.data, active: 'profile' }) %>
+
+        <article class="profile__container">
+            <div class="profile">
+                    <div class="container__header">Información de perfil</div>
+                    <div class="container__content center">
+                        <img src="/images/<%= params.data.avatar %>" alt="">
+                        <p>Usuario: <%= params.data.username %></p>
+                        <p>Email: <%= params.data.email %></p>
+                        <p>Nombre: <%= params.data.name %></p>
+                        <p>Dirección: <%= params.data.address %></p>
+                        <p>Edad: <%= params.data.age %></p>
+                        <p>Código de area: <%= params.data.areacode %></p>
+                        <p>Teléfono: <%= params.data.telephone %></p>
+                    </div>
+                    <div class="container__footer">
+                        <button class="btn__blue" onclick="location.href='/products'">Volver</button>
+                        <button class="btn__red" onclick="location.href='/users/logout'">Cerrar sesión</button>
+                    </div>
+                </div>
+        </article>
+            
+        <%- include('./partials/footer') %>
+    </section>
+</body>
+
+</html>
