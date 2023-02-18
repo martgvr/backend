@@ -14,48 +14,44 @@
 
         <%- include('./partials/header', { user: user.data, active: 'cart' }) %>
 
-        <article class="container products">
-            <div class="products__header">
-                <p>Carrito</p>
+        <% if (dataDTO.data.products.length === 0) { %> 
+            <div class="cart__container--emptycart">
+                <img src="https://i.ibb.co/b3xcKnM/empty-cart-retina.png" alt="">
+                <p>No hay productos en el carrito</p>
+                <button class="custom__button--dark" onclick="location.href='/'">IR A LOS PRODUCTOS</button>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Imagen</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    < <% if (dataDTO.data == null) { %> <tr>
-                        <td colspan="4">No hay productos en el carrito</td>
-                        </tr>
-                        <% } else { %>
-                        <% dataDTO.data.products.forEach(item => { %>
+        <% } else { %>
+        <article class="cart__container">
+            <div class="cart__container--leftside">
+                <table>
+                    <thead>
                         <tr>
-                            <td><%= item.itemName %></td>
-                            <td><%= item.itemPrice %></td>
-                            <td class="item__photo"><img src="<%= item.itemPhoto %>" /></td>
-                            <td><button class="btn__navigation--remove" onclick="">-</button></td>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Imagen</th>
+                            <th>Eliminar</th>
                         </tr>
-                        <% }) %>
-                        <% } %>
-                </tbody>
-            </table>
+                    </thead>
 
-            <div class="cart__footer">
-                <% if (dataDTO.data.products.length !== 0) { %>
-                <p>Total: $ <%= dataDTO.total %></p>
-                <button class="btn__navigation--add" onclick="finishBuy()">Finalizar compra</button>
-                <% } else { %>
-                <button class="btn__navigation--add" onclick="location.href='/products'">Ver productos</button>
-                <% } %>
-            </div>
-        </article>
+                    <tbody>
+                            <% dataDTO.data.products.forEach(item => { %>
+                            <tr>
+                                <td><%= item.itemName %></td>
+                                <td><%= item.itemPrice %></td>
+                                <td class="item__photo"><img src="<%= item.itemPhoto %>" /></td>
+                                <td><button class="btn__navigation--remove" onclick="">-</button></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div class="cart__container--rigthside">rightside</div>
+            </article>
+        <% } %>
 
         <%- include('./partials/footer') %>
+
     </section>
 </body>
 

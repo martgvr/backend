@@ -5,16 +5,16 @@ import bcrypt from 'bcrypt'
 // import usersRepository from '../repositories/users.repository.js'
 
 import { usersModel as Users } from '../models/mongo/users.mongo.model.js'
-// import { cartsDAO } from '../daos/factory.js'
+import { cartsDAO } from '../daos/factory.js'
 import { usersDAO } from '../daos/factory.js'
 
-passport.use('register', new LocalStrategy({
+passport.use('signup', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
 
 }, async (req, username, password, done) => {
-    const userDB = await usersDAO.find({ username })
+    const userDB = await usersDAO.findByUsername(username)
 
     if (userDB.length > 0) {
         return done(null, false)
@@ -36,8 +36,8 @@ passport.use('register', new LocalStrategy({
         // const usersRepoInstance = new usersRepository(user)
         // usersRepoInstance.sendEmail()
 
-        // cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
-        // usersDAO.save(process.env.DAO === 'file' ? user._doc : user)
+        cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
+        usersDAO.save(process.env.DAO === 'file' ? user._doc : user)
         done(null, user)
     }
 }))

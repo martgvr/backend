@@ -250,38 +250,6 @@ body {
     align-items: center;
 }
 
-.products table {
-    width: 100%;
-    border-collapse: collapse;
-    border-left: 3px solid rgb(72, 84, 99);
-    border-right: 3px solid rgb(72, 84, 99);
-}
-
-.products th {
-    background-color: #798da0;
-    color: white;
-    padding: 5px 10px;
-}
-
-.products td {
-    background-color: rgb(255, 255, 255);
-    padding: 5px 10px;
-    text-align: center;
-}
-
-
-.products td:last-of-type {
-    width: 130px;
-}
-
-.products tr:hover > td {
-    background-color: rgb(230, 230, 230);
-}
-
-.products tbody tr:not(.products tbody tr:last-of-type) {
-    border-bottom: 1px solid rgb(223, 223, 223);
-}
-
 .products__footer {
     background-color: rgb(72, 84, 99);
     height: 3px;
@@ -546,7 +514,25 @@ body {
     color: white;
 }
 
+.custom__button--dark {
+    padding: 8px 10px;
+    border-radius: 20px;
+    width: 120px;
+    align-self: center;
+
+    outline: 0;
+    border: 0;
+    background-color: #1d5974;
+    color: white;
+}
+
 .custom__button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.custom__button--dark:hover {
     background-color: black;
     color: white;
     cursor: pointer;
@@ -744,4 +730,75 @@ footer {
     
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
+}
+
+/* //////////////////////////////////////////// */
+/*                                              */
+/*                  CARRITO                     */
+/*                                              */
+/* //////////////////////////////////////////// */
+
+.cart__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.cart__container--leftside {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.cart__container--rigthside {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: rgb(255, 255, 255);
+    width: 350px;
+    height: 100%;
+}
+
+.cart__container--emptycart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+/* /////////////////////////////////////////// */
+/*                                             */
+/*                  TABLAS                     */
+/*                                             */
+/* /////////////////////////////////////////// */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+th {
+    background-color: #000000;
+    color: white;
+    padding: 10px 10px;
+}
+
+td {
+    background-color: rgb(255, 255, 255);
+    padding: 25px 10px;
+    text-align: center;
+}
+
+
+td:last-of-type {
+    width: 130px;
+}
+
+tr:hover > td {
+    background-color: rgb(230, 230, 230);
+}
+
+tbody tr:not(.products tbody tr:last-of-type) {
+    border-bottom: 1px solid rgb(223, 223, 223);
 }
