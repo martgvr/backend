@@ -10,20 +10,27 @@
 </head>
 
 <body>
-    <section class="container">
-        <article class="container__header">Error!</article>
-        <article class="container__content center">
-            <p><%= text %></p>
-        </article>
-        <article class="container__footer center">
+    <section class='LoginContainer'>
+        <article class='error__container'>
+          <div class='error__container--top'>
+            <h2>Algo salió mal!</h2>
             <% if (type == 'regerror') { %>
-                <button class="btn__green" onclick="location.href='/user/register'">Volver</button>
+                <p>Por favor, verifica que los datos ingresados en el formulario de registro sean correctos.</p>
             <% } %>
             <% if (type == 'logerror') { %>
-                <button class="btn__green" onclick="location.href='/'">Volver</button>
+                <p>Por favor, verifica que el usuario y la contraseña ingresados sean correctos.</p>
             <% } %>
+          </div>
+          <div class='error__container--bottom'>
+            <% if (type == 'regerror') { %>
+                <button class="custom__button" onclick="location.href='/users/signup'">Volver</button>
+            <% } %>
+            <% if (type == 'logerror') { %>
+                <button class="custom__button" onclick="location.href='/'">Volver</button>
+            <% } %>
+          </div>
         </article>
-    </section>
+      </section>
 </body>
 
 </html>

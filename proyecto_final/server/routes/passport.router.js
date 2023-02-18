@@ -5,8 +5,8 @@ const router = express.Router()
 
 class PassportRouter {
     init() {
-        router.post('/signup', passport.authenticate('signup', { failureRedirect: '/user/regerror', successRedirect: '/' }))
-        router.post('/login', passport.authenticate('login', { failureRedirect: '/user/logerror', successRedirect: '/' }))
+        router.post('/signup', passport.authenticate('signup', { failureRedirect: '/users/regerror', successRedirect: '/' }))
+        router.post('/login', passport.authenticate('login', { failureRedirect: '/users/logerror', successRedirect: '/' }))
         return router
     }
 }
