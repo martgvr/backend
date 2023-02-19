@@ -909,3 +909,9 @@ tbody tr:not(.products tbody tr:last-of-type) {
     background-color: #af2f2f;
     color: white;
 }
+
+.custom__button--red:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
