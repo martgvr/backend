@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de administración</title>
     <link rel="stylesheet" href="style.css">
+    <script src="panel.js" defer></script>
 </head>
 <body>
     <section class="main__container">
@@ -23,37 +24,91 @@
                 </div>
                 <div class="panel__container--rightside">
                     <% if (tab == 'products') { %>
-                        <% console.log(data) %> 
-                        <p>Mostrar productos</p>
-                        <% data.data.forEach(item=> { %>
-                            <p>---------------</p>
-                            <p>Nombre: <%= item.name %></p>
-                            <p>Precio: <%= item.price %></p>
-                            <p>Foto: <%= item.photo %></p>
-                        <% }) %>
+                        <div class="panel__data--leftside">
+                            <div class="users__container" id="usersContainer">
+                                <% data.data.forEach(item=> { %>
+                                    <div class="user" onclick="productClickHandler('<%= item._id %>')" id="<%= item._id %>">
+                                        <div class="user__photo" style="background-image: url('<%= item.photo %>')"></div>
+                                        <p><%= item.name %></p>
+                                        <p>$ <%= item.price %></p>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                        <div class="panel__data--rightside">
+                            <form>
+                                <label for='username'>Información del producto</label>
+                                <input type="text" name="productID" id="productID" placeholder="ID de producto" class="form__input" required autocomplete="off" disabled />
+                                <input type="text" name="productName" id="productName" placeholder="Nombre del producto" class="form__input" required autocomplete="off" />
+                                <input type="text" name="productPrice" id="productPrice" placeholder="Precio" class="form__input" required autocomplete="off" />
+                                <input type="text" name="productPhoto" id="productPhoto" placeholder="URL de foto" class="form__input" required autocomplete="off" />
+                                <button class="custom__button--dark" onclick="productCleanHandler(event)" style="align-self: flex-end;">Limpiar campos</button>
+                            </form>
+
+                            <div class="panel__buttons">
+                                <button class="custom__button--red"  onclick="deleteProductHandler()">Eliminar producto</button>
+                                <button class="custom__button--green" type="submit" form="loginForm" onclick="updateProductHandler()" id="productHandlerButton">Agregar producto</button>
+                            </div>
+                        </div>
                     <% } %>
+
                     <% if (tab == 'carts') { %> 
-                        <% console.log(data) %>
-                        <p>Mostrar carritos</p>
-                        <% data.data.forEach(item=> { %>
-                            <p>---------------</p>
-                            <p>ID: <%= item.cartID %></p>
-                            <p>Productos: <%= item.products %></p>
-                            <p>Total: <%= item.total %></p>
-                        <% }) %>
+                        <div class="panel__data--leftside">
+                            <div class="users__container">
+                                <% data.data.forEach(item=> { %>
+                                    <div class="user">
+                                        <div class="user__photo" style="background-image: url('/images/<%= item.avatar %>')"></div>
+                                        <p><%= item.cartID %></p>
+                                        <p><%= item.products.length %></p>
+                                        <p><%= item.total %></p>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                        <div class="panel__data--rightside">
+                            rightside
+                        </div>
                     <% } %>
+
                     <% if (tab == 'users') { %> 
+                        <div class="panel__data--leftside">
+                            <div class="users__container">
+                                <% data.data.forEach(item=> { %>
+                                    <div class="user" onclick="userClickHandler('<%= item.username %>')" id="user__<%= item.username %>">
+                                        <div class="user__photo" style="background-image: url('/images/<%= item.avatar %>')"></div>
+                                        <p><%= item.username %></p>
+                                        <p><%= item.name %></p>
+                                        <p><%= item.cartID %></p>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
 
-                        <div class="users__panel--leftside">leftside</div>
-                        <div class="users__panel--leftside">rightside</div>
+                        <div class="panel__data--rightside">
+                            <form action="/auth/signup" method="PUT" id="loginForm" enctype="multipart/form-data">
+                                <label for='username'>Información de sesión</label>
+                                <input type="text" name="username" id="username" placeholder="Usuario" class="form__input" required autocomplete="off" disabled/>
+                                <input type="email" name="email" id="email" placeholder="Email" class="form__input" required autocomplete="off" />
+                                <input type="text" name="cart" id="cart" placeholder="ID de carrito" class="form__input" required autocomplete="off" />
+                                <label for="name">Información de perfil</label>
+                                <input type="text" name="name" id="name" placeholder="Nombre y apellido" class="form__input" required autocomplete="off" />
+                                <input type="text" name="address" id="address" placeholder="Dirección" class="form__input" required autocomplete="off" />
+                                <input type="text" name="age" id="age" placeholder="Edad" class="form__input" required autocomplete="off" />
+                
+                                <div class="phoneForm">
+                                    <input type="text" name="areacode" id="areacode" placeholder="Area" class="form__input" required autocomplete="off" />
+                                    <input type="text" name="telephone" id="telephone" placeholder="Número de teléfono" class="form__input" required autocomplete="off" />
+                                </div>
+                
+                                <label for="avatar">Foto de perfil</label>
+                                <input type="file" name="avatar" id="avatar" required />
+                            </form>
 
-                        <p>Mostrar usuarios</p>
-                        <% console.log(data) %>
-                        <select name="Cars" size="5">
-                            <% data.data.forEach(item=> { %>
-                                <option value="<%= item.username %>"><%= item.username %></option>
-                            <% }) %>
-                        </select>
+                            <div class="panel__buttons">
+                                <button class="custom__button--red" onclick="location.href='/'">Eliminar usuario</button>
+                                <button class="custom__button--green" type="submit" form="loginForm">Actualizar usuario</button>
+                            </div>
+                        </div>
                     <% } %>
                 </div>
             </article>

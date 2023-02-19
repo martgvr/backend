@@ -744,7 +744,6 @@ footer {
 .cart__container {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     padding: 20px;
     gap: 20px;
 }
@@ -952,7 +951,6 @@ tbody tr:not(.products tbody tr:last-of-type) {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .panel__container--leftside {
@@ -973,9 +971,8 @@ tbody tr:not(.products tbody tr:last-of-type) {
 
 .panel__container--leftside > p {
     text-align: center;
-    color: #ffffff;
+    color: rgb(56, 195, 241);
     margin: 0 10px;
-
     font-weight: 500;
     font-size: larger;
 }
@@ -1013,13 +1010,82 @@ tbody tr:not(.products tbody tr:last-of-type) {
     background-color: #ffffff;
     padding: 20px;
     height: 600px;
-    width: 1300px;
+    width: 1100px;
 
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    display: flex;
+    gap: 20px;
 }
 
 select {
     width: 500px;
+}
+
+.panel__data--leftside {
+    width: 60%;
+    border-radius: 20px;
+    border: 1px solid rgb(220, 220, 220);
+    overflow-y: scroll;
+    padding: 20px 20px;
+}
+
+.panel__data--rightside {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.panel__data--rightside form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.users__container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgb(220, 220, 220);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.user:not(.user__selected):hover {
+    cursor: pointer;
+    background-color: #ebebeb;
+}
+
+.user p {
+    text-align: center;
+}
+
+.user__selected {
+    background-color: #37677e;
+    border: 1px solid #37677e;
+    color: #ffffff;
+}
+
+.user__photo {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.panel__buttons {
+    display: flex;
+    justify-content: space-between;
 }

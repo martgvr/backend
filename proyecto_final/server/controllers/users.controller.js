@@ -16,4 +16,6 @@ export default class UsersController {
             res.render('error', { type: 'adminerror' })
         }
     }
+
+    getUserByUsername = async (req, res) => res.send(await usersDAO.findByUsername(req.params.username))
 }

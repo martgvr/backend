@@ -10,13 +10,17 @@ class UsersRouter {
     }
     
     init() {
+        // VIEW RENDER
         router.get('/profile', isAuth, this.UsersController.renderProfile)
         router.get('/regerror', this.UsersController.renderRegisterError)
+        router.get('/panel', isAuth, this.UsersController.renderPanel)
         router.get('/logerror', this.UsersController.renderLoginError)
         router.get('/signup', this.UsersController.renderRegister)
         router.get('/logout', this.UsersController.logout)
 
-        router.get('/panel', isAuth, this.UsersController.renderPanel)
+        // CRUD
+        router.get('/:username', isAuth, this.UsersController.getUserByUsername)
+
         return router
     }
 }
