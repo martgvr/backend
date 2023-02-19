@@ -9,7 +9,7 @@ export default class ProductsController {
                 res.render('products', { user: req.user, data: data.data }
             )})
         } catch (error) {
-            res.send('Something went wrong getting products :/')
+            res.send('Something went wrong')
         }
     }
 }

@@ -645,7 +645,7 @@ header ul li:hover {
     cursor: pointer;
 }
 
-header ul .active {
+.active {
     color: rgb(255, 255, 255);
 }
 
@@ -952,31 +952,74 @@ tbody tr:not(.products tbody tr:last-of-type) {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .panel__container--leftside {
     background-color: #000000;
-    color: #ffffff;
+    color: #7c7c7c;
     width: 200px;
-    height: 500px;
-    padding: 20px;
+    height: 600px;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.panel__container--leftside > p {
+    text-align: center;
+    color: #ffffff;
+    margin: 0 10px;
+
+    font-weight: 500;
+    font-size: larger;
+}
+
+.panel__container--leftside ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
 
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    gap: 20px;
+    width: 100%;
+}
+
+.panel__container--leftside ul li {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.panel__container--leftside ul li:hover {
+    cursor: pointer;
+}
+
+.panel__container--leftside ul li:not(.selected):hover {
+    color: #ffffff;
+}
+
+.panel__container--leftside .selected {
+    background-color: rgb(255, 255, 255);
+    color: #000000;
 }
 
 .panel__container--rightside {
     background-color: #ffffff;
     padding: 20px;
-    height: 500px;
-    width: 700px;
+    height: 600px;
+    width: 1300px;
 
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+select {
+    width: 500px;
 }
