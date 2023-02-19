@@ -20,6 +20,7 @@ class UsersRouter {
 
         // CRUD
         router.get('/:username', isAuth, this.UsersController.getUserByUsername)
+        router.put('/:username', isAuth, this.UsersController.UpdateUserByUsername)
 
         return router
     }

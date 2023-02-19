@@ -18,4 +18,5 @@ export default class UsersController {
     }
 
     getUserByUsername = async (req, res) => res.send(await usersDAO.findByUsername(req.params.username))
+    UpdateUserByUsername = async (req, res) => res.send(await usersDAO.updateByUsername(req.params.username, req.body))
 }

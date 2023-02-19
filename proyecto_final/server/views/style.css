@@ -1085,3 +1085,8 @@ select {
     display: flex;
     justify-content: space-between;
 }
+
+.adminCheckbox {
+    display: flex;
+    gap: 10px;
+}

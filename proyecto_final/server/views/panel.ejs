@@ -85,28 +85,33 @@
                         </div>
 
                         <div class="panel__data--rightside">
-                            <form action="/auth/signup" method="PUT" id="loginForm" enctype="multipart/form-data">
+                            <form>
                                 <label for='username'>Información de sesión</label>
                                 <input type="text" name="username" id="username" placeholder="Usuario" class="form__input" required autocomplete="off" disabled/>
+                                <input type="text" name="cart" id="cart" placeholder="ID de carrito" class="form__input" required autocomplete="off" disabled/>
                                 <input type="email" name="email" id="email" placeholder="Email" class="form__input" required autocomplete="off" />
-                                <input type="text" name="cart" id="cart" placeholder="ID de carrito" class="form__input" required autocomplete="off" />
                                 <label for="name">Información de perfil</label>
                                 <input type="text" name="name" id="name" placeholder="Nombre y apellido" class="form__input" required autocomplete="off" />
                                 <input type="text" name="address" id="address" placeholder="Dirección" class="form__input" required autocomplete="off" />
                                 <input type="text" name="age" id="age" placeholder="Edad" class="form__input" required autocomplete="off" />
-                
+
                                 <div class="phoneForm">
                                     <input type="text" name="areacode" id="areacode" placeholder="Area" class="form__input" required autocomplete="off" />
                                     <input type="text" name="telephone" id="telephone" placeholder="Número de teléfono" class="form__input" required autocomplete="off" />
                                 </div>
+
+                                <div class="adminCheckbox">
+                                    <input type="checkbox" name="checkbox" id="checkbox" class="form__input" />
+                                    <label for="checkbox">Administrador</label>
+                                </div>
                 
-                                <label for="avatar">Foto de perfil</label>
-                                <input type="file" name="avatar" id="avatar" required />
+                                <label for="avatar">Cambiar foto de perfil</label>
+                                <input type="file" name="avatar" id="avatar" />
                             </form>
 
                             <div class="panel__buttons">
-                                <button class="custom__button--red" onclick="location.href='/'">Eliminar usuario</button>
-                                <button class="custom__button--green" type="submit" form="loginForm">Actualizar usuario</button>
+                                <button class="custom__button--red">Eliminar usuario</button>
+                                <button class="custom__button--green" form="loginForm" onclick="updateUserHandler()">Actualizar usuario</button>
                             </div>
                         </div>
                     <% } %>

@@ -25,6 +25,16 @@ export default class UsersMongoDAO extends MongoContainer {
         }
     }
 
+    async updateByUsername(username, newData) {
+        try {
+            const data = await this.model.updateOne({ username: username }, newData);
+            return { message: 'Query successfully resolved', data }
+        } catch (error) {
+            console.log(error);
+            return { error: 'Something went wrong' }
+        }
+    }
+
     async updateUser() {
         return 'ok'
     }

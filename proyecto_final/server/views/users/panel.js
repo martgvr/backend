@@ -1,3 +1,5 @@
+// USERS
+
 async function userClickHandler(username) {
     const getActives = document.getElementsByClassName('user__selected')
     getActives.length > 0 && getActives[0].classList.remove('user__selected')
@@ -13,7 +15,36 @@ async function userClickHandler(username) {
     document.getElementById('age').value = data.age
     document.getElementById('areacode').value = data.areacode
     document.getElementById('telephone').value = data.telephone
+    document.getElementById('checkbox').checked = data.admin === 1 ? true : false
 }
+
+async function updateUserHandler() {
+    const usernameInput = document.getElementById('username').value
+    
+    if (usernameInput !== '') {
+        const newData = { }
+
+        newData.email = document.getElementById('email').value
+        newData.name = document.getElementById('name').value
+        newData.address = document.getElementById('address').value
+        newData.age = document.getElementById('age').value
+        newData.areacode = document.getElementById('areacode').value
+        newData.telephone = document.getElementById('telephone').value
+        newData.admin = document.getElementById('checkbox').checked == true ? 1 : 0
+
+        const data = await fetch(`http://localhost:8080/users/${usernameInput}`, 
+        { 
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify(newData) 
+        })
+        .then(response => response.json())
+
+        data.message === 'Query successfully resolved' && window.location.reload()
+    }
+}
+
+// PRODUCTS
 
 async function productClickHandler(productID) {
     const getActives = document.getElementsByClassName('user__selected')
@@ -70,7 +101,6 @@ async function deleteProductHandler() {
         data.message === 'Query successfully resolved' && window.location.reload()
     }
 }
-
 
 function productCleanHandler(event) {
     event.preventDefault()
