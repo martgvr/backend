@@ -6,7 +6,6 @@ export default class ProductsController {
     getProducts = async (req,res) => {
         try {
             productsDAO.getAll().then(data => {
-                // console.log(data);
                 res.render('products', { user: req.user, data: data.data }
             )})
         } catch (error) {

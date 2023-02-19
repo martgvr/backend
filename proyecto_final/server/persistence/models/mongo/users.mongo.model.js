@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
     areacode: String,
     telephone: String,
     avatar: String,
-    cartID: String
+    cartID: String,
+    admin: Number
 })
 
 export const usersModel = mongoose.model('Users', userSchema)

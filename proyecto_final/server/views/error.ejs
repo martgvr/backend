@@ -24,6 +24,10 @@
               <p>Por favor, verifica que el usuario y la contraseña ingresados sean correctos.</p>
                 <button class="custom__button" onclick="location.href='/'">Volver</button>
             <% } %>
+            <% if (type == 'adminerror') { %>
+              <p>Usted no dispone de los permisos necesarios.</p>
+                <button class="custom__button" onclick="location.href='/'">Volver</button>
+            <% } %>
           </div>
         </article>
       </section>

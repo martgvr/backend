@@ -25,8 +25,7 @@ html {
     font-size: 62.5%;
     font-family: "Poppins", sans-serif;
     background-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1003%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(207%2c 210%2c 213%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c920.284C171.311%2c909.435%2c245.5%2c695.471%2c373.32%2c580.897C476.913%2c488.04%2c628.502%2c439.79%2c680.155%2c310.617C731.284%2c182.755%2c646.297%2c45.27%2c642.549%2c-92.385C638.138%2c-254.417%2c749.11%2c-435.782%2c656.219%2c-568.617C564.661%2c-699.545%2c358.765%2c-656.241%2c209.118%2c-712.192C43.846%2c-773.985%2c-102.465%2c-974.122%2c-268.477%2c-914.347C-437.428%2c-853.514%2c-440.452%2c-611.288%2c-519.249%2c-449.931C-576.563%2c-332.566%2c-636.599%2c-222.817%2c-668.081%2c-96.056C-702.797%2c43.727%2c-760.772%2c189.612%2c-711.716%2c325.03C-661.579%2c463.431%2c-517.91%2c535.747%2c-404.995%2c630.185C-274.983%2c738.923%2c-169.152%2c930.996%2c0%2c920.284' fill='%23a2a8ae'%3e%3c/path%3e%3cpath d='M1920 1535.71C2031.772 1542.975 2153.88 1650.897 2245.323 1586.213 2338.1059999999998 1520.5810000000001 2263.631 1361.8690000000001 2311.486 1258.785 2359.84 1154.626 2505.381 1107.526 2520.398 993.676 2535.784 877.0260000000001 2471.181 757.77 2388.626 673.933 2308.109 592.165 2190.031 565.983 2077.433 543.831 1973.015 523.289 1860.562 504.923 1764.728 551.192 1673.358 595.3050000000001 1642.374 705.283 1578.964 784.49 1518.662 859.814 1431.017 913.658 1401.108 1005.395 1368.4859999999999 1105.454 1366.463 1217.1970000000001 1406.104 1314.689 1446.508 1414.058 1522.225 1503.233 1620.767 1545.615 1714.341 1585.8600000000001 1818.353 1529.103 1920 1535.71' fill='%23fcfcfc'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1003'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
-    /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1024%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(162%2c 176%2c 189%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c892.305C167.686%2c879.169%2c341.315%2c837.197%2c464.278%2c722.431C579.829%2c614.583%2c574.557%2c436.142%2c641.936%2c293.162C710.437%2c147.802%2c859.103%2c36.529%2c863.208%2c-124.111C867.495%2c-291.894%2c765.374%2c-441.609%2c664.133%2c-575.474C557.465%2c-716.515%2c443.306%2c-891.082%2c267.662%2c-911.572C91.168%2c-932.161%2c-30.385%2c-733.585%2c-198.523%2c-676.106C-355.673%2c-622.384%2c-557.101%2c-701.223%2c-678.665%2c-588.066C-800.312%2c-474.832%2c-779.625%2c-279.981%2c-801.12%2c-115.184C-822.33%2c47.428%2c-852.426%2c210.385%2c-803.212%2c366.815C-750.085%2c535.682%2c-661.643%2c702.109%2c-513.503%2c799.027C-364.913%2c896.24%2c-177.023%2c906.172%2c0%2c892.305' fill='%23798da0'%3e%3c/path%3e%3cpath d='M1920 1476.67C2008.253 1474.741 2105.009 1531.157 2179.366 1483.5819999999999 2253.715 1436.012 2248.2200000000003 1326.854 2281.758 1245.209 2313.7110000000002 1167.422 2370.118 1099.112 2371.837 1015.0360000000001 2373.71 923.424 2350.549 828.155 2291.7219999999998 757.9010000000001 2232.508 687.184 2137.881 664.537 2051.431 632.3879999999999 1958.479 597.821 1860.858 527.721 1768.2649999999999 563.238 1675.191 598.94 1648.363 716.293 1602.266 804.682 1565.895 874.422 1555.67 949.979 1528.143 1023.659 1491.213 1122.506 1385.8139999999999 1209.605 1412.879 1311.595 1439.267 1411.035 1555.414 1463.2359999999999 1653.243 1495.0810000000001 1739.748 1523.24 1829.049 1478.658 1920 1476.67' fill='%23cbd3da'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1024'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e"); */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1588%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='url(%23SvgjsLinearGradient1589)'%3e%3c/rect%3e%3cpath d='M1920 0L995.57 0L1920 502.55z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M995.57 0L1920 502.55L1920 711.77L905.6400000000001 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M905.6400000000001 0L1920 711.77L1920 792.93L717.46 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M717.46 0L1920 792.93L1920 839.8299999999999L637.61 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 1080L643.78 1080L0 872.39z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 872.39L643.78 1080L940.9 1080L0 716.31z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 716.31L940.9 1080L1362.45 1080L0 650.5999999999999z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 650.5999999999999L1362.45 1080L1530.25 1080L0 289.5799999999999z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1588'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='10.94%25' y1='-19.44%25' x2='89.06%25' y2='119.44%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1589'%3e%3cstop stop-color='rgba(194%2c 229%2c 244%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(31%2c 54%2c 85%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
 }
 
 body {
@@ -759,7 +758,6 @@ footer {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     background-color: rgb(255, 255, 255);
     width: 350px;
-    /* height: 100%; */
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -942,4 +940,16 @@ tbody tr:not(.products tbody tr:last-of-type) {
     background-color: black;
     color: white;
     cursor: pointer;
+}
+
+/* /////////////////////////////////////////////////// */
+/*                                                     */
+/*                  PANEL ADMIN                        */
+/*                                                     */
+/* /////////////////////////////////////////////////// */
+
+.panel__container {
+    display: flex;
+    justify-items: center;
+    align-items: center;
 }

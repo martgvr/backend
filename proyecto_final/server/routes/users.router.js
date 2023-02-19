@@ -15,6 +15,8 @@ class UsersRouter {
         router.get('/logerror', this.UsersController.renderLoginError)
         router.get('/signup', this.UsersController.renderRegister)
         router.get('/logout', this.UsersController.logout)
+
+        router.get('/panel', isAuth, this.UsersController.renderPanel)
         return router
     }
 }

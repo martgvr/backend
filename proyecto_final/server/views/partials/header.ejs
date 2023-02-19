@@ -7,6 +7,9 @@
             <li class="<%= active === 'products' ? 'active' : '' %>" onclick="location.href='/products'">Productos</li>
             <li class="<%= active === 'cart' ? 'active' : '' %>" onclick="location.href='/carts'">Carrito</li>
             <li class="<%= active === 'chat' ? 'active' : '' %>" onclick="location.href='/chat'">Chat</li>
+            <% if (user.admin == 1) { %> 
+                <li class="<%= active === 'panel' ? 'active' : '' %>" onclick="location.href='/users/panel'">Panel Admin</li>
+            <% } %>
         </ul>
         <div class="picture" onclick="location.href='/users/profile'" style="background-image: url('/images/<%= user.avatar %>')"></div>
     </div>

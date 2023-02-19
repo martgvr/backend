@@ -9,5 +9,6 @@ export const usersModel = [
     { name: 'telephone', type: 'string' },
     { name: 'avatar', type: 'string' },
     { name: 'cartID', type: 'string' },
-    { name: 'password', type: 'string' }
+    { name: 'password', type: 'string' },
+    { name: 'admin', type: 'integer' }
 ]

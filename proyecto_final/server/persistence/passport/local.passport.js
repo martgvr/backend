@@ -15,8 +15,7 @@ passport.use('signup', new LocalStrategy({
 
 }, async (req, username, password, done) => {
     const userDB = await usersDAO.findByUsername(username)
-
-    if (userDB.length > 0) {
+    if (userDB !== null) {
         return done(null, false)
     } else {
         const user = new Users()
@@ -30,6 +29,7 @@ passport.use('signup', new LocalStrategy({
         user.age = age
         user.areacode = areacode
         user.telephone = telephone
+        user.admin = 0
         user.avatar = req.file.filename
         user.cartID = Math.floor(Math.random() * 1000)
 
@@ -48,16 +48,15 @@ passport.use('login', new LocalStrategy({
     passReqToCallback: true
 }, async (req, username, password, done) => {
     const findUser = await usersDAO.findByUsername(username)
-    let userDB = Array.isArray(findUser) ? findUser : [findUser]
 
-    if (userDB.length == 0) {
+    if (findUser === null) {
         done(null, false);
     } else {
-        bcrypt.compare(password, userDB[0].password, function(err, result) {
+        bcrypt.compare(password, findUser.password, function(err, result) {
             if (result === false) {
                 done(null, false)
             } else {
-                done(null, ...userDB)
+                done(null, findUser)
             }
         });
     }
