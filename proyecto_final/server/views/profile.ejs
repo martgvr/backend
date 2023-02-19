@@ -14,24 +14,35 @@
 
         <%- include('./partials/header', { user: params.data, active: 'profile' }) %>
 
-        <article class="profile__container">
-            <div class="profile">
-                    <div class="container__header">Información de perfil</div>
-                    <div class="container__content center">
-                        <img src="/images/<%= params.data.avatar %>" alt="">
-                        <p>Usuario: <%= params.data.username %></p>
-                        <p>Email: <%= params.data.email %></p>
-                        <p>Nombre: <%= params.data.name %></p>
-                        <p>Dirección: <%= params.data.address %></p>
-                        <p>Edad: <%= params.data.age %></p>
-                        <p>Código de area: <%= params.data.areacode %></p>
-                        <p>Teléfono: <%= params.data.telephone %></p>
-                    </div>
-                    <div class="container__footer">
-                        <button class="btn__blue" onclick="location.href='/products'">Volver</button>
-                        <button class="btn__red" onclick="location.href='/users/logout'">Cerrar sesión</button>
-                    </div>
+        <article class="ProfileContainer">
+            <div class="profile__leftside">
+                <div class="profile__picture"><div class="profile__picture--photo" style="background-image: url('/images/<%= params.data.avatar %>')"></div></div>
+                <div class="profile__leftside--description">
+                    <h3><%= params.data.username %></h3>
+                    <p><%= params.data.name %></p>
                 </div>
+            </div>
+            <div class="profile__rigthside">
+                <h3>Tus datos</h3>
+                <form action="/auth/signup" method="POST" id="loginForm" enctype="multipart/form-data">
+                    <label for='username'>Información de sesión</label>
+                    <input type="text" name="username" id="username" placeholder="Ingrese su usuario" class="form__input" required autocomplete="off" value="<%= params.data.username %>" disabled/>
+                    <input type="email" name="email" id="email" placeholder="Ingrese su email" class="form__input" required autocomplete="off" value="<%= params.data.email %>"/>
+                    <label for="name">Información de perfil</label>
+                    <input type="text" name="name" id="name" placeholder="Ingrese su nombre y apellido" class="form__input" required autocomplete="off" value="<%= params.data.name %>"/>
+                    <input type="text" name="address" id="address" placeholder="Ingrese su dirección" class="form__input" required autocomplete="off" value="<%= params.data.address %>"/>
+                    <input type="text" name="age" id="age" placeholder="Ingrese su edad" class="form__input" required autocomplete="off" value="<%= params.data.age %>"/>
+    
+                    <div class="phoneForm">
+                        <input type="text" name="areacode" id="areacode" placeholder="Area" class="form__input" required autocomplete="off" value="<%= params.data.areacode %>"/>
+                        <input type="text" name="telephone" id="telephone" placeholder="Ingrese su número de teléfono" class="form__input" required autocomplete="off" value="<%= params.data.telephone %>"/>
+                    </div>
+                </form>
+                <div class="profile__buttons">
+                    <button class="custom__button" onclick="location.href='/products'">Volver</button>
+                    <button class="custom__button--red" onclick="location.href='/users/logout'">Cerrar sesión</button>
+                </div>
+            </div>
         </article>
             
         <%- include('./partials/footer') %>

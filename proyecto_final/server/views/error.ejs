@@ -14,18 +14,14 @@
         <article class='error__container'>
           <div class='error__container--top'>
             <h2>Algo salió mal!</h2>
-            <% if (type == 'regerror') { %>
-                <p>Por favor, verifica que los datos ingresados en el formulario de registro sean correctos.</p>
-            <% } %>
-            <% if (type == 'logerror') { %>
-                <p>Por favor, verifica que el usuario y la contraseña ingresados sean correctos.</p>
-            <% } %>
           </div>
           <div class='error__container--bottom'>
             <% if (type == 'regerror') { %>
+              <p>Por favor, verifica que los datos ingresados en el formulario de registro sean correctos.</p>
                 <button class="custom__button" onclick="location.href='/users/signup'">Volver</button>
             <% } %>
             <% if (type == 'logerror') { %>
+              <p>Por favor, verifica que el usuario y la contraseña ingresados sean correctos.</p>
                 <button class="custom__button" onclick="location.href='/'">Volver</button>
             <% } %>
           </div>
