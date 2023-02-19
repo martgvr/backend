@@ -11,17 +11,16 @@
 
 <body>
     <section class="main__container">
-
         <%- include('./partials/header', { user: user.data, active: 'cart' }) %>
-
+        
         <% if (dataDTO.data.products.length === 0) { %> 
             <div class="cart__container--emptycart">
                 <img src="https://i.ibb.co/b3xcKnM/empty-cart-retina.png" alt="">
                 <p>No hay productos en el carrito</p>
                 <button class="custom__button--dark" onclick="location.href='/'">IR A LOS PRODUCTOS</button>
             </div>
-        <% } else { %>
-        <article class="cart__container">
+            <% } else { %>
+                <article class="cart__container">
             <div class="cart__container--leftside">
                 <table>
                     <thead>
@@ -46,7 +45,30 @@
                     </table>
                     
                 </div>
-                <div class="cart__container--rigthside">rightside</div>
+                <div class="cart__container--rightside">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2" style="text-align: start">Resumen</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Productos:</td>
+                                <td>$ 25.356 </td>
+                            </tr>
+                            <tr>
+                                <td>Envío:</td>
+                                <td>$ 0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="cart__container--buttons">
+                        <button class="custom__button" onclick="location.href='/users/logout'">Vaciar carrito</button>
+                        <button class="custom__button--green" onclick="location.href='/products'">Confirmar compra</button>
+                    </div>
+                </div>
             </article>
         <% } %>
 

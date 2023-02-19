@@ -448,7 +448,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.form__container--leftside, .form__container--rigthside {
+.form__container--leftside, .form__container--rightside {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -474,7 +474,7 @@ body {
     color: rgb(202, 202, 202);
 }
 
-.form__container--rigthside {
+.form__container--rightside {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     background-image: url('https://static.vecteezy.com/system/resources/previews/001/874/132/original/abstract-geometric-white-background-free-vector.jpg');
@@ -484,7 +484,7 @@ body {
     justify-content: space-evenly;
 }
 
-.form__container--rigthside form {
+.form__container--rightside form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -504,9 +504,9 @@ body {
 }
 
 .custom__button {
-    padding: 8px 10px;
+    padding: 8px 14px;
     border-radius: 20px;
-    width: 120px;
+    min-width: 140px;
     align-self: center;
 
     outline: 0;
@@ -516,9 +516,9 @@ body {
 }
 
 .custom__button--dark {
-    padding: 8px 10px;
+    padding: 8px 14px;
     border-radius: 20px;
-    width: 120px;
+    min-width: 140px;
     align-self: center;
 
     outline: 0;
@@ -592,14 +592,14 @@ body {
 }
 
 .product__button--addcart {
-    padding: 8px 10px;
+    padding: 8px 14px;
     border-radius: 20px;
-    width: 120px;
+    min-width: 140px;
     align-self: center;
 
     outline: 0;
     border: 0;
-    background-color: #628388;
+    background-color: #368d9b;
     color: white;
 }
 
@@ -689,7 +689,6 @@ footer {
     flex-direction: column;
 
     height: 200px;
-    width: 500px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -746,7 +745,7 @@ footer {
 .cart__container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     padding: 20px;
     gap: 20px;
 }
@@ -756,11 +755,16 @@ footer {
     height: 100%;
 }
 
-.cart__container--rigthside {
+.cart__container--rightside {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     background-color: rgb(255, 255, 255);
     width: 350px;
-    height: 100%;
+    /* height: 100%; */
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 0 20px 0;
 }
 
 .cart__container--emptycart {
@@ -769,6 +773,12 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 30px;
+}
+
+.cart__container--buttons {
+    display: flex;
+    justify-content: space-evenly;
+
 }
 
 /* /////////////////////////////////////////// */
@@ -837,7 +847,7 @@ tbody tr:not(.products tbody tr:last-of-type) {
     border-bottom-left-radius: 20px;
 }
 
-.profile__rigthside {
+.profile__rightside {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -851,7 +861,7 @@ tbody tr:not(.products tbody tr:last-of-type) {
     border-bottom-right-radius: 20px;
 }
 
-.profile__rigthside form {
+.profile__rightside form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -899,10 +909,10 @@ tbody tr:not(.products tbody tr:last-of-type) {
 }
 
 .custom__button--red {
-    padding: 8px 10px;
+    padding: 8px 14px;
     border-radius: 20px;
-    width: 120px;
     align-self: center;
+    min-width: 140px;
 
     outline: 0;
     border: 0;
@@ -911,6 +921,24 @@ tbody tr:not(.products tbody tr:last-of-type) {
 }
 
 .custom__button--red:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.custom__button--green {
+    padding: 8px 14px;
+    border-radius: 20px;
+    align-self: center;
+    min-width: 140px;
+
+    outline: 0;
+    border: 0;
+    background-color: #207742;
+    color: white;
+}
+
+.custom__button--green:hover {
     background-color: black;
     color: white;
     cursor: pointer;
