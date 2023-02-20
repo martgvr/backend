@@ -10,60 +10,30 @@
 <body>
     <section class="main__container">
         <%- include('./partials/header', { user: user.data, active: 'chat' }) %>
-
+        
         <article class="container">
             <div class="chat__container">
                 <div class="chat__container--title">
                     <p>Sistema de mensajería</p>
                 </div>
+
                 <ul class="chat__container--messages">
-                    
+                    <% if (data.length !== 0) { %>
 
-                        <li class="message__container">
-                            <div class="message__container--firstrow">
-                                <p>name</p>
-                                <p>@username</p>
-                            </div>
-                            <div class="message__container--secondrow">
-                                <p>Esto es un textoooooooo ads asd asd asd a fdas gfqe q2f 13f 1fq sfqef 13 f1q3a asd iq1uwhgd iqsuhcpiaushcp qahcp quhwcp qaauhsdp aushd pauhsd poooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</p>
-                                <p>timestamp</p>
-                            </div>
-                        </li>
+                        <% data.forEach(item=> { %>
+                            <li class="message__container <%= item.username === viewerUsername ? 'ownMessage' : '' %>">
+                                <div class="message__container--firstrow">
+                                    <p><%= item.name %></p>
+                                    <p>@<%= item.username %></p>
+                                </div>
+                                <div class="message__container--secondrow">
+                                    <p><%= item.text %></p>
+                                    <p><%= item.timestamp %></p>
+                                </div>
+                            </li>
+                        <% }) %>
 
-                        <li class="message__container">
-                            <div class="message__container--firstrow">
-                                <p>name</p>
-                                <p>@username</p>
-                            </div>
-                            <div class="message__container--secondrow">
-                                <p>hola</p>
-                                <p>timestamp</p>
-                            </div>
-                        </li>
-
-                        <li class="message__container" style="align-self: flex-end;">
-                            <div class="message__container--firstrow">
-                                <p style="color: rgb(240, 127, 52);">name</p>
-                                <p>@username</p>
-                            </div>
-                            <div class="message__container--secondrow">
-                                <p>hola</p>
-                                <p>timestamp</p>
-                            </div>
-                        </li>
-
-                        <li class="message__container" style="align-self: flex-end;">
-                            <div class="message__container--firstrow">
-                                <p style="color: rgb(240, 127, 52);">name</p>
-                                <p>@username</p>
-                            </div>
-                            <div class="message__container--secondrow">
-                                <p>cómo andan?</p>
-                                <p>timestamp</p>
-                            </div>
-                        </li>
-
-                    
+                    <% } %>
                 </ul>
                 <div class="chat__container--input">
                     <input type="text" name="chatInput" id="chatInput" placeholder="Escribe un mensaje aquí">

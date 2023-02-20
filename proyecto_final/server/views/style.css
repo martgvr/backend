@@ -1203,3 +1203,11 @@ select {
     overflow-wrap: break-word;
     width: 80%;
 }
+
+.ownMessage {
+    align-self: flex-end;
+}
+
+.ownMessage .message__container--firstrow p:first-of-type {
+    color: rgb(240, 127, 52);
+}

@@ -22,6 +22,9 @@ import { upload } from './middlewares/multer.js'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
+// import http from 'http'
+// const socketServer = new Server(http.createServer(app), { cors: { origin: "*" } });
+
 const app = express()
 
 app.use(cors())
