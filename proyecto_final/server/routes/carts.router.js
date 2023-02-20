@@ -10,8 +10,8 @@ class CartsRouter {
     }
     
     init() {
-        router.get('/', isAuth, this.CartsController.getCart)
-        router.post('/', isAuth, this.CartsController.postCart)
+        router.get('/', isAuth, this.CartsController.getData)
+        router.post('/', isAuth, this.CartsController.saveData)
         router.post('/checkout', isAuth, this.CartsController.cartCheckout)
         return router
     }

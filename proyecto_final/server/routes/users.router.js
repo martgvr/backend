@@ -19,8 +19,8 @@ class UsersRouter {
         router.get('/logout', this.UsersController.logout)
 
         // CRUD
-        router.get('/:username', isAuth, this.UsersController.getUserByUsername)
-        router.put('/:username', isAuth, this.UsersController.UpdateUserByUsername)
+        router.get('/:username', isAuth, this.UsersController.getByUsername)
+        router.put('/:username', isAuth, this.UsersController.updateByUsername)
 
         return router
     }

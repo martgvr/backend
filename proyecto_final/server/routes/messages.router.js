@@ -10,8 +10,8 @@ class MessagesRouter {
     }
     
     init() {
-        router.get('/', isAuth, this.MessagesController.getHandler)
-        router.post('/', isAuth, this.MessagesController.postHandler)
+        router.get('/', isAuth, this.MessagesController.getData)
+        router.post('/', isAuth, this.MessagesController.saveData)
         return router
     }
 }
