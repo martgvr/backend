@@ -1,3 +1,5 @@
+const socketClient = io('http://localhost:8080')
+
 async function postMessage(event, name, username) {
     event.preventDefault()
 
