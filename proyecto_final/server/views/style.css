@@ -1108,8 +1108,8 @@ select {
 }
 
 .chat__container {
-    height: 80%;
-    width: 60%;
+    height: 800px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

@@ -11,6 +11,6 @@
                 <li class="<%= active === 'panel' ? 'active' : '' %>" onclick="location.href='/users/panel?tab=products'">Panel Admin</li>
             <% } %>
         </ul>
-        <div class="picture" onclick="location.href='/users/profile'" style="background-image: url('/images/<%= user.avatar %>')"></div>
+        <div class="picture" onclick="location.href='/users/profile'" style="background-image: url('/images/<%= user.avatar %>')"><p style="display: none" id="username"><%= user.username %></p></div>
     </div>
 </header>

@@ -62,8 +62,9 @@ app.set('view engine', 'ejs')
 socketServer.on('connection', (client) => {
     messagesDAO.getAll().then(data => socketServer.to(client.id).emit("loadMessages", data.data))
 
-    client.on("newMessage", (data) => {
-        messagesDAO.getAll().then(data => socketServer.sockets.emit("loadMessages", data.data))
+    client.on("newMessage", async () => {
+        const data = await messagesDAO.getAll()
+        socketServer.sockets.emit("loadMessages", data.data)
       });
 })
 
