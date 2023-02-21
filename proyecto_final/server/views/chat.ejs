@@ -7,7 +7,7 @@
     <title>Chat</title>
     <link rel="stylesheet" href="style.css">
     <script src="http://localhost:8080/socket.io/socket.io.js"></script>
-    <script src="./scripts/chat.js"></script>
+    <script src="./scripts/chat.js" defer></script>
 </head>
 <body>
     <section class="main__container">
@@ -19,24 +19,8 @@
                     <p>Sistema de mensajería</p>
                 </div>
 
-                <ul class="chat__container--messages">
-                    <% if (data.length !== 0) { %>
-
-                        <% data.forEach(item=> { %>
-                            <li class="message__container <%= item.username === userData.username ? 'ownMessage' : '' %>">
-                                <div class="message__container--firstrow">
-                                    <p><%= item.name %></p>
-                                    <p>@<%= item.username %></p>
-                                </div>
-                                <div class="message__container--secondrow">
-                                    <p><%= item.text %></p>
-                                    <p><%= item.timestamp %></p>
-                                </div>
-                            </li>
-                        <% }) %>
-
-                    <% } %>
-                </ul>
+                <ul class="chat__container--messages" id="messagesContainer"></ul>
+                
                 <div class="chat__container--input">
                     <form>
                         <input type="text" name="chatInput" id="chatInput" placeholder="Escribe un mensaje aquí">

@@ -24,6 +24,8 @@ import { createSQLiteTables } from './persistence/sqlite.config.js'
 import http from 'http'
 import { Server } from "socket.io"
 
+import { messagesDAO } from './persistence/daos/factory.js'
+
 const app = express()
 
 const httpServer = http.createServer(app)
@@ -58,7 +60,11 @@ app.set('views', './views')
 app.set('view engine', 'ejs')
 
 socketServer.on('connection', (client) => {
-    console.log("Usuario conectado:", client.id)
+    messagesDAO.getAll().then(data => socketServer.to(client.id).emit("loadMessages", data.data))
+
+    client.on("newMessage", (data) => {
+        messagesDAO.getAll().then(data => socketServer.sockets.emit("loadMessages", data.data))
+      });
 })
 
 const PORT = process.env.PORT || 8080
