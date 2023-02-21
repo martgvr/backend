@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <link rel="stylesheet" href="style.css">
+    <script src="./scripts/chat.js"></script>
 </head>
 <body>
     <section class="main__container">
         <%- include('./partials/header', { user: user.data, active: 'chat' }) %>
-        
+
         <article class="container">
             <div class="chat__container">
                 <div class="chat__container--title">
@@ -21,7 +22,7 @@
                     <% if (data.length !== 0) { %>
 
                         <% data.forEach(item=> { %>
-                            <li class="message__container <%= item.username === viewerUsername ? 'ownMessage' : '' %>">
+                            <li class="message__container <%= item.username === userData.username ? 'ownMessage' : '' %>">
                                 <div class="message__container--firstrow">
                                     <p><%= item.name %></p>
                                     <p>@<%= item.username %></p>
@@ -36,8 +37,10 @@
                     <% } %>
                 </ul>
                 <div class="chat__container--input">
-                    <input type="text" name="chatInput" id="chatInput" placeholder="Escribe un mensaje aquí">
-                    <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve"><path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path></svg>
+                    <form>
+                        <input type="text" name="chatInput" id="chatInput" placeholder="Escribe un mensaje aquí">
+                        <button onclick="postMessage(event, '<%= userData.name %>', '<%= userData.username %>')"><svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve"><path fill="currentColor" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path></svg></button>
+                    </form>
                 </div>
             </div>
         </article>
