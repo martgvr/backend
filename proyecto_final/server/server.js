@@ -3,29 +3,31 @@ import express from 'express'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 
-import { logger } from "./utils/log4js.js"
 import './utils/logHeader.js'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { logger } from "./utils/log4js.js"
+import { upload } from './middlewares/multer.js'
 
+import { cartsRouter } from './routes/carts.router.js'
+import { usersRouter } from './routes/users.router.js'
 import { productsRouter } from './routes/products.router.js'
 import { messagesRouter } from './routes/messages.router.js'
 import { passportRouter } from './routes/passport.router.js'
-import { cartsRouter } from './routes/carts.router.js'
-import { usersRouter } from './routes/users.router.js'
-
-import { mongoConnect } from './persistence/mongo.config.js'
-import { createSQLiteTables } from './persistence/sqlite.config.js'
 
 import passport from 'passport'
 import './persistence/passport/local.passport.js'
 
-import { upload } from './middlewares/multer.js'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+import { mongoConnect } from './persistence/mongo.config.js'
+import { createSQLiteTables } from './persistence/sqlite.config.js'
 
-// import http from 'http'
-// const socketServer = new Server(http.createServer(app), { cors: { origin: "*" } });
+import http from 'http'
+import { Server } from "socket.io"
 
 const app = express()
+
+const httpServer = http.createServer(app)
+const socketServer = new Server(httpServer, { cors: { origin: "*" } })
 
 app.use(cors())
 app.use(express.json())
@@ -55,15 +57,19 @@ app.use('/chat', messagesRouter.init())
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
+socketServer.on('connection', (client) => {
+    console.log("Usuario conectado:", client.id)
+})
+
 const PORT = process.env.PORT || 8080
 
 function createServer() {
-    const server = app.listen(PORT, (req, res) => { 
+    const server = httpServer.listen(PORT, (req, res) => { 
         logger.info(`[ Listening ${PORT == 8080 ? 'default':'custom'} port: ${PORT} | Mode: ${process.env.CLUSTER == 'true' ? 'cluster' : 'fork'} | Process: ${process.pid} | DAO: ${process.env.DAO || 'mongoDB'} ]`)
     })
     process.env.DAO === 'mongo' && mongoConnect()
     process.env.DAO === 'sqlite' && createSQLiteTables()
-    server.on('error', error => logger.error(`Error: ${error}`));
+    server.on('error', error => logger.error(`Error: ${error}`))
 }
 
 createServer()
