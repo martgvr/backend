@@ -57,10 +57,10 @@
                             <div class="users__container">
                                 <% data.data.forEach(item=> { %>
                                     <div class="user">
-                                        <div class="user__photo" style="background-image: url('/images/<%= item.avatar %>')"></div>
-                                        <p><%= item.cartID %></p>
-                                        <p><%= item.products.length %></p>
-                                        <p><%= item.total %></p>
+                                        <div class="cart__photo" style="background-image: url('https://cdn-icons-png.flaticon.com/512/107/107831.png')"></div>
+                                        <p>ID: <%= item.cartID %></p>
+                                        <p># Productos: <%= item.products.length %></p>
+                                        <p>Total: $ <%= item.total %></p>
                                     </div>
                                 <% }) %>
                             </div>
