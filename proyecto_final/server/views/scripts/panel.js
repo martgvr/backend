@@ -33,6 +33,7 @@ async function updateProductHandler() {
             .then(response => response.json())
 
         data.message === 'Query successfully resolved' && window.location.reload()
+        alertify.success('Producto actualizado de forma exitosa')
     } else {
         const data = await fetch(`http://localhost:8080/products`, 
             { 
@@ -43,6 +44,7 @@ async function updateProductHandler() {
             .then(response => response.json())
         
             data.message === 'Query successfully resolved' && window.location.reload()
+            alertify.success('Producto agregado de forma exitosa')
     }
 }
 
@@ -53,6 +55,7 @@ async function deleteProductHandler() {
         const data = await fetch(`http://localhost:8080/products/${productID}`, { method: 'DELETE' })
         .then(response => response.json())
         data.message === 'Query successfully resolved' && window.location.reload()
+        alertify.success('Producto eliminado de forma exitosa')
     }
 }
 
@@ -86,6 +89,7 @@ async function clearCartHandler(event) {
         const data = await fetch(`http://localhost:8080/carts/${cartID}`, { method: 'DELETE' })
         .then(response => response.json())
         data.message === 'Query successfully resolved' && window.location.reload()
+        alertify.success('Carrito vaciado de forma exitosa')
     }
 }
 
@@ -132,5 +136,6 @@ async function updateUserHandler() {
         .then(response => response.json())
 
         data.message === 'Query successfully resolved' && window.location.reload()
+        alertify.success('Usuario actualizado de forma exitosa')
     }
 }
