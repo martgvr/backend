@@ -56,7 +56,7 @@
                         <div class="panel__data--leftside">
                             <div class="users__container">
                                 <% data.data.forEach(item=> { %>
-                                    <div class="user">
+                                    <div class="user" onclick="cartClickHandler('<%= item.cartID %>', '<%= item.products.length %>', '<%= item.total %>')" id="<%= item.cartID %>">
                                         <div class="cart__photo" style="background-image: url('https://cdn-icons-png.flaticon.com/512/107/107831.png')"></div>
                                         <p>ID: <%= item.cartID %></p>
                                         <p># Productos: <%= item.products.length %></p>
@@ -66,7 +66,15 @@
                             </div>
                         </div>
                         <div class="panel__data--rightside">
-                            rightside
+                            <form>
+                                <label for='productID'>ID del carrito</label>
+                                <input type="text" name="cartID" id="cartID" class="form__input" required autocomplete="off" disabled />
+                                <label for='cartProducts'>Cantidad de productos</label>
+                                <input type="text" name="cartProducts" id="cartProducts" class="form__input" required autocomplete="off" disabled />
+                                <label for='cartTotal'>Total</label>
+                                <input type="text" name="cartTotal" id="cartTotal" class="form__input" required autocomplete="off" disabled />
+                                <button class="custom__button--dark" onclick="clearCartHandler(event)" style="align-self: flex-end;">Vaciar carrito</button>
+                            </form>
                         </div>
                     <% } %>
 
