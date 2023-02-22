@@ -42,6 +42,7 @@
 <script>
     function postCart(product) {
         fetch('/carts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ product }) })
+        .then(res => res.json())
     }
 </script>
 

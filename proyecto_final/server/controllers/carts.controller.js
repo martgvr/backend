@@ -1,11 +1,8 @@
 import { cartsDAO } from "../persistence/daos/factory.js"
 
 export default class CartsController {
-    // CORREGIR ESTE MÉTODO Y EL BOTON QUE LO EJECUTA, TIENE QUE SUMAR AL TOTAL CADA ELEMENTO AGREGADO
-    saveData = async (req, res) => cartsDAO.addItemToCart(req.user.cartID, req.body.product).then(response => res.send(response))
-    
-    // LISTOS
     getData = async (req, res) => cartsDAO.findCartByID(req.user.data.cartID).then(response => res.render('cart', { dataDTO: response, user: req.user }))
+    saveData = async (req, res) => cartsDAO.addItemToCart(req.user.data.cartID, req.body.product).then(response => res.send(response))
     clearCartByID = async (req, res) => cartsDAO.clearCart(req.params.cartid).then(response => res.send(response))
 
     cartCheckout = async (req, res) => {

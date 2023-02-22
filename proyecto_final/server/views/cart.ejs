@@ -36,7 +36,7 @@
                             <% dataDTO.data.products.forEach(item => { %>
                             <tr>
                                 <td><%= item.itemName %></td>
-                                <td><%= item.itemPrice %></td>
+                                <td>$ <%= item.itemPrice %></td>
                                 <td class="item__photo"><img src="<%= item.itemPhoto %>" /></td>
                                 <td><button class="btn__navigation--remove" onclick="">-</button></td>
                             </tr>
@@ -56,7 +56,8 @@
                         <tbody>
                             <tr>
                                 <td>Productos:</td>
-                                <td>$ 25.356 </td>
+                                <% console.log(dataDTO.data) %>
+                                <td>$ <%= dataDTO.data.total %> </td>
                             </tr>
                             <tr>
                                 <td>Envío:</td>
