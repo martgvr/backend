@@ -22,6 +22,24 @@ Este proyecto final ha sido creado para el curso de Backend de Coderhouse, utili
 - Revisar funcionamiento con ambas bases de datos, corregir DAO de SQLite.
 - Detallar endpoints en esta documentación y agregar imagenes.
 
+# Variables de entorno (.env)
+
+```
+MONGO_URL = ''
+SECRET_KEY = ''
+
+CLUSTER = [true | false]
+PORT = 8080
+DAO = [mongo | sqlite]
+
+ADMIN_EMAIL = ''
+NODEMAILER_USER = ''
+NODEMAILER_PASS = ''
+
+ADMIN_USER = ''
+ADMIN_PASS = ''
+```
+
 # Endpoints
 
 ## Products
