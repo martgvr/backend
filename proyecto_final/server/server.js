@@ -11,6 +11,7 @@ import { upload } from './middlewares/multer.js'
 
 import { cartsRouter } from './routes/carts.router.js'
 import { usersRouter } from './routes/users.router.js'
+import { ordersRouter } from './routes/orders.router.js'
 import { productsRouter } from './routes/products.router.js'
 import { messagesRouter } from './routes/messages.router.js'
 import { passportRouter } from './routes/passport.router.js'
@@ -55,6 +56,7 @@ app.use('/users', usersRouter.init())
 app.use('/carts', cartsRouter.init())
 app.use('/auth', passportRouter.init())
 app.use('/chat', messagesRouter.init())
+app.use('/orders', ordersRouter.init())
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
