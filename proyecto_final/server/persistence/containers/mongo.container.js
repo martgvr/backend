@@ -37,6 +37,7 @@ export default class MongoContainer {
             const data = await this.model.updateOne(itemToUpdate, { $set: newValue })
             return { message: 'Query successfully resolved', data }
         } catch (error) {
+            console.log(error);
             return { error: 'Something went wrong' }
         }
     }

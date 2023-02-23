@@ -1,5 +1,4 @@
 // PRODUCTS
-
 async function productClickHandler(productID) {
     const getActives = document.getElementsByClassName('user__selected')
     getActives.length > 0 && getActives[0].classList.remove('user__selected')
@@ -93,8 +92,39 @@ async function clearCartHandler(event) {
     }
 }
 
-// USERS
+// ORDERS
+function orderClickHandler(orderID, orderDate, orderProducts, orderEmail, orderStatus) {
+    const getActives = document.getElementsByClassName('user__selected')
+    getActives.length > 0 && getActives[0].classList.remove('user__selected')
+    document.getElementById(`${orderID}`).classList.add('user__selected')
 
+    document.getElementById('orderID').value = orderID
+    document.getElementById('orderDate').value = orderDate
+    document.getElementById('orderProducts').value = orderProducts
+    document.getElementById('orderEmail').value = orderEmail
+    document.getElementById('orderStatus').value = orderStatus === 'undelivered' ? 'Sin enviar' : 'Enviado'
+}
+
+async function deliveredOrderHandler(status) {
+    const orderID = document.getElementById('orderID')
+    console.log(status);
+    if (orderID.value !== '') {
+        const data = await fetch(`http://localhost:8080/orders/${orderID.value}`, 
+        { 
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify({ status: status === true ? 'delivered' : 'undelivered' }) 
+        })
+        .then(response => response.json())
+
+        if (data.message === 'Query successfully resolved') {
+            alertify.success('Orden modificada de forma exitosa')
+            setTimeout(() => window.location.reload(), 1000);
+        }
+    }
+}
+
+// USERS
 async function userClickHandler(username) {
     const getActives = document.getElementsByClassName('user__selected')
     getActives.length > 0 && getActives[0].classList.remove('user__selected')

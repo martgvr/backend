@@ -85,25 +85,35 @@
                         <div class="panel__data--leftside">
                             <div class="users__container">
                                 <% data.data.forEach(item=> { %>
-                                    <div class="user" onclick="cartClickHandler('<%= item.cartID %>', '<%= item.products.length %>', '<%= item.total %>')" id="<%= item.cartID %>">
-                                        <div class="cart__photo" style="background-image: url('https://cdn-icons-png.flaticon.com/512/107/107831.png')"></div>
-                                        <p>ID: <%= item.cartID %></p>
+                                    <div class="user" onclick="orderClickHandler('<%= item._id %>', '<%= item.timestamp %>', '<%= item.products.length %>', '<%= item.orderEmail %>', '<%= item.status %>')" id="<%= item._id %>">
+                                        <div class="cart__photo" style="background-image: url('https://cdn-icons-png.flaticon.com/512/3496/3496156.png')"></div>
+                                        <p> <%= item.timestamp %></p>
+                                        <p>ID: <%= item.orderID %></p>
                                         <p># Productos: <%= item.products.length %></p>
-                                        <p>Total: $ <%= item.total %></p>
+                                        <p><%= item.status === 'undelivered' ? 'Sin enviar' : 'Enviado' %></p>
                                     </div>
                                 <% }) %>
                             </div>
                         </div>
+
                         <div class="panel__data--rightside">
                             <form>
-                                <label for='productID'>ID del carrito</label>
-                                <input type="text" name="cartID" id="cartID" class="form__input" required autocomplete="off" disabled />
-                                <label for='cartProducts'>Cantidad de productos</label>
-                                <input type="text" name="cartProducts" id="cartProducts" class="form__input" required autocomplete="off" disabled />
-                                <label for='cartTotal'>Total</label>
-                                <input type="text" name="cartTotal" id="cartTotal" class="form__input" required autocomplete="off" disabled />
-                                <button class="custom__button--dark" onclick="clearCartHandler(event)" style="align-self: flex-end;">Vaciar carrito</button>
+                                <label for="orderID">ID de la orden</label>
+                                <input type="text" name="orderID" id="orderID" class="form__input" required autocomplete="off" disabled />
+                                <label for="orderDate">Fecha y hora de orden</label>
+                                <input type="text" name="orderDate" id="orderDate" class="form__input" required autocomplete="off" disabled />
+                                <label for="orderProducts">Cantidad de productos</label>
+                                <input type="text" name="orderProducts" id="orderProducts" class="form__input" required autocomplete="off" disabled />
+                                <label for="orderEmail">Email de orden</label>
+                                <input type="text" name="orderEmail" id="orderEmail" class="form__input" required autocomplete="off" disabled />
+                                <label for="orderStatus">Estado de la orden</label>
+                                <input type="text" name="orderStatus" id="orderStatus" class="form__input" required autocomplete="off" disabled />
                             </form>
+
+                            <div class="panel__buttons">
+                                <button class="custom__button--dark"  onclick="deliveredOrderHandler(false)">Marcar como sin envíar</button>
+                                <button class="custom__button--green" type="submit" form="loginForm" onclick="deliveredOrderHandler(true)" id="productHandlerButton">Marcar como envíado</button>
+                            </div>
                         </div>
                     <% } %>
 
