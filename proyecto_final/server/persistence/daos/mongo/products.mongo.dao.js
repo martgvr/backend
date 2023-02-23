@@ -6,6 +6,15 @@ export default class ProductsMongoDAO extends MongoContainer {
         super(productsModel)
     }
 
+    async getByCategory(category) {
+        try {
+            const data = await this.model.find({category: category})
+            return { message: 'Query successfully resolved', data }
+        } catch (error) {
+            return { error: 'Something went wrong' }
+        }
+    }
+
     async updateProduct(productToUpdate, newValue) {
         try {
             const data = await this.model.updateOne({_id: productToUpdate}, { $set: newValue })

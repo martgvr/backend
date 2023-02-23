@@ -11,15 +11,16 @@ Este proyecto final ha sido creado para el curso de Backend de Coderhouse, utili
 - Panel de administración de productos, carritos y usuarios.
 - Creación automática de usuario administrador al iniciar servidor.
 - Encriptado de contraseñas en base de datos utilzando Bcrypt.
+- Envío de emails realizado con Nodemailer.
 
 # What's next?
 
-- Funcionamiento de botón para eliminar item del carrito.
+- Funcionamiento de botón para eliminar item y confirmar compra.
 - Revisar funcionamiento de envío de mails.
-- Detallar endpoints en esta documentación y agregar imagenes.
-- Revisar funcionamiento con ambas bases de datos, corregir DAO de SQLite.
 - Agregar 2 variables de entorno ADMIM_USER y ADMIN_PASS.
 - Al iniciar el servidor se creará ese usuario de administrador que permitirá acceder al panel de control.
+- Revisar funcionamiento con ambas bases de datos, corregir DAO de SQLite.
+- Detallar endpoints en esta documentación y agregar imagenes.
 
 # Endpoints
 

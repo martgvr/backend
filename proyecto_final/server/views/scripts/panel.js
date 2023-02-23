@@ -10,6 +10,7 @@ async function productClickHandler(productID) {
     document.getElementById('productName').value = data.data.name
     document.getElementById('productPrice').value = data.data.price
     document.getElementById('productPhoto').value = data.data.photo
+    document.getElementById('productCategory').value = data.data.category
 
     document.getElementById('productHandlerButton').innerText = 'Actualizar producto'
 }
@@ -21,6 +22,7 @@ async function updateProductHandler() {
     newData.name = document.getElementById('productName').value
     newData.price = document.getElementById('productPrice').value
     newData.photo = document.getElementById('productPhoto').value
+    newData.category = document.getElementById('productCategory').value
 
     if (productID !== '') {
         const data = await fetch(`http://localhost:8080/products/${productID}`, 
@@ -64,6 +66,7 @@ function productCleanHandler(event) {
     document.getElementById('productName').value = ''
     document.getElementById('productPrice').value = ''
     document.getElementById('productPhoto').value = ''
+    document.getElementById('productCategory').value = ''
     document.getElementById('productHandlerButton').innerText = 'Agregar producto'
     const getActives = document.getElementsByClassName('user__selected')
     getActives.length > 0 && getActives[0].classList.remove('user__selected')
