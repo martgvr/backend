@@ -10,12 +10,12 @@ class OrdersRouter {
     }
     
     init() {
-        router.post('/', this.OrdersController.saveData)
-        router.get('/', this.OrdersController.getData)
-        router.get('/:id', this.OrdersController.getDataByID)
-        router.put('/:id', this.OrdersController.updateDataByID)
-        router.delete('/all', this.OrdersController.deleteAll)
-        router.delete('/:messageid', this.OrdersController.deleteByID)
+        router.post('/', isAuth, this.OrdersController.saveData)
+        router.get('/', isAuth, this.OrdersController.getData)
+        router.get('/:id', isAuth, this.OrdersController.getDataByID)
+        router.put('/:id', isAuth, this.OrdersController.updateDataByID)
+        router.delete('/all', isAuth,this.OrdersController.deleteAll)
+        router.delete('/:messageid', isAuth, this.OrdersController.deleteByID)
         
         return router
     }

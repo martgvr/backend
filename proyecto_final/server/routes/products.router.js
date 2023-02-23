@@ -10,12 +10,12 @@ class ProductsRouter {
     }
     
     init() {
-        // VIEW RENDER
+        // RENDER
         router.get('/', isAuth, this.ProductsController.productsRedirect)
 
         // CRUD
-        router.get('/products', isAuth, this.ProductsController.getData)
         router.post('/products', isAuth, this.ProductsController.saveData)
+        router.get('/products', isAuth, this.ProductsController.getData)
         router.get('/products/:productid', isAuth, this.ProductsController.getByID)
         router.put('/products/:productid', isAuth, this.ProductsController.updateByID)
         router.delete('/products/:productid', isAuth, this.ProductsController.deleteByID)

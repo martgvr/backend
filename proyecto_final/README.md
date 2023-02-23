@@ -14,7 +14,6 @@ Este proyecto final ha sido creado para el curso de Backend de Coderhouse, utili
 
 # What's next?
 
-- En el panel de administrador agregar una opción de "ordenes"
 - Funcionamiento de botón para eliminar item del carrito.
 - Revisar funcionamiento de envío de mails.
 - Detallar endpoints en esta documentación y agregar imagenes.
@@ -23,6 +22,53 @@ Este proyecto final ha sido creado para el curso de Backend de Coderhouse, utili
 - Al iniciar el servidor se creará ese usuario de administrador que permitirá acceder al panel de control.
 
 # Endpoints
+
+## Products
+
+```
+POST
+/products
+
+{
+  "name": "",
+  "price": number,
+  "photo": "",
+  "category": ""
+}
+
+GET
+/products
+/products/:id
+
+PUT
+/products/:id
+
+{
+  "name": "",
+  "price": number,
+  "photo": "",
+  "category": ""
+}
+
+DELETE
+/products/:id
+
+```
+
+## Carts
+
+```
+POST
+/carts
+/carts/checkout
+
+GET
+/carts
+
+DELETE
+/carts/:id
+
+```
 
 ## Orders
 
@@ -56,4 +102,14 @@ PUT
 DELETE
 /orders/:id
 /orders/all
+```
+
+## Users
+
+```
+GET
+/users/:username
+
+PUT
+/users/:username
 ```
