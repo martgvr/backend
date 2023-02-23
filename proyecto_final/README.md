@@ -14,6 +14,46 @@ Este proyecto final ha sido creado para el curso de Backend de Coderhouse, utili
 
 # What's next?
 
+- En el panel de administrador agregar una opción de "ordenes"
+- Funcionamiento de botón para eliminar item del carrito.
+- Revisar funcionamiento de envío de mails.
+- Detallar endpoints en esta documentación y agregar imagenes.
 - Revisar funcionamiento con ambas bases de datos, corregir DAO de SQLite.
 - Agregar 2 variables de entorno ADMIM_USER y ADMIN_PASS.
 - Al iniciar el servidor se creará ese usuario de administrador que permitirá acceder al panel de control.
+
+# Endpoints
+
+## Orders
+
+```
+POST
+/orders
+
+{
+  "products": "",
+  "status": "",
+  "timestamp": "",
+  "orderEmail": "",
+  "orderID": ""
+}
+
+GET 
+/orders
+/orders/:id
+
+PUT
+/orders/:id
+
+{
+  "products": "",
+  "status": "",
+  "timestamp": "",
+  "orderEmail": "",
+  "orderID": ""
+}
+
+DELETE
+/orders/:id
+/orders/all
+```

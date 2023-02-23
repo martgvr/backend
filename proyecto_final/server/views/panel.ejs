@@ -21,6 +21,7 @@
                     <ul>
                         <li class="<%= tab === 'products' ? 'selected' : '' %>" onclick="location.href='/users/panel?tab=products'">Productos</li>
                         <li class="<%= tab === 'carts' ? 'selected' : '' %>" onclick="location.href='/users/panel?tab=carts'">Carritos</li>
+                        <li class="<%= tab === 'orders' ? 'selected' : '' %>" onclick="location.href='/users/panel?tab=orders'">Ordenes</li>
                         <li class="<%= tab === 'users' ? 'selected' : '' %>" onclick="location.href='/users/panel?tab=users'">Usuarios</li>
                     </ul>
                 </div>
@@ -55,6 +56,32 @@
                     <% } %>
 
                     <% if (tab == 'carts') { %> 
+                        <div class="panel__data--leftside">
+                            <div class="users__container">
+                                <% data.data.forEach(item=> { %>
+                                    <div class="user" onclick="cartClickHandler('<%= item.cartID %>', '<%= item.products.length %>', '<%= item.total %>')" id="<%= item.cartID %>">
+                                        <div class="cart__photo" style="background-image: url('https://cdn-icons-png.flaticon.com/512/107/107831.png')"></div>
+                                        <p>ID: <%= item.cartID %></p>
+                                        <p># Productos: <%= item.products.length %></p>
+                                        <p>Total: $ <%= item.total %></p>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                        <div class="panel__data--rightside">
+                            <form>
+                                <label for='productID'>ID del carrito</label>
+                                <input type="text" name="cartID" id="cartID" class="form__input" required autocomplete="off" disabled />
+                                <label for='cartProducts'>Cantidad de productos</label>
+                                <input type="text" name="cartProducts" id="cartProducts" class="form__input" required autocomplete="off" disabled />
+                                <label for='cartTotal'>Total</label>
+                                <input type="text" name="cartTotal" id="cartTotal" class="form__input" required autocomplete="off" disabled />
+                                <button class="custom__button--dark" onclick="clearCartHandler(event)" style="align-self: flex-end;">Vaciar carrito</button>
+                            </form>
+                        </div>
+                    <% } %>
+
+                    <% if (tab == 'orders') { %> 
                         <div class="panel__data--leftside">
                             <div class="users__container">
                                 <% data.data.forEach(item=> { %>
