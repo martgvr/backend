@@ -30,7 +30,7 @@
                         <div class="panel__data--leftside">
                             <div class="users__container" id="usersContainer">
                                 <% data.data.forEach(item=> { %>
-                                    <div class="user" onclick="productClickHandler('<%= item._id %>')" id="<%= item._id %>">
+                                    <div class="user" onclick="productClickHandler('<%= item.id %>')" id="<%= item.id %>">
                                         <div class="user__photo" style="background-image: url('<%= item.photo %>')"></div>
                                         <p><%= item.name %></p>
                                         <p>$ <%= item.price %></p>
@@ -86,7 +86,7 @@
                         <div class="panel__data--leftside">
                             <div class="users__container">
                                 <% data.data.forEach(item=> { %>
-                                    <div class="user" onclick="orderClickHandler('<%= item._id %>', '<%= item.timestamp %>', '<%= item.products.length %>', '<%= item.orderEmail %>', '<%= item.status %>')" id="<%= item._id %>">
+                                    <div class="user" onclick="orderClickHandler('<%= item.id %>', '<%= item.timestamp %>', '<%= item.products.length %>', '<%= item.orderEmail %>', '<%= item.status %>')" id="<%= item.id %>">
                                         <div class="cart__photo" style="background-image: url('https://cdn-icons-png.flaticon.com/512/3496/3496156.png')"></div>
                                         <p> <%= item.timestamp %></p>
                                         <p>ID: <%= item.orderID %></p>

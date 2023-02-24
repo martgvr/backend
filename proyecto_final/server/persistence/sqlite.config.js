@@ -13,12 +13,12 @@ import { logger } from "../utils/log4js.js"
 
 async function createAdminUser() {
     const adminExistance = await usersDAO.findByUsername(process.env.ADMIN_USER)
-    
-    if (Object.keys(adminExistance).length === 0) {
+
+    if (adminExistance === undefined) {
         await usersDAO.save({
             admin: 1,
             cartID: 0,
-            avatar: 'admin.png',
+            avatar: 'admin.jpg',
             name: 'Administrador',
             email: process.env.ADMIN_EMAIL,
             username: process.env.ADMIN_USER,

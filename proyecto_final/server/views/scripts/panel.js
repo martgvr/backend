@@ -6,7 +6,7 @@ async function productClickHandler(productID) {
 
     const data = await fetch(`http://localhost:8080/products/${productID}`).then(response => response.json())
 
-    document.getElementById('productID').value = data.data._id
+    document.getElementById('productID').value = data.data.id
     document.getElementById('productName').value = data.data.name
     document.getElementById('productPrice').value = data.data.price
     document.getElementById('productPhoto').value = data.data.photo
