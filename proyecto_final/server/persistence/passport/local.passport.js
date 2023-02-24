@@ -2,7 +2,7 @@ import { Strategy as LocalStrategy } from "passport-local"
 import passport from "passport"
 import bcrypt from 'bcrypt'
 
-// import usersRepository from '../repositories/users.repository.js'
+import usersRepository from '../repositories/users.repository.js'
 
 import { usersModel as Users } from '../models/mongo/users.mongo.model.js'
 import { cartsDAO } from '../daos/factory.js'
@@ -33,8 +33,8 @@ passport.use('signup', new LocalStrategy({
         user.avatar = req.file.filename
         user.cartID = Math.floor(Math.random() * 1000)
 
-        // const usersRepoInstance = new usersRepository(user)
-        // usersRepoInstance.sendEmail()
+        const usersRepoInstance = new usersRepository(user)
+        usersRepoInstance.sendEmail()
 
         cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
         usersDAO.save(process.env.DAO === 'file' ? user._doc : user)
