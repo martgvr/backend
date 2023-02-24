@@ -41,7 +41,7 @@
                                 <td><%= item.itemName %></td>
                                 <td>$ <%= item.itemPrice %></td>
                                 <td class="item__photo"><img src="<%= item.itemPhoto %>" /></td>
-                                <td><button class="btn__navigation--remove" onclick="deleteItemHandler('<%= item.itemID %>')">-</button></td>
+                                <td><button class="btn__navigation--remove" onclick="deleteItemHandler('<%= item.itemID %>', '<%= user.data.cartID %>')">-</button></td>
                             </tr>
                             <% }) %>
                         </tbody>

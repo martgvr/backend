@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de productos</title>
-    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -41,9 +42,13 @@
 </body>
 
 <script>
-    function postCart(product) {
-        fetch('/carts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ product }) })
+    async function postCart(product) {
+        const data = await fetch('/carts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ product }) })
         .then(res => res.json())
+        
+        if (data.message === 'Query successfully resolved') {
+            alertify.success('Producto agregado al carrito')
+        }
     }
 </script>
 

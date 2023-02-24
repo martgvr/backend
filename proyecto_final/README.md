@@ -15,8 +15,8 @@ Este proyecto final ha sido creado para el curso de Backend de Coderhouse, utili
 
 # What's next?
 
-- Funcionamiento de botón para eliminar item y confirmar compra.
-- Revisar funcionamiento de envío de mails.
+- Botón Confirmar compra debería rederigir a una pantalla de compra exitosa.
+- Revisar funcionamiento de envío de mail al registrarse.
 - Agregar 2 variables de entorno ADMIM_USER y ADMIN_PASS.
 - Al iniciar el servidor se creará ese usuario de administrador que permitirá acceder al panel de control.
 - Revisar funcionamiento con ambas bases de datos, corregir DAO de SQLite.
@@ -32,12 +32,12 @@ CLUSTER = [true | false]
 PORT = 8080
 DAO = [mongo | sqlite]
 
-ADMIN_EMAIL = ''
 NODEMAILER_USER = ''
 NODEMAILER_PASS = ''
 
 ADMIN_USER = ''
 ADMIN_PASS = ''
+ADMIN_EMAIL = ''
 ```
 
 # Endpoints

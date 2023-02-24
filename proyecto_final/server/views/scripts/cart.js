@@ -1,5 +1,13 @@
-async function deleteItemHandler(itemID) {
+async function deleteItemHandler(itemID, cartID) {
     console.log('Eliminar del carrito:', itemID)
+    console.log('Carrito:', cartID)
+
+    const data = await fetch(`http://localhost:8080/carts/${cartID}/${itemID}`, { method: 'DELETE' })
+    .then(response => response.json())
+    console.log(data);
+
+    data.message === 'Query successfully resolved' && alertify.success('Item eliminado del carrito')
+    setTimeout(() => window.location.reload(), 1000);
 }
 
 async function cleanCartHandler(cartID) {
@@ -10,5 +18,7 @@ async function cleanCartHandler(cartID) {
 }
 
 async function checkoutHandler() {
-    console.log('Checkout de carrito')
+    const data = await fetch(`http://localhost:8080/carts/checkout`, { method: 'POST' })
+    .then(response => response.json())
+    console.log(data);
 }

@@ -12,7 +12,7 @@ class ProductsRouter {
     init() {
         router.get('/', isAuth, this.ProductsController.productsRedirect)
         router.post('/products', isAuth, this.ProductsController.saveData)
-        router.get('/products', this.ProductsController.getData)
+        router.get('/products', isAuth, this.ProductsController.getData)
         router.get('/products/:productid', isAuth, this.ProductsController.getByID)
         router.put('/products/:productid', isAuth, this.ProductsController.updateByID)
         router.delete('/products/:productid', isAuth, this.ProductsController.deleteByID)

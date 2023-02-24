@@ -2,13 +2,12 @@ import { usersDAO, productsDAO, cartsDAO, ordersDAO } from "../persistence/daos/
 
 export default class UsersController {
     logout = async (req,res) => req.logout(() => res.redirect('/'))
+    renderRegister = async (req,res) => res.render('register')
+    renderProfile = async (req,res) => res.render('profile', { params: req.user })
+    renderLoginError = async (req,res) => res.render('error', { type: 'logerror' })
+    renderRegisterError = async (req,res) => res.render('error', { type: 'regerror' })
     getByUsername = async (req, res) => res.send(await usersDAO.findByUsername(req.params.username))
     updateByUsername = async (req, res) => res.send(await usersDAO.updateByUsername(req.params.username, req.body))
-
-    renderRegisterError = async (req,res) => res.render('error', { type: 'regerror' })
-    renderLoginError = async (req,res) => res.render('error', { type: 'logerror' })
-    renderProfile = async (req,res) => res.render('profile', { params: req.user })
-    renderRegister = async (req,res) => res.render('register')
 
     renderPanel = async (req,res) => {
         if (req.user.data.admin === 1) {

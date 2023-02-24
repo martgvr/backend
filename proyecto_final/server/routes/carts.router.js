@@ -14,6 +14,7 @@ class CartsRouter {
         router.post('/', isAuth, this.CartsController.saveData)
         router.post('/checkout', isAuth, this.CartsController.cartCheckout)
         router.delete('/:cartid', isAuth, this.CartsController.clearCartByID)
+        router.delete('/:cartid/:itemid', isAuth, this.CartsController.removeCartItem)
         return router
     }
 }
