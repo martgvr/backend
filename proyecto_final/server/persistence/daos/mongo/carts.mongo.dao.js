@@ -54,6 +54,7 @@ export default class CartMongoDAO extends MongoContainer {
                 cartRepoInstance.sendEmail()
                 this.clearCart(cartID)
             })
+            
             return { message: 'Query successfully resolved' }
         } catch (error) {
             return { error: 'Something went wrong' }

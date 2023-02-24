@@ -28,7 +28,8 @@ export default class SQLiteContainer {
     async getByID(id) {
         try {
             const data = await this.db.from(this.table).select('*').where('id', id)
-            return { message: 'Query successfully resolved', data }
+            const dataReturned = data[0]
+            return { message: 'Query successfully resolved', data: dataReturned }
         } catch (error) {
             return { error: 'Something went wrong', error }
         }

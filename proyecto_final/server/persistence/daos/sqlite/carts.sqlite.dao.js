@@ -8,7 +8,8 @@ export default class CartsSQLiteDAO extends SQLiteContainer {
     async findCartByID(id) {
         try {
             const data = await this.db.from(this.table).select('*').where('cartID', id)
-            return { message: 'Query successfully resolved', data }
+            const returnData = data[0]
+            return { message: 'Query successfully resolved', data: returnData }
         } catch (error) {
             return { error: 'Something went wrong' }
         }

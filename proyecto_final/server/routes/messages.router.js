@@ -12,8 +12,8 @@ class MessagesRouter {
     init() {
         router.get('/', isAuth, this.MessagesController.getData)
         router.post('/', isAuth, this.MessagesController.saveData)
-        router.delete('/all', this.MessagesController.deleteAll)
-        router.delete('/:messageid', this.MessagesController.deleteByID)
+        router.delete('/all', isAuth, this.MessagesController.deleteAll)
+        router.delete('/:messageid', isAuth, this.MessagesController.deleteByID)
         
         return router
     }
