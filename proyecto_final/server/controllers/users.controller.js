@@ -8,6 +8,7 @@ export default class UsersController {
     renderRegisterError = async (req,res) => res.render('error', { type: 'regerror' })
     getByUsername = async (req, res) => res.send(await usersDAO.findByUsername(req.params.username))
     updateByUsername = async (req, res) => res.send(await usersDAO.updateByUsername(req.params.username, req.body))
+    deleteByUsername = async (req, res) => res.send(await usersDAO.deleteByUsername(req.params.username))
 
     renderPanel = async (req,res) => {
         if (req.user.data.admin === 1) {

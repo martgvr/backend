@@ -5,7 +5,7 @@ async function productClickHandler(productID) {
     document.getElementById(`${productID}`).classList.add('user__selected')
 
     const data = await fetch(`http://localhost:8080/products/${productID}`).then(response => response.json())
-    
+
     document.getElementById('productID').value = data.data._id
     document.getElementById('productName').value = data.data.name
     document.getElementById('productPrice').value = data.data.price
@@ -135,7 +135,7 @@ async function userClickHandler(username) {
 
     const data = await fetch(`http://localhost:8080/users/${username}`).then(response => response.json())
 
-    document.getElementById('username').value = username
+    document.getElementById('usernameInput').value = username
     document.getElementById('email').value = data.email
     document.getElementById('cart').value = data.cartID
     document.getElementById('name').value = data.name
@@ -147,9 +147,10 @@ async function userClickHandler(username) {
 }
 
 async function updateUserHandler() {
-    const usernameInput = document.getElementById('username').value
+    const usernameInput = document.getElementById('usernameInput').value
     
     if (usernameInput !== '') {
+        alertify.warning('Actualizando usuario')
         const newData = { }
 
         newData.email = document.getElementById('email').value
@@ -167,8 +168,25 @@ async function updateUserHandler() {
             body: JSON.stringify(newData) 
         })
         .then(response => response.json())
-
+        
         data.message === 'Query successfully resolved' && window.location.reload()
         alertify.success('Usuario actualizado de forma exitosa')
+    }
+}
+
+async function removeUserHandler() {
+    alertify.warning('Eliminando usuario')
+    const usernameInput = document.getElementById('usernameInput').value
+    
+    if (usernameInput !== '') {
+        const data = await fetch(`http://localhost:8080/users/${usernameInput}`, 
+        { 
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+
+        data.message === 'Query successfully resolved' && window.location.reload()
+        alertify.success('Usuario eliminado de forma exitosa')
     }
 }

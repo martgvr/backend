@@ -134,8 +134,8 @@
 
                         <div class="panel__data--rightside">
                             <form>
-                                <label for='username'>Información de sesión</label>
-                                <input type="text" name="username" id="username" placeholder="Usuario" class="form__input" required autocomplete="off" disabled/>
+                                <label for='usernameInput'>Información de sesión</label>
+                                <input type="text" name="usernameInput" id="usernameInput" placeholder="Usuario" class="form__input" required autocomplete="off" disabled/>
                                 <input type="text" name="cart" id="cart" placeholder="ID de carrito" class="form__input" required autocomplete="off" disabled/>
                                 <input type="email" name="email" id="email" placeholder="Email" class="form__input" required autocomplete="off" />
                                 <label for="name">Información de perfil</label>
@@ -158,7 +158,7 @@
                             </form>
 
                             <div class="panel__buttons">
-                                <button class="custom__button--red">Eliminar usuario</button>
+                                <button class="custom__button--red" onclick="removeUserHandler()">Eliminar usuario</button>
                                 <button class="custom__button--green" form="loginForm" onclick="updateUserHandler()">Actualizar usuario</button>
                             </div>
                         </div>

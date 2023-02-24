@@ -35,7 +35,14 @@ export default class UsersMongoDAO extends MongoContainer {
         }
     }
 
-    async updateUser() {
-        return 'ok'
+    async deleteByUsername(username) {
+        try {
+            const data = await this.model.deleteOne({ username: username });
+            return { message: 'Query successfully resolved', data }
+        } catch (error) {
+            console.log(error);
+            return { error: 'Something went wrong' }
+        }
     }
+
 }
