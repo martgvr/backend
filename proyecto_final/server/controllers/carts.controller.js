@@ -6,4 +6,5 @@ export default class CartsController {
     clearCartByID = async (req, res) => cartsDAO.clearCart(req.params.cartid).then(response => res.send(response))
     removeCartItem = async (req, res) => cartsDAO.removeCartItem(req.params.cartid, req.params.itemid).then(response => res.send(response))
     cartCheckout = async (req, res) => cartsDAO.cartCheckout(req.user.data.cartID, req.user).then(response => res.send(response))
+    successRender = (req, res) => res.render('success')
 }

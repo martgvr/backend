@@ -20,5 +20,6 @@ async function cleanCartHandler(cartID) {
 async function checkoutHandler() {
     const data = await fetch(`http://localhost:8080/carts/checkout`, { method: 'POST' })
     .then(response => response.json())
-    console.log(data);
+    alertify.success('Procesando compra')
+    window.location.href = "http://localhost:8080/carts/success"
 }

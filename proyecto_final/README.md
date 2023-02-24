@@ -15,7 +15,6 @@ Este proyecto final ha sido creado para el curso de Backend de Coderhouse, utili
 
 # What's next?
 
-- Botón Confirmar compra debería rederigir a una pantalla de compra exitosa.
 - Revisar funcionamiento de envío de mail al registrarse.
 - Agregar 2 variables de entorno ADMIM_USER y ADMIN_PASS.
 - Al iniciar el servidor se creará ese usuario de administrador que permitirá acceder al panel de control.

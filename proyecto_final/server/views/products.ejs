@@ -43,6 +43,7 @@
 
 <script>
     async function postCart(product) {
+        alertify.warning('Agregando producto')
         const data = await fetch('/carts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ product }) })
         .then(res => res.json())
         
