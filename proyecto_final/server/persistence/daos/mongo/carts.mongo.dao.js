@@ -18,10 +18,14 @@ export default class CartMongoDAO extends MongoContainer {
 
     async removeCartItem(cartID, itemID) {
         try {
-            const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $pull: { "products": { itemID: itemID } }}, { new: true })
-            // falta restar el item del total
+            const findOne = await this.model.findOne({ cartID: cartID })
+            const dataFound = findOne.products.find(element => element.itemID == itemID)
+            const total = findOne.total
+
+            const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $pull: { "products": { itemID: itemID } }, $set: { total: total - dataFound.itemPrice } }, { new: true })
             return { message: 'Query successfully resolved', data }
         } catch (error) {
+            console.log(error);
             return { error: 'Something went wrong' }
         }
     }
