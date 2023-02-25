@@ -6,6 +6,7 @@ export default class ProductsController {
     getByID = async (req, res) => res.send(await productsDAO.getByID(req.params.productid))
     deleteByID = async (req, res) => res.send(await productsDAO.deleteProduct(req.params.productid))
     updateByID  = async (req, res) => res.send(await productsDAO.updateProduct(req.params.productid, req.body))
+    
     getData = async (req,res) => {
         const data = !req.query.category ? await productsDAO.getAll() : await productsDAO.getByCategory(req.query.category)
         res.render('products', { user: req.user, data: data.data })

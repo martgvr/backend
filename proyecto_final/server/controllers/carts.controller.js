@@ -6,12 +6,6 @@ export default class CartsController {
     removeCartItem = (req, res) => cartsDAO.removeCartItem(req.params.cartid, req.params.itemid).then(response => res.send(response))
     successRender = (req, res) => res.render('success')
 
-    cartCheckout = (req, res) => {
-        console.log(req.user);
-        cartsDAO.cartCheckout(req.user.data.cartID, req.user).then(response => res.send(response))
-        ordersDAO.save({ products: "", status: "", timestamp: "", orderEmail: "", orderID: "" })
-    }
-
     getData = (req, res) => {
         cartsDAO.findCartByID(req.user.data.cartID).then(response => {
 
@@ -21,6 +15,16 @@ export default class CartsController {
             }
 
             res.render('cart', { dataDTO: response, user: req.user })
+        })
+    }
+
+    cartCheckout = (req, res) => {
+        const today = new Date()
+        const timestamp = `${today.toLocaleDateString()} | ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
+
+        cartsDAO.cartCheckout(req.user.data.cartID, req.user).then(response => res.send(response.data))
+        cartsDAO.findCartByID(req.user.data.cartID).then(response => {
+            ordersDAO.save({ products: response.data.products, status: "undelivered", timestamp: timestamp, orderEmail: req.user.data.email, orderID: Math.floor(Math.random() * 10000) })
         })
     }
 }
