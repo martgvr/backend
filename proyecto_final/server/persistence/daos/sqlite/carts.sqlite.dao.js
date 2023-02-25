@@ -17,11 +17,18 @@ export default class CartsSQLiteDAO extends SQLiteContainer {
 
     async addItemToCart(cartID, req) {
         const { itemID, itemName, itemPrice, itemPhoto } = req
+
         try {
             const contentCheck = await this.db.from(this.table).select('products').where('cartID', cartID)
-            const contentParse = JSON.parse(contentCheck[0].products)
-            contentParse.push({ itemID, itemName, itemPrice, itemPhoto })
-            await this.db.from(this.table).select('*').where('cartID', cartID).update('products', JSON.stringify(contentParse))
+            let modifiedData = ''
+
+            if (contentCheck[0].products === '') {
+                modifiedData = contentCheck[0]
+                modifiedData.products = [{ itemID, itemName, itemPrice, itemPhoto }]
+            }
+
+            await this.db.from(this.table).select('*').where('cartID', cartID).update('products', JSON.stringify(modifiedData.products))
+            
             return { message: 'Query successfully resolved' }
         } catch (error) {
             console.log(error)

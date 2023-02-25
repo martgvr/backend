@@ -16,7 +16,6 @@ Este proyecto final ha sido creado para el curso de Backend de Coderhouse, utili
 # What's next?
 
 - Al confirmar la compra falta agregarlo a Orders.
-
 - Revisar funcionamiento con ambas bases de datos, corregir DAO de SQLite.
 - Detallar endpoints en esta documentación y agregar imagenes.
 
