@@ -1,4 +1,5 @@
 import SQLiteContainer from '../../containers/sqlite.container.js'
+import cartsRepository from '../../repositories/carts.repository.js'
 
 export default class CartsSQLiteDAO extends SQLiteContainer {
     constructor() {
@@ -29,7 +30,7 @@ export default class CartsSQLiteDAO extends SQLiteContainer {
 
             return { message: 'Query successfully resolved' }
         } catch (error) {
-            console.log(error);
+            return { error: 'Something went wrong' }
         }
     }
 
@@ -55,6 +56,24 @@ export default class CartsSQLiteDAO extends SQLiteContainer {
         try {
             const data = await this.db.from(this.table).select('*').where('cartID', cartID).update('products', '[]').update('total', 0)
             return { message: 'Query successfully resolved', data }
+        } catch (error) {
+            return { error: 'Something went wrong' }
+        }
+    }
+
+    async cartCheckout(cartID, userData) {
+        try {
+            this.findCartByID(cartID).then(response => {
+                let responseData = response.data
+                responseData.products = JSON.parse(responseData.products)
+
+                const cartRepoInstance = new cartsRepository(responseData, userData.data)
+                cartRepoInstance.sendEmail()
+                this.clearCart(cartID)
+
+            })
+
+            return { message: 'Query successfully resolved' }
         } catch (error) {
             console.log(error);
             return { error: 'Something went wrong' }
