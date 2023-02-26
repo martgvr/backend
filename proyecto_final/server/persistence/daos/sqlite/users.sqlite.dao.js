@@ -23,7 +23,22 @@ export default class UsersSQLiteDAO extends SQLiteContainer {
         }
     }
 
-    async updateUser() {
-        return 'ok'
+
+    async updateByUsername(username, newData) {
+        try {
+
+            return { message: 'Query successfully resolved', data }
+        } catch (error) {
+            return { error: 'Something went wrong' }
+        }
+    }
+
+    async deleteByUsername(username) {
+        try {
+
+            return { message: 'Query successfully resolved', data }
+        } catch (error) {
+            return { error: 'Something went wrong' }
+        }
     }
 }

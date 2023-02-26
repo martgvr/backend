@@ -20,7 +20,6 @@ export default class UsersMongoDAO extends MongoContainer {
             const data = await this.model.findOne({ username: username })
             return data
         } catch (error) {
-            console.log(error);
             return { error: 'Something went wrong' }
         }
     }
@@ -30,7 +29,6 @@ export default class UsersMongoDAO extends MongoContainer {
             const data = await this.model.updateOne({ username: username }, newData)
             return { message: 'Query successfully resolved', data }
         } catch (error) {
-            console.log(error);
             return { error: 'Something went wrong' }
         }
     }
@@ -40,7 +38,6 @@ export default class UsersMongoDAO extends MongoContainer {
             const data = await this.model.deleteOne({ username: username })
             return { message: 'Query successfully resolved', data }
         } catch (error) {
-            console.log(error);
             return { error: 'Something went wrong' }
         }
     }

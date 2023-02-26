@@ -5,6 +5,15 @@ export default class ProductsSQLiteDAO extends SQLiteContainer {
         super('sqlite3', './sqlite/database.sqlite', 'products')
     }
 
+    async getByCategory(category) {
+        try {
+            const data = await this.db.from(this.table).select('*').where('category', category)
+            return { message: 'Query successfully resolved', data }
+        } catch (error) {
+            return { error: 'Something went wrong' }
+        }
+    }
+
     async updateProduct(productID, req) {
         for (const key in req) {
             if (key !== 'productID') {

@@ -25,7 +25,6 @@ export default class CartMongoDAO extends MongoContainer {
             const data = await this.model.findOneAndUpdate({ cartID: cartID }, { $pull: { "products": { itemID: itemID } }, $set: { total: total - dataFound.itemPrice } }, { new: true })
             return { message: 'Query successfully resolved', data }
         } catch (error) {
-            console.log(error);
             return { error: 'Something went wrong' }
         }
     }
