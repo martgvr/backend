@@ -9,36 +9,51 @@ export default class CartsSQLiteDAO extends SQLiteContainer {
         try {
             const data = await this.db.from(this.table).select('*').where('cartID', id)
             const returnData = data[0]
-            return { message: 'Query successfully resolved', data: returnData }
+            return { message: 'Query successfully resolved', data: returnData == undefined ? null : returnData }
         } catch (error) {
             return { error: 'Something went wrong' }
         }
     }
 
-    async addItemToCart(cartID, req) {
-        const { itemID, itemName, itemPrice, itemPhoto } = req
-
+    async removeCartItem(cartID, itemID) {
         try {
-            const contentCheck = await this.db.from(this.table).select('products').where('cartID', cartID)
-            let modifiedData = ''
+            const findOne = await this.db.from(this.table).select('*').where('cartID', cartID)
+            const parsedData = JSON.parse(findOne[0].products)
+            const itemRemoveIndex = parsedData.findIndex(element => element.itemID == itemID)
+            const itemToSubtract = parsedData[itemRemoveIndex].itemPrice
+            const total = findOne[0].total
 
-            if (contentCheck[0].products === '') {
-                modifiedData = contentCheck[0]
-                modifiedData.products = [{ itemID, itemName, itemPrice, itemPhoto }]
-            }
+            parsedData.splice(itemRemoveIndex, 1)
 
-            await this.db.from(this.table).select('*').where('cartID', cartID).update('products', JSON.stringify(modifiedData.products))
-            
+            await this.db.from(this.table).select('*').where('cartID', cartID).update('products', JSON.stringify(parsedData)).update('total', total - itemToSubtract)
+
             return { message: 'Query successfully resolved' }
         } catch (error) {
-            console.log(error)
+            console.log(error);
+        }
+    }
+
+    async addItemToCart(cartID, itemData) {
+        const { itemID, itemName, itemPrice, itemPhoto } = itemData
+
+        try {
+            const findOne = await this.db.from(this.table).select('*').where('cartID', cartID)
+            const products = JSON.parse(findOne[0].products)
+            const total = findOne[0].total
+
+            products.push({ itemID, itemName, itemPrice, itemPhoto })
+
+            await this.db.from(this.table).select('*').where('cartID', cartID).update('products', JSON.stringify(products)).update('total', JSON.stringify(Number(total) + Number(itemPrice)))
+
+            return { message: 'Query successfully resolved' }
+        } catch (error) {
             return { error: 'Something went wrong' }
         }
     }
 
     async clearCart(cartID) {
         try {
-            const data = await this.db.from(this.table).select('*').where('cartID', cartID).update('products', '[]')
+            const data = await this.db.from(this.table).select('*').where('cartID', cartID).update('products', '[]').update('total', 0)
             return { message: 'Query successfully resolved', data }
         } catch (error) {
             console.log(error);

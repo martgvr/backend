@@ -7,9 +7,9 @@ export default class CartMongoDAO extends MongoContainer {
         super(cartModel)
     }
 
-    async findCartByID(id) {
+    async findCartByID(cartID) {
         try {
-            const data = await this.model.findOne({ cartID: id })
+            const data = await this.model.findOne({ cartID: cartID })
             return { message: 'Query successfully resolved', data }
         } catch (error) {
             return { error: 'Something went wrong' }
