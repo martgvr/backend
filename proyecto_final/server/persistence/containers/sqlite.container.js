@@ -69,7 +69,6 @@ export default class SQLiteContainer {
                 return { message: `Table ${this.table} already exists at ${this.filename}`, tableName: this.table, tableStatus: 1 }
             }
         } catch (error) {
-            console.log(error)
             return { error: 'Something went wrong', tableName: this.table, tableStatus: 0, error }
         }
     }

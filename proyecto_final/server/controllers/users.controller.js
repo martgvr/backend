@@ -6,9 +6,10 @@ export default class UsersController {
     renderProfile = (req,res) => res.render('profile', { params: req.user })
     renderLoginError = (req,res) => res.render('error', { type: 'logerror' })
     renderRegisterError = (req,res) => res.render('error', { type: 'regerror' })
-    getByUsername = async (req, res) => res.send(await usersDAO.findByUsername(req.params.username))
-    updateByUsername = async (req, res) => res.send(await usersDAO.updateByUsername(req.params.username, req.body))
-    deleteByUsername = async (req, res) => res.send(await usersDAO.deleteByUsername(req.params.username))
+
+    getByUsername = async (req, res) => usersDAO.findByUsername(req.params.username).then(data => res.send(data))
+    updateByUsername = async (req, res) => usersDAO.updateByUsername(req.params.username, req.body).then(data => res.send(data))
+    deleteByUsername = async (req, res) => usersDAO.deleteByUsername(req.params.username).then(data => res.send(data))
 
     renderPanel = async (req,res) => {
         if ((req.user.data !== null) && (req.user.data.admin === 1)) {

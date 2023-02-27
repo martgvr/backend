@@ -26,7 +26,7 @@ export default class UsersSQLiteDAO extends SQLiteContainer {
 
     async updateByUsername(username, newData) {
         try {
-
+            const data = await this.db.from(this.table).select('*').where('username', username).update(newData)
             return { message: 'Query successfully resolved', data }
         } catch (error) {
             return { error: 'Something went wrong' }
@@ -35,7 +35,7 @@ export default class UsersSQLiteDAO extends SQLiteContainer {
 
     async deleteByUsername(username) {
         try {
-
+            const data = await this.db.from(this.table).select('*').where('username', username).del()
             return { message: 'Query successfully resolved', data }
         } catch (error) {
             return { error: 'Something went wrong' }

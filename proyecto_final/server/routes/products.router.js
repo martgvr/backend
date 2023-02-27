@@ -10,8 +10,8 @@ class ProductsRouter {
     }
     
     init() {
-        router.get('/', isAuth, this.ProductsController.productsRedirect)
         router.post('/products', isAuth, this.ProductsController.saveData)
+        router.get('/', isAuth, this.ProductsController.productsRedirect)
         router.get('/products', isAuth, this.ProductsController.getData)
         router.get('/products/:productid', isAuth, this.ProductsController.getByID)
         router.put('/products/:productid', isAuth, this.ProductsController.updateByID)

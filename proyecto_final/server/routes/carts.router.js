@@ -10,10 +10,10 @@ class CartsRouter {
     }
     
     init() {
-        router.get('/', isAuth, this.CartsController.getData)
-        router.get('/success', isAuth, this.CartsController.successRender)
         router.post('/', isAuth, this.CartsController.saveData)
         router.post('/checkout', isAuth, this.CartsController.cartCheckout)
+        router.get('/', isAuth, this.CartsController.getData)
+        router.get('/success', isAuth, this.CartsController.successRender)
         router.delete('/:cartid', isAuth, this.CartsController.clearCartByID)
         router.delete('/:cartid/:itemid', isAuth, this.CartsController.removeCartItem)
         

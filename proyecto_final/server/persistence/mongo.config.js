@@ -15,7 +15,7 @@ async function createAdminUser() {
         await usersDAO.save({
             admin: 1,
             cartID: 0,
-            avatar: 'admin.png',
+            avatar: 'admin.jpg',
             name: 'Administrador',
             email: process.env.ADMIN_EMAIL,
             username: process.env.ADMIN_USER,
