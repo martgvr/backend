@@ -7,7 +7,8 @@ export default class OrdersSQLiteDAO extends SQLiteContainer {
 
     async updateOrder(orderID, newValue) {
         try {
-            
+            const data = await this.db.from(this.table).select('*').where('orderID', orderID)
+            console.log(data);
             return { message: 'Query successfully resolved' }
         } catch (error) {
             return { error: 'Something went wrong' }

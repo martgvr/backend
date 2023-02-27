@@ -55,7 +55,7 @@ export default class SQLiteContainer {
 
     async createTable(fields) {
         try {
-            const isTable = await this.db.schema.hasTable(this.table);
+            const isTable = await this.db.schema.hasTable(this.table)
             if (!isTable) {
                 await this.db.schema.createTable(this.table, (table) => {
                     for (const field of fields) {

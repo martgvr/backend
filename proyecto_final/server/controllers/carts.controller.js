@@ -8,13 +8,9 @@ export default class CartsController {
 
     getData = (req, res) => {
         cartsDAO.findCartByID(req.user.data.cartID).then(response => {
-
-            if(typeof response.data.products === 'string') {
-                let modifiedData = response.data
-                modifiedData.products = JSON.parse(response.data.products)
-            }
-
-            res.render('cart', { dataDTO: response, user: req.user })
+            let modifiedData = response
+            modifiedData.data.products = (response.data.products === '') ? [] : JSON.parse(response.data.products)
+            res.render('cart', { dataDTO: modifiedData, user: req.user })
         })
     }
 

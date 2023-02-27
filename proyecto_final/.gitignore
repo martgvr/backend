@@ -135,3 +135,5 @@ dist
 carts.json
 users.json
 messages.json
+
+database.sqlite

@@ -36,7 +36,7 @@ passport.use('signup', new LocalStrategy({
         const usersRepoInstance = new usersRepository(user)
         usersRepoInstance.sendEmail()
 
-        cartsDAO.save({ cartID: user.cartID, products: [], total: 0 })
+        cartsDAO.save({ cartID: user.cartID, products: '[]', total: 0 })
         usersDAO.save(process.env.DAO === 'file' ? user._doc : user)
         done(null, user)
     }

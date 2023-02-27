@@ -36,7 +36,7 @@ export default class CartsSQLiteDAO extends SQLiteContainer {
 
     async addItemToCart(cartID, itemData) {
         const { itemID, itemName, itemPrice, itemPhoto } = itemData
-
+        
         try {
             const findOne = await this.db.from(this.table).select('*').where('cartID', cartID)
             const products = JSON.parse(findOne[0].products)
@@ -48,6 +48,7 @@ export default class CartsSQLiteDAO extends SQLiteContainer {
 
             return { message: 'Query successfully resolved' }
         } catch (error) {
+            console.log(error);
             return { error: 'Something went wrong' }
         }
     }
